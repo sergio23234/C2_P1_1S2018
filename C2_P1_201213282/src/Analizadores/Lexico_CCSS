@@ -1,0 +1,60 @@
+package Analizadores;
+import static Analizadores.Tokens.*;
+import java_cup.runtime.*;
+import java.io.Reader;
+%%
+%class lexico_cjs
+%{
+public static String errores="";
+    private Symbol Symbol(int type){
+        return new Symbol(type ,yyline, yycolumn);
+    }
+    private Symbol Symbol(int type, Object value){
+        return new Symbol(type, yyline, yycolumn, value);
+    }
+
+    public static void errorLexico(String error,int x, int y ){
+       errores+="error lexico \""+error+"\" en linea: "+Integer.toString(y)+" colulmna: "+Integer.toString(x)+"\n";
+    }
+%}
+%public
+%cup
+%ignorecase
+%line
+%column
+Comentario_simple = [//][^][\n]
+Comentario_multiple = [/*][^][*/]
+Lineterminada = [\r|\n|\r\n]
+WhiteSpace = ({Lineterminada} | [ \t\f]|[ |\t|\r|\f|\n])+
+Comillas = [\"] [^][\"]"
+%%
+{whiteSpace} {/*Ignore*/}
+{(Comentario_multiple|Comentario_simple)} {/*Ignore*/}
+"+"											{return new Symbol(symc.SMAS,yyline,yycolumn);}
+"-"											{return new Symbol(symc.SMEN,yyline,yycolumn);}
+"*"											{return new Symbol(symc.SMUL,yyline,yycolumn);}
+"/"											{return new Symbol(symc.SDIV,yyline,yycolumn);}
+"["											{return new Symbol(symc.SILL,yyline,yycolumn);}
+"]"											{return new Symbol(symc.SFLL,yyline,yycolumn);}
+"("											{return new Symbol(symc.SIPA,yyline,yycolumn);}
+")"											{return new Symbol(symc.SFPA,yyline,yycolumn);}
+"ID"										{return new Symbol(symc.RID,yyline,yycolumn);}
+"TEXTO"										{return new Symbol(symj.RTEX,yyline,yycolumn);}
+"Letra"										{return new Symbol(symj.RLET,yyline,yycolumn);}
+"Grupo"										{return new Symbol(symj.RGRU,yyline,yycolumn);}
+"Borde"										{return new Symbol(symj.RBOR,yyline,yycolumn);}
+"Opaque"									{return new Symbol(symj.ROPA,yyline,yycolumn);}
+"Visible"									{return new Symbol(symj.RVIS,yyline,yycolumn);}
+"Formato"									{return new Symbol(symj.RFOR,yyline,yycolumn);}
+"Derecha"									{return new Symbol(symj.RDER,yyline,yycolumn);}
+"Cursiva"									{return new Symbol(symj.RCUR,yyline,yycolumn);}
+"Centrado"									{return new Symbol(symj.RCEN,yyline,yycolumn);}
+"Negrilla"									{return new Symbol(symj.RNEG,yyline,yycolumn);}
+"Alineado"									{return new Symbol(symj.RALI,yyline,yycolumn);}
+"Izquierda"									{return new Symbol(symj.RIZQ,yyline,yycolumn);}
+"Mayuscula"									{return new Symbol(symj.RMAY,yyline,yycolumn);}
+"Capital-T"									{return new Symbol(symj.RCAP,yyline,yycolumn);}
+"COLORTEXT"									{return new Symbol(symj.RCOL,yyline,yycolumn);}
+"Justificado"								{return new Symbol(symj.RJUS,yyline,yycolumn);}
+"Fondoelemento"								{return new Symbol(symj.RFEL,yyline,yycolumn);}
+"Autoredimension"							{return new Symbol(symj.RAUR,yyline,yycolumn);}
