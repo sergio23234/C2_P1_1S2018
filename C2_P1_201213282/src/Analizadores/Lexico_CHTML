@@ -1,0 +1,89 @@
+package Analizadores;
+import static Analizadores.Tokens.*;
+import java_cup.runtime.*;
+import java.io.Reader;
+
+%%
+%class lexico_chtml
+%{
+public static String errores="";
+    private Symbol Symbol(int type){
+        return new Symbol(type ,yyline, yycolumn);
+    }
+    private Symbol Symbol(int type, Object value){
+        return new Symbol(type, yyline, yycolumn, value);
+    }
+
+    public static void errorLexico(String error,int x, int y ){
+       errores+="error lexico \""+error+"\" en linea: "+Integer.toString(y)+" colulmna: "+Integer.toString(x)+"\n";
+    }
+%}
+%public
+%cup
+%ignorecase
+%line
+%column
+Lineterminada = [\r|\n|\r\n]
+WhiteSpace = ({Lineterminada} | [ \t\f]|[ |\t|\r|\f|\n])+
+Comillas = [\"] [^][\"]"
+%%
+{whiteSpace} {/*Ignore*/}
+<YYINITIAL> {
+"CHTML"			 				{return new Symbol(sym.IHTML,yyline, yycolumn);}
+"FIN-CHTML"			 			{return new Symbol(sym.FHTML,yyline, yycolumn);}
+"ENCABEZADO"			 		{yybegin(YYCABEZA); return new Symbol(sym.IENCA,yyline, yycolumn);}
+"CUERPO"			 			{yybegin(YYCUERPO);return new Symbol(sym.ICUER,yyline, yycolumn);}
+"<"								{return new Symbol(sym.INI,yyline,yycolumn);}
+">"								{return new Symbol(sym.FIN,yyline,yycolumn);}
+.   							{ System.out.println("Caracter Invalido: "+yytext()+" Linea: "+ (int)(yyline+1)+" columa:"+(int)yycolumn+";");}
+}
+<YYCABEZA> {
+"FIN-ENCABEZADO"			 				{yybegin(YYINITIAL); return new Symbol(sym.FENCA,yyline, yycolumn);}
+"CJS"										{return new Symbol(sym.ICJS,yyline,yycolumn);}
+"FIN-CJS"									{return new Symbol(sym.FCJS,yyline,yycolumn);}
+"CCSS"										{return new Symbol(sym.ICCS,yyline,yycolumn);}
+"FIN-CCSS"									{return new Symbol(sym.FCCS,yyline,yycolumn);}
+"TITULO"									{return new Symbol(sym.ITIT,yyline,yycolumn);}
+"FIN-TITULO"								{return new Symbol(sym.FTIT,yyline,yycolumn);}
+"ruta"										{return new Symbol(sym.PRUT,yyline,yycolumn);}
+"="											{return new Symbol(sym.SIGU,yyline,yycolumn);}
+";"											{return new Symbol(sym.SPYC,yyline,yycolumn);}
+"<"											{return new Symbol(sym.INI,yyline,yycolumn);}
+">"											{return new Symbol(sym.FIN,yyline,yycolumn);}
+{Comillas}									{return new Symbol(sym.PCOM,yyline,yycolumn,yytext());}
+(([:jletter:]|[:jletterdigit:]|a-Z)+)		{return new Symbol(sym.PNOR,yyline, yycolumn,yytext());} 
+.   										{ System.out.println("Caracter Invalido: "+yytext()+" Linea: "+ (int)(yyline+1)+" columa:"+(int)yycolumn+";");}
+}
+<YYCABEZA> {
+"FIN-CUERPO"			 					{yybegin(YYINITIAL); return new Symbol(sym.FCUER,yyline, yycolumn);}
+"PANEL"										{return new Symbol(sym.IEPA,yyline,yycolumn);}
+"FIN-PANEL"									{return new Symbol(sym.FEPA,yyline,yycolumn);}
+"TEXTO"										{return new Symbol(sym.IETE,yyline,yycolumn);}
+"FIN-TEXTO"									{return new Symbol(sym.FETE,yyline,yycolumn);}
+"BOTON"										{return new Symbol(sym.IEBO,yyline,yycolumn);}
+"FIN-BOTON"									{return new Symbol(sym.FEBO,yyline,yycolumn);}
+"IMAGEN"									{return new Symbol(sym.IEIM,yyline,yycolumn);}
+"FIN-IMAGEN"								{return new Symbol(sym.FEIM,yyline,yycolumn);}
+"ENLACE"									{return new Symbol(sym.IEEN,yyline,yycolumn);}
+"FIN-ENCLASE"								{return new Symbol(sym.FEEN,yyline,yycolumn);}
+"TABLA"										{return new Symbol(sym.IETA,yyline,yycolumn);}
+"FIN-TABLA"									{return new Symbol(sym.FETA,yyline,yycolumn);}
+"FIL_T"										{return new Symbol(sym.IEFI,yyline,yycolumn);}
+"FIN-FIL_T"									{return new Symbol(sym.FEFI,yyline,yycolumn);}
+"CB"										{return new Symbol(sym.IECB,yyline,yycolumn);}
+"FIN-CB"									{return new Symbol(sym.FECB,yyline,yycolumn);}
+"CT"										{return new Symbol(sym.IECT,yyline,yycolumn);}
+"FIN-CT"									{return new Symbol(sym.FECT,yyline,yycolumn);}
+"TEXTO_A"									{return new Symbol(sym.IETA,yyline,yycolumn);}
+"FIN-TEXTO_A"									{return new Symbol(sym.FETA,yyline,yycolumn);}
+
+"ruta"										{return new Symbol(sym.PRUT,yyline,yycolumn);}
+"="											{return new Symbol(sym.SIGU,yyline,yycolumn);}
+";"											{return new Symbol(sym.SPYC,yyline,yycolumn);}
+"<"											{return new Symbol(sym.INI,yyline,yycolumn);}
+">"											{return new Symbol(sym.FIN,yyline,yycolumn);}
+{Comillas}									{return new Symbol(sym.PCOM,yyline,yycolumn,yytext());}
+(([:jletter:]|[:jletterdigit:]|a-Z)+)		{return new Symbol(sym.PNOR,yyline, yycolumn,yytext());} 
+.   										{ System.out.println("Caracter Invalido: "+yytext()+" Linea: "+ (int)(yyline+1)+" columa:"+(int)yycolumn+";");}
+}
+.   { System.out.println("Caracter Invalido: "+yytext()+" Linea: "+ (int)(yyline+1)+" columa:"+(int)yycolumn+";");}
