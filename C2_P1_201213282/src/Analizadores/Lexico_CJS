@@ -2,7 +2,7 @@ package Analizadores;
 import static Analizadores.Tokens.*;
 import java_cup.runtime.*;
 import java.io.Reader;
-
+//esto ya es un cambio
 %%
 %class lexico_chtml
 %{
