@@ -26,8 +26,11 @@ public static String errores="";
 Lineterminada = [\r|\n|\r\n]
 WhiteSpace = ({Lineterminada} | [ \t\f]|[ |\t|\r|\f|\n])+
 Comillas = [\"] [^][\"]"
+Comentario_multiple = [<//-][^][-//>]
+
 %%
 {whiteSpace} {/*Ignore*/}
+{Comentario_multiple} {/*Ignore*/}
 <YYINITIAL> {
 "CHTML"			 				{return new Symbol(sym.IHTML,yyline, yycolumn);}
 "FIN-CHTML"			 			{return new Symbol(sym.FHTML,yyline, yycolumn);}
@@ -55,6 +58,10 @@ Comillas = [\"] [^][\"]"
 .   										{ System.out.println("Caracter Invalido: "+yytext()+" Linea: "+ (int)(yyline+1)+" columa:"+(int)yycolumn+";");}
 }
 <YYCABEZA> {
+"="											{return new Symbol(sym.SIGU,yyline,yycolumn);}
+";"											{return new Symbol(sym.SPYC,yyline,yycolumn);}
+"<"											{return new Symbol(sym.INI,yyline,yycolumn);}
+">"											{return new Symbol(sym.FIN,yyline,yycolumn);}
 "FIN-CUERPO"			 					{yybegin(YYINITIAL); return new Symbol(sym.FCUER,yyline, yycolumn);}
 "PANEL"										{return new Symbol(sym.IEPA,yyline,yycolumn);}
 "FIN-PANEL"									{return new Symbol(sym.FEPA,yyline,yycolumn);}
@@ -93,10 +100,7 @@ Comillas = [\"] [^][\"]"
 "ancho"										{return new Symbol(sym.PANC,yyline,yycolumn);}
 "alineado"									{return new Symbol(sym.PALI,yyline,yycolumn);}
 "click"										{return new Symbol(sym.PCLI,yyline,yycolumn);}
-"="											{return new Symbol(sym.SIGU,yyline,yycolumn);}
-";"											{return new Symbol(sym.SPYC,yyline,yycolumn);}
-"<"											{return new Symbol(sym.INI,yyline,yycolumn);}
-">"											{return new Symbol(sym.FIN,yyline,yycolumn);}
+"fondo"										{return new Symbol(sym.PFON,yyline,yycolumn);}
 {Comillas}									{return new Symbol(sym.PCOM,yyline,yycolumn,yytext());}
 (([:jletter:]|[:jletterdigit:]|a-Z)+)		{return new Symbol(sym.PNOR,yyline, yycolumn,yytext());} 
 .   										{ System.out.println("Caracter Invalido: "+yytext()+" Linea: "+ (int)(yyline+1)+" columa:"+(int)yycolumn+";");}

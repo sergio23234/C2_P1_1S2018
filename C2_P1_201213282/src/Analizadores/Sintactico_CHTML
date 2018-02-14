@@ -1,0 +1,99 @@
+package Analizadores;
+import java.io.FileReader;
+import java_cup.runtime.Symbol;
+import java_cup.runtime.*;
+import java.util.ArrayList;
+
+/*codigo publico*/
+parser code {:
+    public static ArrayList<Nodo_error> Errores = new ArrayList<Nodo_error>();
+    public static boolean errores=false;
+    protected int error_sync_size () {
+       return 1;   
+    }
+
+    public void syntax_error(Symbol s){
+        System.out.println("Error sintactico lexema \"" + s.value+"\" en la Columna: "+(s.right) +", Linea: "+(s.left+1)+ " no esperado");
+        Nodo_error nuevo = new Nodo_error();
+        nuevo.dato = String.valueOf(s.value);
+        nuevo.linea = (s.left+1);
+        nuevo.columna=(s.right);
+        Errores.add(nuevo);
+        errores=true;
+    }
+
+    
+    public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
+        System.out.println("Error sintactico \"" + s.value+"\" en la Linea: "+(s.right+1) +", Columna: "+(s.left+1)+ "");
+        Nodo_error nuevo = new Nodo_error();
+        nuevo.dato = String.valueOf(s.value);
+        nuevo.linea = (s.left+1);
+        nuevo.columna=(s.right);
+        Errores.add(nuevo);
+        errores=true;
+    }
+
+ /*codig de usuario */
+ String total = "";
+ public ArrayList<Nodo> e = new ArrayList<Nodo>();
+:}
+action code {:
+    public String estado="";
+:}
+/* terminales del lenguaje*/
+terminal IHTML,FHTML,IENCA,ICUER,INI,FIN,FENCA,ICJS,FCJS,ICCS,FCCS,ITIT,FTIT,PRUT,SIGU,SPYC,PCOM,PNOR,FCUER,IEPA,FEPA,IETE,FETE,IEBO,FEBO,IEIM,FEIM,IEEN,FEEN,IETB,FETB,IEFI,FEFI,IECB,FECB,IECT,FECT,IETA,FETA,IECA,FECA,IECJ,FECJ,IEOP,FEOP,ESAL,IESP,FESP,PRUT,PVAL,PID,PGRP,PALT,PANC,PALI,PCLI,PFON;
+/*aqui estan los no terminales */
+non terminal Start,UNO; 
+non terminal NCHTML CUERPO_CHTML,CUERPO_ENCA,CUERPO_CUERPO,ESTRUCTURA_CCSS,ESTRUCTURA_CJS,ESTRUCTURA_TITU,ESTRUCTURA_CUERPO,ESTRUCTURA_G_CUERPO1,ESTRUCTURA_G_CUERPO;
+start with Start;
+Start ::= UNO;
+/*----------------------------ESTRUCTURA DE CHTML-------------------------*/
+UNO  ::= INI IHTML FIN CUERPO_CHTML:e1 INI FHTML FIN{:/*CONTENIDO*/:};
+CUERPO_CHTML ::= INI IENCA FIN CUERPO_ENCA:e1 INI FENCA FIN ESTRUCTURA_CUERPO{:/*CONTENIDO*/:};
+/*----------------------------ESTRUCTURA DE ENCABEZADO-------------------------*/
+CUERPO_ENCA ::=     CUERPO_ENCA ESTRUCTURA_CCSS
+                |   CUERPO_ENCA ESTRUCTURA_CJS  
+                |   CUERPO_ENCA ESTRUCTURA_TITU
+                |   ESTRUCTURA_TITU
+                |   ESTRUCTURA_CJS
+                |   ESTRUCTURA_CCSS{:/**/:};
+ESTRUCTURA_CCSS::= INI ICCS PRUT SIGU PCOM SPYC FIN INI FCCS FIN{:/*__*/:};
+ESTRUCTURA_CJS ::= INI ICJS PRUT SIGU PCOM SPYC FIN INI FCJS FIN{:/*__*/:};
+ESTRUCTURA_TITU::= INI ITIT FIN  PNOR INI  FTIT FIN{:/*__*/:};
+/*----------------------------ESTRUCTURA DE CUERPO-------------------------*/
+ESTRUCTURA_CUERPO ::= INI ICUER                     FIN CUERPO_CUERPO:e2 INI FCUER FIN{::}
+                    | INI ICUER PFON SIGU PCOM SPYC FIN CUERPO_CUERPO:e2 INI FCUER FIN{::};
+
+ESTRUCTURA_PANEL ::= INI IEPA FIN CONTENIDO_CUERPO INI FEPA FIN{::}
+                    |INI IEPA ESTRUCTURA_G_CUERPO  FIN CONTENIDO_CUERPO INI FEPA FIN{::}; 
+ESTRUCTURA_TEXTO ::= INI IETE FIN  PNOR INI FETE FIN{::}
+                    |INI IETE ESTRUCTURA_G_CUERPO FIN PNOR INI FETE FIN{::};
+ESTRUCTURA_IMAGE ::= INI IEIM FIN PNOR INI IEFI FIN{::}
+                    |INI IEIM ESTRUCTURA_G_SCL FIN PNOR INI IEFI FIN{::}
+                    |INI IEIM ESTRUCTURA_G_COM FIN INI IEFI FIN{::};
+ESTRUCTURA_BOTON ::= INI IEBO FIN                                        
+/*--------------ESTRUCTURA Generales de CUERPO--------------*/
+ESTRUCTURA_G_COM ::= ESTRUCTURA_G_COM ESTRUCTURA_G_RUT{::}
+                    |ESTRUCTURA_G_COM ESTRUCTURA_G_CLI{::}
+                    |ESTRUCTURA_G_COM ESTRUCTURA_G_CUERPO{::}
+                    |ESTRUCTURA_G_CLI{::}
+                    |ESTRUCTURA_G_CUERPO{::}
+                    |ESTRUCTURA_G_RUT{::};
+ESTRUCTURA_G_SRU ::= ESTRUCTURA_G_COM ESTRUCTURA_G_RUT{::}
+                    |ESTRUCTURA_G_COM ESTRUCTURA_G_CUERPO{::}
+                    |ESTRUCTURA_G_CUERPO{::}
+                    |ESTRUCTURA_G_RUT{::};
+ESTRUCTURA_G_SCL ::= ESTRUCTURA_G_COM ESTRUCTURA_G_CLI{::}
+                    |ESTRUCTURA_G_COM ESTRUCTURA_G_CUERPO{::}
+                    |ESTRUCTURA_G_CLI{::}
+                    |ESTRUCTURA_G_CUERPO{::};
+
+ESTRUCTURA_G_RUT ::= PRUT SIGU PCOM SPYC{::};
+ESTRUCTURA_G_CLI ::= PCLI SIGU PCOM SPYC{::};
+ESTRUCTURA_G_CUERPO::=  ESTRUCTURA_G_CUERPO ESTRUCTURA_G_CUERPO1{::} 
+                    |   ESTRUCTURA_G_CUERPO1{::};                   
+ESTRUCTURA_G_CUERPO1::= PGRP SIGU PCOM SPYC{::}
+                    |   PID  SIUG PCOM SPYC{::}
+                    |   PALI SIGU PCOM SPYC{::}
+                    |   PALT SIGU PCOM SPYC{::} 
+                    |   PANC SIGU PCOM SPYC{::};                   
