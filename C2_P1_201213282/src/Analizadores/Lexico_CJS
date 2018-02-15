@@ -24,10 +24,10 @@ public static String errores="";
 %line
 %column
 Comentario_simple = [\'][^][\n]
-Comentario_multiple = [\'/][^][\'/]'
+Comentario_multiple = [\'/][^][\'/]
 Lineterminada = [\r|\n|\r\n]
 WhiteSpace = ({Lineterminada} | [ \t\f]|[ |\t|\r|\f|\n])+
-Comillas = [\"] [^][\"]"
+Comillas = [\"] [^][\"]
 %%
 {whiteSpace} {/*Ignore*/}
 {(Comentario_multiple|Comentario_simple)} {/*Ignore*/}
@@ -42,6 +42,7 @@ Comillas = [\"] [^][\"]"
 "("											{return new Symbol(symj.SIPA,yyline,yycolumn);}
 ")"											{return new Symbol(symj.SFPA,yyline,yycolumn);}
 "="											{return new Symbol(symj.SIGU,yyline,yycolumn);}
+","											{return new Symbol(symj.SCOM,yyline,yycolumn);}
 ";"											{return new Symbol(symj.SPYC,yyline,yycolumn);}
 ":"											{return new Symbol(symj.SDPN,yyline,yycolumn);}
 "!"											{return new Symbol(symj.SNOT,yyline,yycolumn);}

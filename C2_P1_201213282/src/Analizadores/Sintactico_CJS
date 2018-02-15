@@ -1,0 +1,52 @@
+package Analizadores;
+import java.io.FileReader;
+import java_cup.runtime.Symbol;
+import java_cup.runtime.*;
+import java.util.ArrayList;
+
+/*codigo publico*/
+parser code {:
+    public static ArrayList<Nodo_error> Errores = new ArrayList<Nodo_error>();
+    public static boolean errores=false;
+    protected int error_sync_size () {
+       return 1;   
+    }
+
+    public void syntax_error(Symbol s){
+        System.out.println("Error sintactico lexema \"" + s.value+"\" en la Columna: "+(s.right) +", Linea: "+(s.left+1)+ " no esperado");
+        Nodo_error nuevo = new Nodo_error();
+        nuevo.dato = String.valueOf(s.value);
+        nuevo.linea = (s.left+1);
+        nuevo.columna=(s.right);
+        Errores.add(nuevo);
+        errores=true;
+    }
+
+    
+    public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
+        System.out.println("Error sintactico \"" + s.value+"\" en la Linea: "+(s.right+1) +", Columna: "+(s.left+1)+ "");
+        Nodo_error nuevo = new Nodo_error();
+        nuevo.dato = String.valueOf(s.value);
+        nuevo.linea = (s.left+1);
+        nuevo.columna=(s.right);
+        Errores.add(nuevo);
+        errores=true;
+    }
+
+ /*codig de usuario */
+ String total = "";
+ public ArrayList<Nodo> e = new ArrayList<Nodo>();
+:}
+action code {:
+    public String estado="";
+:}
+/* terminales del lenguaje*/
+terminal SMAS,SMEN,SMUL,SDIV,SPOT,SMOD,SMAY,SMEN,SIPA,SFPA,SIGU,SCOM,SPYC,SDPN,SNOT,SILL,SFLL,SOR,SAND,RSI,RSIN,RPAR,RDIM,RCAS,RCON,RFUN,ROBT,RDET,RMEN,RRET,RIMP,RATE,RMIE,ROBS,RSEL,RSET,PCOM,PNOR;/*aqui estan los no terminales */
+non terminal Start,UNO; 
+non terminal NCJS ;
+start with Start;
+Start ::= UNO;
+/*----------------------------ESTRUCTURA DE CHTML-------------------------*/
+ESTRUCTURA_DEC_VAR ::= RDIM LISTA_VAR SPYC{::}
+                    |  RDIM LISTA_VAR SDPN PNOR SPYC{::}; 
+                    
