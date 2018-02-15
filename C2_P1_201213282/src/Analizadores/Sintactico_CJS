@@ -41,12 +41,28 @@ action code {:
     public String estado="";
 :}
 /* terminales del lenguaje*/
-terminal SMAS,SMEN,SMUL,SDIV,SPOT,SMOD,SMAY,SMEN,SIPA,SFPA,SIGU,SCOM,SPYC,SDPN,SNOT,SILL,SFLL,SOR,SAND,RSI,RSIN,RPAR,RDIM,RCAS,RCON,RFUN,ROBT,RDET,RMEN,RRET,RIMP,RATE,RMIE,ROBS,RSEL,RSET,PCOM,PNOR;/*aqui estan los no terminales */
+terminal PHOR,SMAS,SMEN,SMUL,SDIV,SPOT,SMOD,SMAY,PNUM,SMEN,SIPA,SFPA,SIGU,SCOM,SPYC,SDPN,SNOT,SILL,SFLL,SOR,SAND,RSI,RSIN,RPAR,RDIM,RCAS,RCON,RFUN,ROBT,RDET,RMEN,RRET,RIMP,RATE,RMIE,ROBS,RSEL,RSET,PCOM,PID,PFEC;
+/*aqui estan los no terminales */
 non terminal Start,UNO; 
 non terminal NCJS ;
 start with Start;
 Start ::= UNO;
 /*----------------------------ESTRUCTURA DE CHTML-------------------------*/
 ESTRUCTURA_DEC_VAR ::= RDIM LISTA_VAR SPYC{::}
-                    |  RDIM LISTA_VAR SDPN PNOR SPYC{::}; 
-                    
+                    |  RDIM LISTA_VAR SDPN A_VAR SPYC{::};
+
+/*Valores que pueden tomar las datos*/
+A_VAR   ::=  PCOM{::}
+            |PNUM{::}
+            |PFEC{::}
+            |PHOR{::};
+OP_ARITMETICA ::=       OP_ARITMETICA SMAS OP_ARITMETICA{::}
+                    |   OP_ARITMETICA SMEN OP_ARITMETICA{::}
+                    |   OP_ARITMETICA SMUL OP_ARITMETICA{::}
+                    |   OP_ARITMETICA SDIV OP_ARITMETICA{::}
+                    |   OP_ARITMETICA SPOT OP_ARITMETICA{::}
+                    |   OP_ARITMETICA SMOD OP_ARITMETICA{::};
+OP_LOGICA   ::=         OP_LOGICA SOR OP_LOGICA{::}
+                    |   OP_LOGICA SAND OP_LOGICA{::}
+                    |   SNOT     OP_LOGICA{::}
+                    |;

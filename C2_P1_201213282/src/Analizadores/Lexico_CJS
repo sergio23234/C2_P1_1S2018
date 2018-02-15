@@ -46,7 +46,7 @@ Comillas = [\"] [^][\"]
 ";"											{return new Symbol(symj.SPYC,yyline,yycolumn);}
 ":"											{return new Symbol(symj.SDPN,yyline,yycolumn);}
 "!"											{return new Symbol(symj.SNOT,yyline,yycolumn);}
-"{"											{return new Symbol(symj.SILL,yyline,yycolumn);}
+"{"					 						{return new Symbol(symj.SILL,yyline,yycolumn);}
 "}"											{return new Symbol(symj.SFLL,yyline,yycolumn);}
 "||"										{return new Symbol(symj.SOR,yyline,yycolumn);}
 "&&"										{return new Symbol(symj.SAND,yyline,yycolumn);}
@@ -67,6 +67,9 @@ Comillas = [\"] [^][\"]
 "Observador"								{return new Symbol(symj.ROBS,yyline,yycolumn);}
 "Selecciona"								{return new Symbol(symj.RSEL,yyline,yycolumn);}
 "setElemento"								{return new Symbol(symj.RSET,yyline,yycolumn);}
+{[0-9]+[\.][0-9]+}							{return new Symbol(symj.PNUM,yyline,yycolumn);}			
 {Comillas}									{return new Symbol(symj.PCOM,yyline,yycolumn,yytext());}
-(([:jletter:]|[:jletterdigit:]|a-Z)+)		{return new Symbol(symj.PNOR,yyline, yycolumn,yytext());} 
+{(a-Z)[.]~[ ,\n]}							{return new Symbol(symj.PID,yyline, yycolumn,yytext());}
+{[']([0-9]+/[0-9]+/[0-9]+)([0-9]+:[0-9]+:[0-9]+)[']} return new Symbol(symj.PHOR,yyline, yycolumn,yytext());}
+{[']([0-9]+/[0-9]+/[0-9]+)[']} 				{return new Symbol(symj.PFEC,yyline, yycolumn,yytext());}
 .   										{ System.out.println("Caracter Invalido: "+yytext()+" Linea: "+ (int)(yyline+1)+" columa:"+(int)yycolumn+";");}
