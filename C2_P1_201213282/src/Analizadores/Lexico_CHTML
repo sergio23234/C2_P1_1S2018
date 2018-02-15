@@ -54,7 +54,7 @@ Comentario_multiple = [<//-][^][-//>]
 "<"											{return new Symbol(sym.INI,yyline,yycolumn);}
 ">"											{return new Symbol(sym.FIN,yyline,yycolumn);}
 {Comillas}									{return new Symbol(sym.PCOM,yyline,yycolumn,yytext());}
-(([:jletter:]|[:jletterdigit:]|a-Z)+)		{return new Symbol(sym.PNOR,yyline, yycolumn,yytext());} 
+{((a-Z)[^]~(>,<))}							{return new Symbol(sym.PNOR,yyline, yycolumn,yytext());} 
 .   										{ System.out.println("Caracter Invalido: "+yytext()+" Linea: "+ (int)(yyline+1)+" columa:"+(int)yycolumn+";");}
 }
 <YYCABEZA> {
