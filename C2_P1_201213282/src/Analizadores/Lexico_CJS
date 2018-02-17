@@ -31,6 +31,7 @@ Comillas = [\"] [^][\"]
 %%
 {whiteSpace} {/*Ignore*/}
 {(Comentario_multiple|Comentario_simple)} {/*Ignore*/}
+"."											{return new Symbol(symj.SPUN,yyline,yycolumn);}
 "+"											{return new Symbol(symj.SMAS,yyline,yycolumn);}
 "-"											{return new Symbol(symj.SMEN,yyline,yycolumn);}
 "*"											{return new Symbol(symj.SMUL,yyline,yycolumn);}
@@ -58,16 +59,18 @@ Comillas = [\"] [^][\"]
 "Conteo"									{return new Symbol(symj.RCON,yyline,yycolumn);}
 "Funcion"									{return new Symbol(symj.RFUN,yyline,yycolumn);}
 "Obtener"									{return new Symbol(symj.ROBT,yyline,yycolumn);}
+"Defecto"									{return new Symbol(symj.RDEF,yyline,yycolumn);}
 "Detener"									{return new Symbol(symj.RDET,yyline,yycolumn);}
 "Mensaje"									{return new Symbol(symj.RMEN,yyline,yycolumn);}
 "Retornar"									{return new Symbol(symj.RRET,yyline,yycolumn);}
 "Imprimir"									{return new Symbol(symj.RIMP,yyline,yycolumn);}
 "aTexto()"									{return new Symbol(symj.RATE,yyline,yycolumn);}
 "Mientras"									{return new Symbol(symj.RMIE,yyline,yycolumn);}
+"Documento"									{return new Symbol(symj.RDOC,yyline,yycolumn);}
 "Observador"								{return new Symbol(symj.ROBS,yyline,yycolumn);}
 "Selecciona"								{return new Symbol(symj.RSEL,yyline,yycolumn);}
 "setElemento"								{return new Symbol(symj.RSET,yyline,yycolumn);}
-{[0-9]+[\.][0-9]+}							{return new Symbol(symj.PNUM,yyline,yycolumn);}			
+{[0-9]+}									{return new Symbol(symj.PNUM,yyline,yycolumn);}			
 {Comillas}									{return new Symbol(symj.PCOM,yyline,yycolumn,yytext());}
 {(a-Z)[.]~[ ,\n]}							{return new Symbol(symj.PID,yyline, yycolumn,yytext());}
 {[']([0-9]+/[0-9]+/[0-9]+)([0-9]+:[0-9]+:[0-9]+)[']} return new Symbol(symj.PHOR,yyline, yycolumn,yytext());}

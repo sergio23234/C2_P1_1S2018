@@ -41,28 +41,70 @@ action code {:
     public String estado="";
 :}
 /* terminales del lenguaje*/
-terminal PHOR,SMAS,SMEN,SMUL,SDIV,SPOT,SMOD,SMAY,PNUM,SMEN,SIPA,SFPA,SIGU,SCOM,SPYC,SDPN,SNOT,SILL,SFLL,SOR,SAND,RSI,RSIN,RPAR,RDIM,RCAS,RCON,RFUN,ROBT,RDET,RMEN,RRET,RIMP,RATE,RMIE,ROBS,RSEL,RSET,PCOM,PID,PFEC;
+terminal RDOC,PHOR,SPUN,SMAS,SMEN,SMUL,SDIV,SPOT,SMOD,SMAY,PNUM,SMEN,SIPA,SFPA,SIGU,SCOM,SPYC,SDPN,SNOT,SILL,SFLL,SOR,SAND,RSI,RSIN,RPAR,RDIM,RCAS,RCON,RFUN,ROBT,RDEF,RDET,RMEN,RRET,RIMP,RATE,RMIE,ROBS,RSEL,RSET,PCOM,PID,PFEC;
 /*aqui estan los no terminales */
 non terminal Start,UNO; 
 non terminal NCJS ;
+precedence lef terminal SMAS,SMEN,SMUL,SDIV;
+precedence right terminal SPOT;        
 start with Start;
 Start ::= UNO;
-/*----------------------------ESTRUCTURA DE CHTML-------------------------*/
+/*----------------------------ESTRUCTURA DE CJS-------------------------*/
+/*declaracion de variables*/
 ESTRUCTURA_DEC_VAR ::= RDIM LISTA_VAR SPYC{::}
-                    |  RDIM LISTA_VAR SDPN A_VAR SPYC{::};
+                    |  RDIM LISTA_VAR SDPN EXPRESION SPYC{::};
+                    |  RDIM LISTA_VAR SDPN SILL LISTA_EXP SFLL SPYC{::};
+/*asignacion de variable*/
+ESTRUCTURA_ASIGNAR ::= LISTA_VAR SDPN EXPRESION SPYC{::};
+/*Setencia Si y SINO*/
+ESTRUCTURA_SI      ::= RSI SIPA OP_LOGICA SFPA SILL ESTRUCTURA_CUERPO SFLL{::}
+                    |  RSI SIPA OP_LOGICA SFPA SILL ESTRUCTURA_CUERPO SFLL ESTRUCTURA_SINO{::};
 
+ESTRUCTURA_SINO    ::= RSIN SILL ESTRUCTURA_CUERPO SFLL{::};                     
+/*Setencia Selecciona*/
+ESTRUCTURA_SELE    ::= RSEL SIPA EXPRESION SFPA SILL CUERPO_SELEC SFLL{::};
+
+CUERPO_SELEC       ::=              RCAS EXPRESION SDPN ESTRUCTURA_CUERPO{::}
+                    |  CUERPO_SELEC RCAS EXPRESION SDPN ESTRUCTURA_CUERPO{::}
+                    |  CUERPO_SELEC RDEF           SDPN ESTRUCTURA_CUERPO{::}
+                    |               RDEF           SDPN ESTRUCTURA_CUERPO{::};   
+/*Setencia Para*/
+ESTRUCTURA_PARA    ::= RPAR SIPA LISTA_VAR SDPN EXPRESION SPYC OP_LOGICA SPYC EXPRESION SFPA SILL ESTRUCTURA_CUERPO SFLL{::};
+/*Setencia Mientras*/
+ESTRUCTURA_MIEN    ::= RMIE SIPA OP_LOGICA SFPA SILL ESTRUCTURA_CUERPO SFLL{::};
+/*Setencia imprmir*/
+ESTRUCTURA_IMPRI   ::= RIMP SIPA EXPRESION SFPA SPYC{::};
+/*Funciones*/
+ESTRUCTURA_FUNCI   ::= RFUN PID SIPA LISTA_VAR SFPA SILL ESTRUCTURA_CUERPO SFLL{::};
+/*Estructura Mensaje*/
+ESTRUCTURA_MENS    ::= RMEN SIPA EXPRESION SFPA SPYC{::};
+/*Estructuras varias*/
+ESTRUCTURA_VARIAS  ::= PID SPUN RCON{::}
+                    |  PID SPUN RATE{::}
+                    |  RDOC SPUN ROBT SIPA EXPRESION SFPA{::}
 /*Valores que pueden tomar las datos*/
 A_VAR   ::=  PCOM{::}
             |PNUM{::}
             |PFEC{::}
             |PHOR{::};
+/*Operaciones Aritmeticas*/
 OP_ARITMETICA ::=       OP_ARITMETICA SMAS OP_ARITMETICA{::}
                     |   OP_ARITMETICA SMEN OP_ARITMETICA{::}
                     |   OP_ARITMETICA SMUL OP_ARITMETICA{::}
                     |   OP_ARITMETICA SDIV OP_ARITMETICA{::}
                     |   OP_ARITMETICA SPOT OP_ARITMETICA{::}
-                    |   OP_ARITMETICA SMOD OP_ARITMETICA{::};
-OP_LOGICA   ::=         OP_LOGICA SOR OP_LOGICA{::}
-                    |   OP_LOGICA SAND OP_LOGICA{::}
-                    |   SNOT     OP_LOGICA{::}
-                    |;
+                    |   OP_ARITMETICA SMOD OP_ARITMETICA{::}
+                    |   EXPRESION{::};
+/*Operaciones de Comparacion*/
+OP_COMPARACION ::=      OP_COMPARACION SIGU SIGU OP_COMPARACION{::}
+                    |   OP_COMPARACION SNOT SIGU OP_COMPARACION{::}
+                    |   OP_COMPARACION SMAY SIGU OP_COMPARACION{::}
+                    |   OP_COMPARACION SMAY      OP_COMPARACION{::}
+                    |   OP_COMPARACION SMEN SIGU OP_COMPARACION{::}
+                    |   OP_COMPARACION SMEN      OP_COMPARACION{::}
+                    |   OP_ARITMETICA{::};
+/*Operaciones Logicas*/
+OP_LOGICA   ::=                 OP_LOGICA SOR   OP_LOGICA{::}
+                    |           OP_LOGICA SAND  OP_LOGICA{::}
+                    |   SNOT    OP_LOGICA                {::}
+                    |           OP_COMPARACION           {::};

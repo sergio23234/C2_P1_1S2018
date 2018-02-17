@@ -89,8 +89,6 @@ CUERPO_FILA     ::=  CUERPO_FILA INI IECB FIN CUERPO_CELDA INI FECB FIN{::}
                     |INI IECB FIN CUERPO_CELDA INI FECB FIN{::};
 CUERPO_CELDA  ::=    ESTRUCTURA_BOTON{::}
                     |ESTRUCTURA_TEXTO{::}
-                    |ESTRUCTURA_TEXTO_A{::}
-                    |ESTRUCTURA_ENLAC{::}
                     |ESTRUCTURA_IMAGE{::};
 /*text area*/
 ESTRUCTURA_TEXTO_A ::= INI IETA ESTRUCTURA_G_CUERPO FIN PNOR INI FETA FIN{::}
