@@ -33,9 +33,13 @@ Comillas = [\"] [^][\"]"
 "+"											{return new Symbol(symc.SMAS,yyline,yycolumn);}
 "-"											{return new Symbol(symc.SMEN,yyline,yycolumn);}
 "*"											{return new Symbol(symc.SMUL,yyline,yycolumn);}
+":"											{return new Symbol(symc.SDPU,yyline,yycolumn);}
+";"											{return new Symbol(symj.SPYC,yyline,yycolumn);}
+","											{return new Symbol(symc.SCOM,yyline,yycolumn);}
+"="											{return new Symbol(symc.SIGU,yyline,yycolumn);}
 "/"											{return new Symbol(symc.SDIV,yyline,yycolumn);}
-"["											{return new Symbol(symc.SILL,yyline,yycolumn);}
-"]"											{return new Symbol(symc.SFLL,yyline,yycolumn);}
+"["											{return new Symbol(symc.SICO,yyline,yycolumn);}
+"]"											{return new Symbol(symc.SFCO,yyline,yycolumn);}
 "("											{return new Symbol(symc.SIPA,yyline,yycolumn);}
 ")"											{return new Symbol(symc.SFPA,yyline,yycolumn);}
 "ID"										{return new Symbol(symc.RID,yyline,yycolumn);}
@@ -44,17 +48,24 @@ Comillas = [\"] [^][\"]"
 "Grupo"										{return new Symbol(symj.RGRU,yyline,yycolumn);}
 "Borde"										{return new Symbol(symj.RBOR,yyline,yycolumn);}
 "Opaque"									{return new Symbol(symj.ROPA,yyline,yycolumn);}
+"Tamtext"									{return new Symbol(symj.RTAM,yyline,yycolumn);}
 "Visible"									{return new Symbol(symj.RVIS,yyline,yycolumn);}
 "Formato"									{return new Symbol(symj.RFOR,yyline,yycolumn);}
 "Derecha"									{return new Symbol(symj.RDER,yyline,yycolumn);}
 "Cursiva"									{return new Symbol(symj.RCUR,yyline,yycolumn);}
+"Vertical"									{return new Symbol(symj.RVER,yyline,yycolumn);}
 "Centrado"									{return new Symbol(symj.RCEN,yyline,yycolumn);}
 "Negrilla"									{return new Symbol(symj.RNEG,yyline,yycolumn);}
 "Alineado"									{return new Symbol(symj.RALI,yyline,yycolumn);}
 "Izquierda"									{return new Symbol(symj.RIZQ,yyline,yycolumn);}
 "Mayuscula"									{return new Symbol(symj.RMAY,yyline,yycolumn);}
+"Minuscula"									{return new Symbol(symj.RMIN,yyline,yycolumn);}
 "Capital-T"									{return new Symbol(symj.RCAP,yyline,yycolumn);}
 "COLORTEXT"									{return new Symbol(symj.RCOL,yyline,yycolumn);}
+"Horizontal"								{return new Symbol(symj.RHOR,yyline,yycolumn);}
 "Justificado"								{return new Symbol(symj.RJUS,yyline,yycolumn);}
 "Fondoelemento"								{return new Symbol(symj.RFEL,yyline,yycolumn);}
 "Autoredimension"							{return new Symbol(symj.RAUR,yyline,yycolumn);}
+{Comillas}									{return new Symbol(symj.PCOM,yyline,yycolumn,yytext());}
+{(a-Z)[.]~[ ,\n]}							{return new Symbol(symj.PID,yyline, yycolumn,yytext());}
+.   { System.out.println("Caracter Invalido: "+yytext()+" Linea: "+ (int)(yyline+1)+" columa:"+(int)yycolumn+";");}

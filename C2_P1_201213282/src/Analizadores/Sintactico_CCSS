@@ -1,0 +1,105 @@
+package Analizadores;
+import java.io.FileReader;
+import java_cup.runtime.Symbol;
+import java_cup.runtime.*;
+import java.util.ArrayList;
+
+/*codigo publico*/
+parser code {:
+    public static ArrayList<Nodo_error> Errores = new ArrayList<Nodo_error>();
+    public static boolean errores=false;
+    protected int error_sync_size () {
+       return 1;   
+    }
+
+    public void syntax_error(Symbol s){
+        System.out.println("Error sintactico lexema \"" + s.value+"\" en la Columna: "+(s.right) +", Linea: "+(s.left+1)+ " no esperado");
+        Nodo_error nuevo = new Nodo_error();
+        nuevo.dato = String.valueOf(s.value);
+        nuevo.linea = (s.left+1);
+        nuevo.columna=(s.right);
+        Errores.add(nuevo);
+        errores=true;
+    }
+
+    
+    public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
+        System.out.println("Error sintactico \"" + s.value+"\" en la Linea: "+(s.right+1) +", Columna: "+(s.left+1)+ "");
+        Nodo_error nuevo = new Nodo_error();
+        nuevo.dato = String.valueOf(s.value);
+        nuevo.linea = (s.left+1);
+        nuevo.columna=(s.right);
+        Errores.add(nuevo);
+        errores=true;
+    }
+
+ /*codig de usuario */
+ String total = "";
+ public ArrayList<Nodo> e = new ArrayList<Nodo>();
+:}
+action code {:
+    public String estado="";
+:}
+/* terminales del lenguaje*/
+terminal PID,SCOM,SMAS,SMEN,SDPU,SIGU,SMUL,SDIV,SICO,RHOR,RVER,SFCO,SIPA,SPYC,SFPA,RID,RTEX,RCUR,RLET,RGRU,ROPA,RBOR,RVIS,RFOR,RDER,CUR,RCEN,RNEG,RALI,RIZQ,RMAY,RMIN,RCAP,RCOL,RJUS,RFEL,RAUR;
+/*aqui estan los no terminales */
+non terminal Start,UNO; 
+non terminal N_CCSS;
+precedence left terminal SMAS,SMEN,SMUL,SDIV; 
+start with Start;
+Start ::= UNO;
+UNO ::= ESTRUCTURA_CSS;
+/*estructura de CSS*/
+ESTRUCTURA_CSS  ::= ESTRUCTURA_CSS ESTRUCTURA_ID{::}
+                |  ESTRUCTURA_ID{::};
+/*estructura de ID*/
+ESTRUCTURA_ID   ::= PID SICO CUERPO_ID SFCO{::}
+CUERPO_ID       ::= CUERPO_ID ESTRUCTURA_GENE{::}
+                |   ESTRUCTURA_GENE{::}
+/*estructura de alineado*/
+ESTRUCTURA_ALIN ::= RALI SDPU SIGU RIZQ{::}
+                |   RALI SDPU SIGU RDER{::}
+                |   RALI SDPU SIGU RCEN{::}
+                |   RALI SDPU SIGU RJUS{::}
+/*estructura de texto*/
+ESTRUCTURA_TEXT ::= RTEX SDPU SIGU EXPRESION SPYC{::};
+/*estructura de letra*/
+ESTRUCTURA_LETR ::= RTEX SDPU SIGU EXPRESION SPYC{::};
+/*estructura de tamtex*/
+ESTRUCTURA_TAMT ::= RTAM SDPU SIGU EXPRESION SPYC{::};
+/*estructura de Fondoelemnto*/
+ESTRUCTURA_FOND ::= RFEL SDPU SIGU EXPRESION SPYC{::};
+/*estructura de AUTOREDIMENSION*/
+ESTRUCTURA_AUTO ::= RAUR SDPU SIGU SICO PID SCOM RHOR SFCO SPYC{::}
+                |  RAUR SDPU SIGU SICO PID SCOM RVER SFCO SPYC{::};
+/*estructura de VISIBLE*/
+ESTRUCTURA_VISI ::= RVIS SDPU SIGU PID SPYC{::};
+/*estructura de Opaque*/
+ESTRUCTURA_OPAQ ::= ROPA SDPU SIGU PID SPYC{::};
+/*estructura de VISIBLE*/
+ESTRUCTURA_COLT ::= RCOL SDPU SIGU EXPRESION SPYC{::};
+/*estructura de BORDE*/
+ESTRUCTURA_BORD ::= RBOR SDPU SIGU SICO EXPRESION SCOM EXPRESION SCOM PID SFCO SPYC{::};
+/*estructura de formatos*/
+ESTRUCTURA_FORM ::= RFOR SDPU SIGU Lista_For{::}; 
+Lista_For       ::= Lista_For SCOM RNEG{::}
+                |   Lista_For SCOM RCUR{::}
+                |   Lista_For SCOM RMAY{::}
+                |   Lista_For SCOM RMIN{::}
+                |   Lista_For SCOM RCAP{::};               
+/*estructura de General*/
+ESTRUCTURA_GENE ::= RID  SIPA PID SFPA SPYC CUERPO_GEN{::}
+                |   RGRU SIPA PID SFPA SPYC CUERPO_GEN{::};
+CUERPO_GENE     ::= CUERPO_GENE TIPO_CUERPO_G{::}              
+                |   TIPO_CUERPO_G{::};
+TIPO_CUERPO_G ::=   ESTRUCTURA_AUTO{::}              
+                |   ESTRUCTURA_VISI{::}              
+                |   ESTRUCTURA_COLT{::}              
+                |   ESTRUCTURA_OPAQ{::}              
+                |   ESTRUCTURA_FOND{::}              
+                |   ESTRUCTURA_BORD{::}              
+                |   ESTRUCTURA_ALIN{::}              
+                |   ESTRUCTURA_TEXT{::}              
+                |   ESTRUCTURA_TAMT{::}
+                |   ESTRUCTURA_FORM{::}
+                |   ESTRUCTURA_LETR{::};                
