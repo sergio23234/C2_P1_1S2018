@@ -66,6 +66,7 @@ Comillas = [\"] [^][\"]"
 "Justificado"								{return new Symbol(symj.RJUS,yyline,yycolumn);}
 "Fondoelemento"								{return new Symbol(symj.RFEL,yyline,yycolumn);}
 "Autoredimension"							{return new Symbol(symj.RAUR,yyline,yycolumn);}
+{[+|-]?[0-9]+}								{return new Symbol(symj.PNUM,yyline,yycolumn);}	
 {Comillas}									{return new Symbol(symj.PCOM,yyline,yycolumn,yytext());}
 {(a-Z)[.]~[ ,\n]}							{return new Symbol(symj.PID,yyline, yycolumn,yytext());}
 .   { System.out.println("Caracter Invalido: "+yytext()+" Linea: "+ (int)(yyline+1)+" columa:"+(int)yycolumn+";");}

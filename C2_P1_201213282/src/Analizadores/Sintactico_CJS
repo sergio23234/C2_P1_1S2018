@@ -85,6 +85,7 @@ ESTRUCTURA_VARIAS  ::= PID SPUN RCON{::}
 /*Valores que pueden tomar las datos*/
 A_VAR   ::=  PCOM{::}
             |PNUM{::}
+            |PNUM SPUN PNUM{::}
             |PFEC{::}
             |PHOR{::};
 /*Operaciones Aritmeticas*/
