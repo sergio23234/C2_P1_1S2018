@@ -54,11 +54,11 @@ Start ::= UNO;
 /*----------------------------ESTRUCTURA DE CJS-------------------------*/
 UNO = ESTRUCTURA{::};
 /*declaracion de variables*/
-ESTRUCTURA_DEC_VAR ::= RDIM LISTA_VAR SPYC{::}
-                    |  RDIM LISTA_VAR SDPN EXPRESION SPYC{::}
-                    |  RDIM LISTA_VAR SDPN SILL LISTA_EXP SFLL SPYC{::};
+ESTRUCTURA_DEC_VAR ::= RDIM LISTA_VAR:e1 SPYC                               {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="variable" nuevo.hijos.add(e1); return nuevo;:}
+                    |  RDIM LISTA_VAR:e1 SDPN EXPRESION:e2 SPYC             {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="variable" nuevo.hijos.add(e1); nuevo.valor=e2; return nuevo;:}
+                    |  RDIM LISTA_VAR:e1 SDPN SILL LISTA_EXP:e2 SFLL SPYC   {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="variable" nuevo.hijos.add(e1); nuevo.hijos.add(e2); return nuevo;:};
 /*asignacion de variable*/
-ESTRUCTURA_ASIGNAR ::= LISTA_VAR SDPN EXPRESION SPYC{::};
+ESTRUCTURA_ASIGNAR ::= LISTA_VAR:e1 SDPN EXPRESION:e2 SPYC{:NCJS nuevo = new NCJS(); nuevo.etiqueta ="variable" nuevo.hijos.add(e1); nuevo.valor=e2; return nuevo;:};
 /*Setencia Si y SINO*/
 ESTRUCTURA_SI      ::= RSI SIPA OP_LOGICA SFPA SILL ESTRUCTURA_CUERPO SFLL{::}
                     |  RSI SIPA OP_LOGICA SFPA SILL ESTRUCTURA_CUERPO SFLL ESTRUCTURA_SINO{::};

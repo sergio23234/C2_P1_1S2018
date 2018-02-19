@@ -13,9 +13,11 @@ import java.util.ArrayList;
  */
 public class NCJS {
     public String etiqueta;
+    public String valor;
     public ArrayList<NCJS> hijos;
       public NCJS(){
         hijos = null;
         etiqueta ="";
+        valor="";
     }
 }
