@@ -60,8 +60,8 @@ ESTRUCTURA_DEC_VAR ::= RDIM LISTA_VAR:e1 SPYC                               {:NC
 /*asignacion de variable*/
 ESTRUCTURA_ASIGNAR ::= LISTA_VAR:e1 SDPN EXPRESION:e2 SPYC{:NCJS nuevo = new NCJS(); nuevo.etiqueta ="variable" nuevo.hijos.add(e1); nuevo.valor=e2; return nuevo;:};
 /*Setencia Si y SINO*/
-ESTRUCTURA_SI      ::= RSI SIPA OP_LOGICA SFPA SILL ESTRUCTURA_CUERPO SFLL{::}
-                    |  RSI SIPA OP_LOGICA SFPA SILL ESTRUCTURA_CUERPO SFLL ESTRUCTURA_SINO{::};
+ESTRUCTURA_SI      ::= RSI SIPA OP_LOGICA:e1 SFPA SILL ESTRUCTURA_CUERPO:e2 SFLL{:NCJS nuevo = new NCJS(); nuevo.etiqueta ="variable" nuevo.hijos.add(e1); nuevo.valor=e2; return e1;:}
+                    |  RSI SIPA OP_LOGICA:e1 SFPA SILL ESTRUCTURA_CUERPO:e2 SFLL ESTRUCTURA_SINO{::};
 
 ESTRUCTURA_SINO    ::= RSIN SILL ESTRUCTURA_CUERPO SFLL{::};                     
 /*Setencia Selecciona*/
