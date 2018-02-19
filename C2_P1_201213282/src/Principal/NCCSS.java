@@ -13,9 +13,11 @@ import java.util.ArrayList;
  */
 public class NCCSS {
        public String etiqueta;
+       public String valor;
     public ArrayList<NCCSS> hijos;
       public NCCSS(){
         hijos = null;
         etiqueta ="";
+        valor ="";
     }
 }
