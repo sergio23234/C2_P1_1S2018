@@ -36,6 +36,7 @@ parser code {:
 
  /*codig de usuario */
  String total = "";
+ public static NCCSS RCCSS = null;
  public ArrayList<Nodo> e = new ArrayList<Nodo>();
 :}
 action code {:
@@ -54,14 +55,14 @@ UNO ::= ESTRUCTURA_CSS;
 ESTRUCTURA_CSS  ::= ESTRUCTURA_CSS ESTRUCTURA_ID{::}
                 |  ESTRUCTURA_ID{::};
 /*estructura de ID*/
-ESTRUCTURA_ID   ::= PID SICO CUERPO_ID SFCO{::}
+ESTRUCTURA_ID   ::= PID SICO CUERPO_ID SFCO{::};
 CUERPO_ID       ::= CUERPO_ID ESTRUCTURA_GENE{::}
-                |   ESTRUCTURA_GENE{::}
+                |   ESTRUCTURA_GENE{::};
 /*estructura de alineado*/
 ESTRUCTURA_ALIN ::= RALI SDPU SIGU RIZQ{::}
                 |   RALI SDPU SIGU RDER{::}
                 |   RALI SDPU SIGU RCEN{::}
-                |   RALI SDPU SIGU RJUS{::}
+                |   RALI SDPU SIGU RJUS{::};
 /*estructura de texto*/
 ESTRUCTURA_TEXT ::= RTEX SDPU SIGU EXPRESION SPYC{::};
 /*estructura de letra*/
