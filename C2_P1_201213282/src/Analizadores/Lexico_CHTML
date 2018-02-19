@@ -25,11 +25,10 @@ public static String errores="";
 %column
 Lineterminada = [\r|\n|\r\n]
 WhiteSpace = ({Lineterminada} | [ \t\f]|[ |\t|\r|\f|\n])+
-Comillas = [\"] [^][\"]"
+Comillas = [\"] [^][\"]
 Comentario_multiple = [<//-][^][-//>]
 
 %%
-{whiteSpace} {/*Ignore*/}
 {Comentario_multiple} {/*Ignore*/}
 <YYINITIAL> {
 "CHTML"			 				{return new Symbol(sym.IHTML,yyline, yycolumn);}
@@ -105,4 +104,5 @@ Comentario_multiple = [<//-][^][-//>]
 (([:jletter:]|[:jletterdigit:]|a-Z)+)		{return new Symbol(sym.PNOR,yyline, yycolumn,yytext());} 
 .   										{ System.out.println("Caracter Invalido: "+yytext()+" Linea: "+ (int)(yyline+1)+" columa:"+(int)yycolumn+";");}
 }
+{whiteSpace} {/*Ignore*/}
 .   { System.out.println("Caracter Invalido: "+yytext()+" Linea: "+ (int)(yyline+1)+" columa:"+(int)yycolumn+";");}
