@@ -43,10 +43,10 @@ action code {:
     public String estado="";
 :}
 /* terminales del lenguaje*/
-terminal IHTML,FHTML,IENCA,ICUER,INI,FIN,FENCA,ICJS,FCJS,ICCS,FCCS,ITIT,FTIT,PRUT,SIGU,SPYC,PCOM,PNOR,FCUER,IEPA,FEPA,IETE,FETE,IEBO,FEBO,IEIM,FEIM,IEEN,FEEN,IETB,FETB,IEFI,FEFI,IECB,FECB,IECT,FECT,IETA,FETA,IECA,FECA,IECJ,FECJ,IEOP,FEOP,ESAL,IESP,FESP,PRUT,PVAL,PID,PGRP,PALT,PANC,PALI,PCLI,PFON;
+terminal IHTML,FHTML,IENCA,ICUER,INI,FIN,FENCA,ICJS,FCJS,ICCS,FCCS,ITIT,FTIT,SIGU,SPYC,PCOM,PNOR,FCUER,IEPA,FEPA,IETE,FETE,IEBO,FEBO,IEIM,FEIM,IEEN,FEEN,IETB,FETB,IEFI,FEFI,IECB,FECB,IECT,FECT,IETA,FETA,IECA,FECA,IECJ,FECJ,IEOP,FEOP,ESAL,IESP,FESP,PRUT,PVAL,PID,PGRP,PALT,PANC,PALI,PCLI,PFON;
 /*aqui estan los no terminales */
 non terminal Start,UNO; 
-non terminal NCHTML CUERPO_CHTML,CUERPO_ENCA,CUERPO_CUERPO,ESTRUCTURA_CCSS,ESTRUCTURA_CJS,ESTRUCTURA_TITU,ESTRUCTURA_CUERPO,ESTRUCTURA_G_CUERPO1,ESTRUCTURA_G_CUERPO;
+non terminal NCHTML CONTENIDO_CUERPO,ESTRUCTURA_G_SCL,ESTRUCTURA_G_COM,,ESTRUCTURA_G_RUT,ESTRUCTURA_G_SRU,CUERPO_CHTML,CUERPO_ENCA,CUERPO_CUERPO,ESTRUCTURA_CCSS,ESTRUCTURA_CJS,ESTRUCTURA_TITU,ESTRUCTURA_CUERPO,ESTRUCTURA_G_CUERPO1,ESTRUCTURA_G_CUERPO,ESTRUCTURA_TEXTO,ESTRUCTURA_PANEL,ESTRUCTURA_IMAGE,ESTRUCTURA_BOTON,ESTRUCTURA_ENLAC,ESTRUCTURA_TABLA,CUERPO_TABLA,CUERPO_FILA,CUERPO_CELDA,ESTRUCTURA_TEXTO_A,ESTRUCTURA_CAJA_T,ESTRUCTURA_CAJA,CUERPO_CAJA,ESTRUCTURA_SPINNER,ESTRUCTURA_SALTO;
 start with Start;
 Start ::= UNO;
 /*----------------------------ESTRUCTURA DE CHTML-------------------------*/
@@ -102,19 +102,19 @@ CUERPO_CELDA  ::=    ESTRUCTURA_BOTON:e1    {:return e1;:}
 ESTRUCTURA_TEXTO_A ::= INI IETA ESTRUCTURA_G_CUERPO:e2 FIN PNOR:e1 INI FETA FIN     {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="area"; nuevo.contenido=e1; nuevo.atributos.add(e2); return nuevo;:}
                     |  INI IETA FIN PNOR:e1 INI FETA FIN                            {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="area"; nuevo.contenido=e1; return nuevo;:};
 /*text INPUT*/
-ESTRUCTURA_CAJA_T  ::=  INI IECA ESTRUCTURA_G_CUERPO:e2 FIN PNO:e1 INI FECA FIN     {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="input"; nuevo.contenido=e1; nuevo.atributos.add(e2); return nuevo;:}
-                    |   INI IECA FIN PNO:e1 INI FECA FIN                            {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="input"; nuevo.contenido=e1; return nuevo;:}; 
+ESTRUCTURA_CAJA_T  ::=  INI IECA ESTRUCTURA_G_CUERPO:e2 FIN PNOR:e1 INI FECA FIN     {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="input"; nuevo.contenido=e1; nuevo.atributos.add(e2); return nuevo;:}
+                    |   INI IECA FIN PNOR:e1 INI FECA FIN                            {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="input"; nuevo.contenido=e1; return nuevo;:}; 
 /*combo box*/
-ESTRUCTURA_CAJA_T  ::=  INI IECJ ESTRUCTURA_G_SCL:e2 FIN CUERPO_CAJA:e1 INI FECJ FIN    {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="combobox"; nuevo.hijos.add(e1); nuevo.atributos.add(e2); return nuevo;:}
+ESTRUCTURA_CAJA    ::=  INI IECJ ESTRUCTURA_G_SCL:e2 FIN CUERPO_CAJA:e1 INI FECJ FIN    {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="combobox"; nuevo.hijos.add(e1); nuevo.atributos.add(e2); return nuevo;:}
                     |   INI IECJ FIN CUERPO_CAJA:e1 INI FECJ FIN                        {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="combobox"; nuevo.hijos.add(e1); return nuevo;:};
 
-CUERPO_CAJA        ::=  INI IEOP PVAL SIGU PCOM:e1 SPYC FIN PNO:e2 INI FEOP FIN CUERPO_CAJA:e3 {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta =e1; nuevo.contenido=e2; nuevo.hijos.add(e3); return nuevo;:}
-                    |   INI IEOP PVAL SIGU PCOM:e1 SPYC FIN PNO:e2 INI FEOP FIN                {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta =e1; nuevo.contenido=e2; return nuevo;:};
+CUERPO_CAJA        ::=  INI IEOP PVAL SIGU PCOM:e1 SPYC FIN PNOR:e2 INI FEOP FIN CUERPO_CAJA:e3 {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta =e1; nuevo.contenido=e2; nuevo.hijos.add(e3); return nuevo;:}
+                    |   INI IEOP PVAL SIGU PCOM:e1 SPYC FIN PNOR:e2 INI FEOP FIN                {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta =e1; nuevo.contenido=e2; return nuevo;:};
 /*estructura spiner*/
-ESTRUCTURA_SPINNER ::= INI IESP FIN PNO:e1 INI FESP FIN                           {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="spiner"; nuevo.contenido=e1; return nuevo;:};
-                    |  INI IESP ESTRUCTURA_G_CUERPO:e2 FIN PNO:e1 INI FESP FIN    {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="spiner"; nuevo.contenido=e1; nuevo.atributos.add(e2); return nuevo;:};                     
+ESTRUCTURA_SPINNER ::= INI IESP FIN PNOR:e1 INI FESP FIN                           {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="spiner"; nuevo.contenido=e1; return nuevo;:}
+                    |  INI IESP ESTRUCTURA_G_CUERPO:e2 FIN PNOR:e1 INI FESP FIN    {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="spiner"; nuevo.contenido=e1; nuevo.atributos.add(e2); return nuevo;:};                     
 /*SALTO DE LINEA*/
-ESTRUCTURA_SALOT   ::= INI ESAL FIN{:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="enter"; return nuevo;:};
+ESTRUCTURA_SALTO   ::= INI ESAL FIN{:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="enter"; return nuevo;:};
 /*--------------ESTRUCTURA Generales de CUERPO--------------*/
 /*Estrucutura general completa*/ 
 ESTRUCTURA_G_COM ::= ESTRUCTURA_G_COM:e2  ESTRUCTURA_G_RUT:e1       {:e2.hijos.add(e1); return e2;:}

@@ -36,7 +36,7 @@ parser code {:
 
  /*codig de usuario */
  String total = "";
- public static NCJS RCJS = null;
+ public NCJS RCJS = null;
  public ArrayList<Nodo> e = new ArrayList<Nodo>();
 :}
 action code {:
@@ -46,13 +46,25 @@ action code {:
 terminal RDOC,PHOR,SPUN,SMAS,SMEN,SMUL,SDIV,SPOT,SMOD,SMAY,PNUM,SMEN,SIPA,SFPA,SIGU,SCOM,SPYC,SDPN,SNOT,SILL,SFLL,SOR,SAND,RSI,RSIN,RPAR,RDIM,RCAS,RCON,RFUN,ROBT,RDEF,RDET,RMEN,RRET,RIMP,RATE,RMIE,ROBS,RSEL,RSET,PCOM,PID,PFEC;
 /*aqui estan los no terminales */
 non terminal Start,UNO; 
-non terminal NCJS ;
+non terminal NCJS ESTRUCTURA_CUERPO,ESTRUCTURA_CUERPO_P,ESTRUCTURA_ASIGNAR,ESTRUCTURA_DEC_VAR,ESTRUCTURA_SI,ESTRUCTURA_SINO,ESTRUCTURA_SELE,CUERPO_SELEC,ESTRUCTURA_PARA,ESTRUCTURA_MIEN,ESTRUCTURA_IMPI,ESTRUCTURA_FUNCI,ESTRUCTURA_MENS,ESTRUCTURA_VARIAS,A_VAR,Estructura_VAR,OP_ARITMETICA,OP_COMPARACION,OP_LOGICA,EXPRESION;
 precedence left terminal SMAS,SMEN,SMUL,SDIV;
 precedence right terminal SPOT;        
 start with Start;
 Start ::= UNO;
 /*----------------------------ESTRUCTURA DE CJS-------------------------*/
-UNO = ESTRUCTURA{::};
+UNO ::= ESTRUCTURA_CUERPO:e1    {: RCJS=e1;:};
+
+ESTRUCTURA_CUERPO    ::= ESTRUCTURA_CUERPO:e1 ESTRUCTURA_CUERPO_P:e2    {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="cuerpo" nuevo.hijos.add(e1); nuevo.hijos.add(e2); return nuevo;:}
+                        |ESTRUCTURA_CUERPO_P:e1                         {:return e1;:};
+/*posibles estructuras que vengan dentor de un CJS*/
+ESTRUCTURA_CUERPO_P  ::= ESTRUCTURA_ASIGNAR:e1  {:return e1;:}
+                    |   ESTRUCTURA_SI:e1        {:return e1;:}
+                    |   ESTRUCTURA_SELE:e1      {:return e1;:}
+                    |   ESTRUCTURA_PARA:e1      {:return e1;:}
+                    |   ESTRUCTURA_MIEN:e1      {:return e1;:}
+                    |   ESTRUCTURA_IMPRI:e1     {:return e1;:}
+                    |   ESTRUCTURA_FUNCI:e1     {:return e1;:}
+                    |   ESTRUCTURA_DEC_VAR:e1   {:return e1;:};
 /*declaracion de variables*/
 ESTRUCTURA_DEC_VAR ::= RDIM LISTA_VAR:e1 SPYC                               {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="variable" nuevo.hijos.add(e1); return nuevo;:}
                     |  RDIM LISTA_VAR:e1 SDPN EXPRESION:e2 SPYC             {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="variable" nuevo.hijos.add(e1); nuevo.hijos.add(e2); return nuevo;:}
