@@ -36,8 +36,8 @@ parser code {:
 
  /*codig de usuario */
  String total = "";
- public static Raiz_CHTML=null;
- public ArrayList<Nodo> e = new ArrayList<Nodo>();
+ public NCHTML Raiz_CHTML=null;
+ //public ArrayList<Nodo> e = new ArrayList<Nodo>();
 :}
 action code {:
     public String estado="";
@@ -46,7 +46,7 @@ action code {:
 terminal IHTML,FHTML,IENCA,ICUER,INI,FIN,FENCA,ICJS,FCJS,ICCS,FCCS,ITIT,FTIT,SIGU,SPYC,PCOM,PNOR,FCUER,IEPA,FEPA,IETE,FETE,IEBO,FEBO,IEIM,FEIM,IEEN,FEEN,IETB,FETB,IEFI,FEFI,IECB,FECB,IECT,FECT,IETA,FETA,IECA,FECA,IECJ,FECJ,IEOP,FEOP,ESAL,IESP,FESP,PRUT,PVAL,PID,PGRP,PALT,PANC,PALI,PCLI,PFON;
 /*aqui estan los no terminales */
 non terminal Start,UNO; 
-non terminal NCHTML CONTENIDO_CUERPO,ESTRUCTURA_G_SCL,ESTRUCTURA_G_COM,,ESTRUCTURA_G_RUT,ESTRUCTURA_G_SRU,CUERPO_CHTML,CUERPO_ENCA,CUERPO_CUERPO,ESTRUCTURA_CCSS,ESTRUCTURA_CJS,ESTRUCTURA_TITU,ESTRUCTURA_CUERPO,ESTRUCTURA_G_CUERPO1,ESTRUCTURA_G_CUERPO,ESTRUCTURA_TEXTO,ESTRUCTURA_PANEL,ESTRUCTURA_IMAGE,ESTRUCTURA_BOTON,ESTRUCTURA_ENLAC,ESTRUCTURA_TABLA,CUERPO_TABLA,CUERPO_FILA,CUERPO_CELDA,ESTRUCTURA_TEXTO_A,ESTRUCTURA_CAJA_T,ESTRUCTURA_CAJA,CUERPO_CAJA,ESTRUCTURA_SPINNER,ESTRUCTURA_SALTO;
+non terminal NCHTML CONTENIDO_CUERPO,ESTRUCTURA_G_SCL,ESTRUCTURA_G_COM,ESTRUCTURA_G_CLI,ESTRUCTURA_G_RUT,ESTRUCTURA_G_SRU,CUERPO_CHTML,CUERPO_ENCA,CUERPO_CUERPO,ESTRUCTURA_CCSS,ESTRUCTURA_CJS,ESTRUCTURA_TITU,ESTRUCTURA_CUERPO,ESTRUCTURA_G_CUERPO1,ESTRUCTURA_G_CUERPO,ESTRUCTURA_TEXTO,ESTRUCTURA_PANEL,ESTRUCTURA_IMAGE,ESTRUCTURA_BOTON,ESTRUCTURA_ENLAC,ESTRUCTURA_TABLA,CUERPO_TABLA,CUERPO_FILA,CUERPO_CELDA,ESTRUCTURA_TEXTO_A,ESTRUCTURA_CAJA_T,ESTRUCTURA_CAJA,CUERPO_CAJA,ESTRUCTURA_SPINNER,ESTRUCTURA_SALTO;
 start with Start;
 Start ::= UNO;
 /*----------------------------ESTRUCTURA DE CHTML-------------------------*/
@@ -142,7 +142,7 @@ ESTRUCTURA_G_CUERPO::=  ESTRUCTURA_G_CUERPO1:e2 ESTRUCTURA_G_CUERPO:e1  {:e2.hij
                     |   ESTRUCTURA_G_CUERPO1:e2                         {:return e2;:}; 
 /*estructura elementos*/                 
 ESTRUCTURA_G_CUERPO1::= PGRP SIGU PCOM:e1 SPYC  {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="grupo"; nuevo.contenido=e1; return nuevo;:}
-                    |   PID  SIUG PCOM:e1 SPYC  {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="id"; nuevo.contenido=e1; return nuevo;:}
+                    |   PID  SIGU PCOM:e1 SPYC  {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="id"; nuevo.contenido=e1; return nuevo;:}
                     |   PALI SIGU PCOM:e1 SPYC  {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="alineado"; nuevo.contenido=e1; return nuevo;:}
                     |   PALT SIGU PCOM:e1 SPYC  {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="alto"; nuevo.contenido=e1; return nuevo;:} 
                     |   PANC SIGU PCOM:e1 SPYC  {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="ancho"; nuevo.contenido=e1; return nuevo;:};                   
