@@ -8,6 +8,7 @@ package Analizadores;
 import java.io.FileReader;
 import java_cup.runtime.Symbol;
 import Principal.NCHTML;
+import Principal.Nodo_error;
 import java_cup.runtime.*;
 import java.util.ArrayList;
 import java_cup.runtime.XMLElement;
@@ -253,7 +254,7 @@ class CUP$Sintactico_CHTML$actions {
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-3)).left;
 		int e1right = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-3)).right;
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-3)).value;
-		Raiz_CHTML = e1;
+		Raiz_CHTML = (NCHTML) e1;
               CUP$Sintactico_CHTML$result = parser.getSymbolFactory().newSymbol("UNO",1, ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-6)), ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.peek()), RESULT);
             }
           return CUP$Sintactico_CHTML$result;
@@ -287,7 +288,13 @@ class CUP$Sintactico_CHTML$actions {
 		int e2left = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.peek()).left;
 		int e2right = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.peek()).right;
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$Sintactico_CHTML$stack.peek()).value;
-		NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="encabezado"; NCHTML uno=e1; NCHTML dos=e2; nuevo.hijos.add(uno); nuevo.hijos.add(dos); return nuevo;
+		NCHTML nuevo=new NCHTML(); 
+                nuevo.etiqueta ="encabezado"; 
+                NCHTML uno=(NCHTML) e1; 
+                NCHTML dos=(NCHTML) e2; 
+                nuevo.hijos.add(uno); 
+                nuevo.hijos.add(dos); 
+                return nuevo;
               CUP$Sintactico_CHTML$result = parser.getSymbolFactory().newSymbol("CUERPO_ENCA",9, ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-1)), ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.peek()), RESULT);
             }
           return CUP$Sintactico_CHTML$result;
