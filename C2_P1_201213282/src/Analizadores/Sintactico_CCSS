@@ -49,69 +49,69 @@ action code {:
 terminal PID,SCOM,SMAS,SMEN,SDPU,SIGU,SMUL,SDIV,SICO,RHOR,RVER,SFCO,SIPA,SPYC,SFPA,RID,RTEX,RCUR,RLET,RGRU,ROPA,RBOR,RVIS,RFOR,RDER,CUR,RCEN,RNEG,RALI,RIZQ,RMAY,RMIN,RCAP,RCOL,RJUS,RFEL,RAUR;
 /*aqui estan los no terminales */
 non terminal Start,UNO; 
-non terminal N_CCSS;
-precedence left terminal SMAS,SMEN,SMUL,SDIV; 
+non terminal N_CCSS ESTRUCTURA_CSS,ESTRUCTURA_ID,ESTRUCTURA_ALIN,CUERPO_ID,ESTRUCTURA_TEXT,ESTRUCTURA_LETR,ESTRUCTURA_TAM,ESTRUCTURA_FOND,ESTRUCTURA_AUTO,ESTRUCTURA_VISI,ESTRUCTURA_APAQ,ESTRUCTURA_COLT,ESTRUCTURA_BORD,ESTRUCTURA_FORM,Lista_For,ESTRUCTURA_GENE,CUERPO_GENE,TIPO_CUERPO_G;
 start with Start;
 Start ::= UNO;
 UNO ::= ESTRUCTURA_CSS:e1   {:RCCSS =e1;:};
 /*estructura de CSS*/
 ESTRUCTURA_CSS  ::= ESTRUCTURA_CSS:e2 ESTRUCTURA_ID:e1  {:e2.hijos.add(e1);:}
-                |   ESTRUCTURA_ID:e1                    {:return e1;:};
+                |   ESTRUCTURA_ID:e1                    {:RESULT = e1;:};
 /*estructura de ID*/
-ESTRUCTURA_ID   ::= PID:e1     SICO CUERPO_ID:e2 SFCO    {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="inicio"; nuevo.valor=e1; nuevo.hijos.add(e2); return nuevo;:};
-CUERPO_ID       ::= CUERPO_ID:e2 ESTRUCTURA_GENE:e1      {:e2.hijos.add(e1); return e2;:}
-                |   ESTRUCTURA_GENE:e1                   {:return e1;:};
+ESTRUCTURA_ID   ::= PID:e1     SICO CUERPO_ID:e2 SFCO    {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="inicio"; nuevo.valor=e1; nuevo.hijos.add(e2); RESULT = nuevo;:};
+CUERPO_ID       ::= CUERPO_ID:e2 ESTRUCTURA_GENE:e1      {:e2.hijos.add(e1); RESULT = e2;:}
+                |   ESTRUCTURA_GENE:e1                   {:RESULT = e1;:};
 /*estructura de alineado*/
-ESTRUCTURA_ALIN ::= RALI SDPU SIGU RIZQ{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="alineado"; nuevo.valor="izquierdo"; return nuevo;:}
-                |   RALI SDPU SIGU RDER{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="alineado"; nuevo.valor="derecha"; return nuevo;:}
-                |   RALI SDPU SIGU RCEN{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="alineado"; nuevo.valor="centrado"; return nuevo;:}
-                |   RALI SDPU SIGU RJUS{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="alineado"; nuevo.valor="justificado"; return nuevo;:};
+ESTRUCTURA_ALIN ::= RALI SDPU SIGU RIZQ{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="alineado"; nuevo.valor="izquierdo"; RESULT = nuevo;:}
+                |   RALI SDPU SIGU RDER{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="alineado"; nuevo.valor="derecha"; RESULT = nuevo;:}
+                |   RALI SDPU SIGU RCEN{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="alineado"; nuevo.valor="centrado"; RESULT = nuevo;:}
+                |   RALI SDPU SIGU RJUS{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="alineado"; nuevo.valor="justificado"; RESULT = nuevo;:};
 /*estructura de texto*/
-ESTRUCTURA_TEXT ::= RTEX SDPU SIGU EXPRESION:e1 SPYC{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="texto"; nuevo.valor=e1; return nuevo;:};
+ESTRUCTURA_TEXT ::= RTEX SDPU SIGU EXPRESION:e1 SPYC{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="texto"; nuevo.valor=e1; RESULT = nuevo;:};
 /*estructura de letra*/
-ESTRUCTURA_LETR ::= RLET SDPU SIGU EXPRESION:e1 SPYC{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="letra"; nuevo.valor=e1; return nuevo;:};
+ESTRUCTURA_LETR ::= RLET SDPU SIGU EXPRESION:e1 SPYC{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="letra"; nuevo.valor=e1; RESULT = nuevo;:};
 /*estructura de tamtex*/
-ESTRUCTURA_TAMT ::= RTAM SDPU SIGU EXPRESION:e1 SPYC{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="tamañio"; nuevo.valor=e1; return nuevo;:};
+ESTRUCTURA_TAMT ::= RTAM SDPU SIGU EXPRESION:e1 SPYC{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="tamañio"; nuevo.valor=e1; RESULT = nuevo;:};
 /*estructura de Fondoelemnto*/
-ESTRUCTURA_FOND ::= RFEL SDPU SIGU EXPRESION:e1 SPYC{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Fondoelemento"; nuevo.valor=e1; return nuevo;:};
+ESTRUCTURA_FOND ::= RFEL SDPU SIGU EXPRESION:e1 SPYC{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Fondoelemento"; nuevo.valor=e1; RESULT = nuevo;:};
 /*estructura de AUTOREDIMENSION*/
-ESTRUCTURA_AUTO ::= RAUR SDPU SIGU SICO PID:e1 SCOM RHOR SFCO SPYC{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="AUTOREDIMENSION"; nuevo.valor=e1+",0"; return nuevo;:}
-                |   RAUR SDPU SIGU SICO PID:e1 SCOM RVER SFCO SPYC{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="AUTOREDIMENSION"; nuevo.valor=e1+",1"; return nuevo;:};
+ESTRUCTURA_AUTO ::= RAUR SDPU SIGU SICO PID:e1 SCOM RHOR SFCO SPYC{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="AUTOREDIMENSION"; nuevo.valor=e1+",0"; RESULT = nuevo;:}
+                |   RAUR SDPU SIGU SICO PID:e1 SCOM RVER SFCO SPYC{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="AUTOREDIMENSION"; nuevo.valor=e1+",1"; RESULT = nuevo;:};
 /*estructura de VISIBLE*/
-ESTRUCTURA_VISI ::= RVIS SDPU SIGU PID:e1 SPYC      {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="visible"; nuevo.valor=e1; return nuevo;:};
+ESTRUCTURA_VISI ::= RVIS SDPU SIGU PID:e1 SPYC      {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="visible"; nuevo.valor=e1; RESULT = nuevo;:};
 /*estructura de Opaque*/
-ESTRUCTURA_OPAQ ::= ROPA SDPU SIGU PID:e1 SPYC      {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="opaque"; nuevo.valor=e1; return nuevo;:};
+ESTRUCTURA_OPAQ ::= ROPA SDPU SIGU PID:e1 SPYC      {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="opaque"; nuevo.valor=e1; RESULT = nuevo;:};
 /*estructura de colortext*/
-ESTRUCTURA_COLT ::= RCOL SDPU SIGU EXPRESION:e1 SPYC{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="colortext"; nuevo.valor=e1; return nuevo;:};
+ESTRUCTURA_COLT ::= RCOL SDPU SIGU EXPRESION:e1 SPYC{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="colortext"; nuevo.valor=e1; RESULT = nuevo;:};
 /*estructura de BORDE*/
-ESTRUCTURA_BORD ::= RBOR SDPU SIGU SICO EXPRESION:e1 SCOM EXPRESION:e2 SCOM PID:e3 SFCO SPYC{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Borde"; nuevo.valor=e1+"/"+e2+"/"+e3; return nuevo;:};
+ESTRUCTURA_BORD ::= RBOR SDPU SIGU SICO EXPRESION:e1 SCOM EXPRESION:e2 SCOM PID:e3 SFCO SPYC{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Borde"; nuevo.valor=e1+"/"+e2+"/"+e3; RESULT = nuevo;:};
 /*estructura de formatos*/
-ESTRUCTURA_FORM ::= RFOR SDPU SIGU Lista_For:e1 {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="formato"; nuevo.hijos.add(e1); return nuevo;:}; 
-Lista_For       ::= Lista_For:e1 SCOM RNEG      {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Lista_For"; nuevo.valor="negrita"; return nuevo; e1.hijos.add(nuevo); return e1;:}
-                |   Lista_For:e1 SCOM RCUR      {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Lista_For"; nuevo.valor="cursiva"; return nuevo; e1.hijos.add(nuevo); return e1;:}
-                |   Lista_For:e1 SCOM RMAY      {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Lista_For"; nuevo.valor="mayuscula"; return nuevo; e1.hijos.add(nuevo); return e1;:}
-                |   Lista_For:e1 SCOM RMIN      {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Lista_For"; nuevo.valor="minuscula"; return nuevo; e1.hijos.add(nuevo); return e1;:}
-                |   Lista_For:e1 SCOM RCAP      {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Lista_For"; nuevo.valor="capital-T"; return nuevo; e1.hijos.add(nuevo); return e1;:}
-                |                     RNEG      {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Lista_For"; nuevo.valor="negrita"; return nuevo;:}
-                |                     RCUR      {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Lista_For"; nuevo.valor="cursiva"; return nuevo;:}
-                |                     RMAY      {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Lista_For"; nuevo.valor="mayuscula"; return nuevo;:}
-                |                     RMIN      {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Lista_For"; nuevo.valor="minuscula"; return nuevo;:}
-                |                     RCAP      {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Lista_For"; nuevo.valor="capital-T"; return nuevo;:};               
+ESTRUCTURA_FORM ::= RFOR SDPU SIGU Lista_For:e1 {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="formato"; nuevo.hijos.add(e1); RESULT = nuevo;:}; 
+Lista_For       ::= Lista_For:e1 SCOM RNEG      {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Lista_For"; nuevo.valor="negrita"; RESULT = nuevo; e1.hijos.add(nuevo); RESULT = e1;:}
+                |   Lista_For:e1 SCOM RCUR      {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Lista_For"; nuevo.valor="cursiva"; RESULT = nuevo; e1.hijos.add(nuevo); RESULT = e1;:}
+                |   Lista_For:e1 SCOM RMAY      {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Lista_For"; nuevo.valor="mayuscula"; RESULT = nuevo; e1.hijos.add(nuevo); RESULT = e1;:}
+                |   Lista_For:e1 SCOM RMIN      {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Lista_For"; nuevo.valor="minuscula"; RESULT = nuevo; e1.hijos.add(nuevo); RESULT = e1;:}
+                |   Lista_For:e1 SCOM RCAP      {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Lista_For"; nuevo.valor="capital-T"; RESULT = nuevo; e1.hijos.add(nuevo); RESULT = e1;:}
+                |                     RNEG      {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Lista_For"; nuevo.valor="negrita"; RESULT = nuevo;:}
+                |                     RCUR      {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Lista_For"; nuevo.valor="cursiva"; RESULT = nuevo;:}
+                |                     RMAY      {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Lista_For"; nuevo.valor="mayuscula"; RESULT = nuevo;:}
+                |                     RMIN      {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Lista_For"; nuevo.valor="minuscula"; RESULT = nuevo;:}
+                |                     RCAP      {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Lista_For"; nuevo.valor="capital-T"; RESULT = nuevo;:};               
 /*estructura de General*/
-ESTRUCTURA_GENE ::= RID  SIPA PID:e2 SFPA SPYC CUERPO_GEN:e1   {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="ID"; nuevo.valor=e2; nuevo.hijos.add(e1); return nuevo;:}
-                |   RGRU SIPA PID:e2 SFPA SPYC CUERPO_GEN:e1   {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Grupo"; nuevo.valor=e2;nuevo.hijos.add(e1); return nuevo;:};
+ESTRUCTURA_GENE ::= RID  SIPA PID:e2 SFPA SPYC CUERPO_GEN:e1   {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="ID"; nuevo.valor=e2; nuevo.hijos.add(e1); RESULT = nuevo;:}
+                |   RGRU SIPA PID:e2 SFPA SPYC CUERPO_GEN:e1   {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Grupo"; nuevo.valor=e2;nuevo.hijos.add(e1); RESULT = nuevo;:};
 
-CUERPO_GENE     ::= CUERPO_GENE:e2 TIPO_CUERPO_G:e1 {:e2.hijos.add(e1); return e2;:}              
-                |   TIPO_CUERPO_G:e1                {:return e1;:};
+CUERPO_GENE     ::= CUERPO_GENE:e2 TIPO_CUERPO_G:e1 {:e2.hijos.add(e1); RESULT = e2;:}              
+                |   TIPO_CUERPO_G:e1                {:RESULT = e1;:};
 
-TIPO_CUERPO_G ::=   ESTRUCTURA_AUTO:e1      {:return e1;:}              
-                |   ESTRUCTURA_VISI:e1      {:return e1;:}              
-                |   ESTRUCTURA_COLT:e1      {:return e1;:} 
-                |   ESTRUCTURA_OPAQ:e1      {:return e1;:}              
-                |   ESTRUCTURA_FOND:e1      {:return e1;:}              
-                |   ESTRUCTURA_BORD:e1      {:return e1;:}              
-                |   ESTRUCTURA_ALIN:e1      {:return e1;:}              
-                |   ESTRUCTURA_TEXT:e1      {:return e1;:}              
-                |   ESTRUCTURA_TAMT:e1      {:return e1;:}
-                |   ESTRUCTURA_FORM:e1      {:return e1;:}
-                |   ESTRUCTURA_LETR:e1      {:return e1;:};                
+TIPO_CUERPO_G ::=   ESTRUCTURA_AUTO:e1      {:RESULT = e1;:}              
+                |   ESTRUCTURA_VISI:e1      {:RESULT = e1;:}              
+                |   ESTRUCTURA_COLT:e1      {:RESULT = e1;:} 
+                |   ESTRUCTURA_OPAQ:e1      {:RESULT = e1;:}              
+                |   ESTRUCTURA_FOND:e1      {:RESULT = e1;:}              
+                |   ESTRUCTURA_BORD:e1      {:RESULT = e1;:}              
+                |   ESTRUCTURA_ALIN:e1      {:RESULT = e1;:}              
+                |   ESTRUCTURA_TEXT:e1      {:RESULT = e1;:}              
+                |   ESTRUCTURA_TAMT:e1      {:RESULT = e1;:}
+                |   ESTRUCTURA_FORM:e1      {:RESULT = e1;:}
+                |   ESTRUCTURA_LETR:e1      {:RESULT = e1;:};               
+EXPRESION   ::=      
