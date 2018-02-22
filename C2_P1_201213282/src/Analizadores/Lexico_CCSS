@@ -3,7 +3,7 @@ import static Analizadores.Tokens.*;
 import java_cup.runtime.*;
 import java.io.Reader;
 %%
-%class lexico_cjs
+%class lexico_CCSS
 %{
 public static String errores="";
     private Symbol Symbol(int type){
@@ -33,6 +33,7 @@ Comillas = [\"] [^][\"]
 "+"											{return new Symbol(symc.SMAS,yyline,yycolumn);}
 "-"											{return new Symbol(symc.SMEN,yyline,yycolumn);}
 "*"											{return new Symbol(symc.SMUL,yyline,yycolumn);}
+"."											{return new Symbol(symc.SPUN,yyline,yycolumn);}
 ":"											{return new Symbol(symc.SDPU,yyline,yycolumn);}
 ";"											{return new Symbol(symc.SPYC,yyline,yycolumn);}
 ","											{return new Symbol(symc.SCOM,yyline,yycolumn);}
