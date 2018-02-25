@@ -7,6 +7,7 @@ package Analizadores;
 
 import java.io.FileReader;
 import Principal.NCJS;
+import Principal.Nodo_error;
 import java_cup.runtime.Symbol;
 import java_cup.runtime.*;
 import java.util.ArrayList;
@@ -404,7 +405,7 @@ public class Sintactico_CJS extends java_cup.runtime.lr_parser {
  /*codig de usuario */
  String total = "";
  public NCJS RCJS = null;
- public ArrayList<Nodo> e = new ArrayList<Nodo>();
+ //public ArrayList<Nodo> e = new ArrayList<Nodo>();
 
 
 /** Cup generated class to encapsulate user supplied action code.*/
@@ -480,7 +481,7 @@ class CUP$Sintactico_CJS$actions {
 		int e2left = ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()).left;
 		int e2right = ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()).right;
 		NCJS e2 = (NCJS)((java_cup.runtime.Symbol) CUP$Sintactico_CJS$stack.peek()).value;
-		NCJS nuevo = new NCJS(); nuevo.etiqueta ="cuerpo" nuevo.hijos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;
+		NCJS nuevo = new NCJS(); nuevo.etiqueta ="cuerpo"; nuevo.hijos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;
               CUP$Sintactico_CJS$result = parser.getSymbolFactory().newSymbol("ESTRUCTURA_CUERPO",5, ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-1)), ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()), RESULT);
             }
           return CUP$Sintactico_CJS$result;
@@ -600,7 +601,7 @@ class CUP$Sintactico_CJS$actions {
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-1)).left;
 		int e1right = ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-1)).right;
 		NCJS e1 = (NCJS)((java_cup.runtime.Symbol) CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-1)).value;
-		NCJS nuevo = new NCJS(); nuevo.etiqueta ="variable" nuevo.hijos.add(e1); RESULT = nuevo;
+		NCJS nuevo = new NCJS(); nuevo.etiqueta ="variable"; nuevo.hijos.add(e1); RESULT = nuevo;
               CUP$Sintactico_CJS$result = parser.getSymbolFactory().newSymbol("ESTRUCTURA_DEC_VAR",8, ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-2)), ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()), RESULT);
             }
           return CUP$Sintactico_CJS$result;
@@ -615,7 +616,7 @@ class CUP$Sintactico_CJS$actions {
 		int e2left = ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-1)).left;
 		int e2right = ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-1)).right;
 		NCJS e2 = (NCJS)((java_cup.runtime.Symbol) CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-1)).value;
-		NCJS nuevo = new NCJS(); nuevo.etiqueta ="variable" nuevo.hijos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;
+		NCJS nuevo = new NCJS(); nuevo.etiqueta ="variable"; nuevo.hijos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;
               CUP$Sintactico_CJS$result = parser.getSymbolFactory().newSymbol("ESTRUCTURA_DEC_VAR",8, ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-4)), ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()), RESULT);
             }
           return CUP$Sintactico_CJS$result;
@@ -630,7 +631,7 @@ class CUP$Sintactico_CJS$actions {
 		int e2left = ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-2)).left;
 		int e2right = ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-2)).right;
 		NCJS e2 = (NCJS)((java_cup.runtime.Symbol) CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-2)).value;
-		NCJS nuevo = new NCJS(); nuevo.etiqueta ="variable" nuevo.hijos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;
+		NCJS nuevo = new NCJS(); nuevo.etiqueta ="variable"; nuevo.hijos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;
               CUP$Sintactico_CJS$result = parser.getSymbolFactory().newSymbol("ESTRUCTURA_DEC_VAR",8, ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-6)), ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()), RESULT);
             }
           return CUP$Sintactico_CJS$result;
@@ -645,7 +646,7 @@ class CUP$Sintactico_CJS$actions {
 		int e2left = ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-1)).left;
 		int e2right = ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-1)).right;
 		NCJS e2 = (NCJS)((java_cup.runtime.Symbol) CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-1)).value;
-		NCJS nuevo = new NCJS(); nuevo.etiqueta ="asignar" nuevo.hijos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;
+		NCJS nuevo = new NCJS(); nuevo.etiqueta ="asignar"; nuevo.hijos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;
               CUP$Sintactico_CJS$result = parser.getSymbolFactory().newSymbol("ESTRUCTURA_ASIGNAR",7, ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-3)), ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()), RESULT);
             }
           return CUP$Sintactico_CJS$result;
@@ -660,7 +661,7 @@ class CUP$Sintactico_CJS$actions {
 		int e2left = ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-1)).left;
 		int e2right = ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-1)).right;
 		NCJS e2 = (NCJS)((java_cup.runtime.Symbol) CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-1)).value;
-		NCJS nuevo = new NCJS(); nuevo.etiqueta ="si" nuevo.hijos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;
+		NCJS nuevo = new NCJS(); nuevo.etiqueta ="si"; nuevo.hijos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;
               CUP$Sintactico_CJS$result = parser.getSymbolFactory().newSymbol("ESTRUCTURA_SI",9, ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-6)), ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()), RESULT);
             }
           return CUP$Sintactico_CJS$result;
@@ -678,7 +679,7 @@ class CUP$Sintactico_CJS$actions {
 		int e3left = ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()).left;
 		int e3right = ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()).right;
 		NCJS e3 = (NCJS)((java_cup.runtime.Symbol) CUP$Sintactico_CJS$stack.peek()).value;
-		NCJS nuevo = new NCJS(); nuevo.etiqueta ="si" nuevo.hijos.add(e1); nuevo.hijos.add(e2); nuevo.hijos.add(e3); RESULT = nuevo;
+		NCJS nuevo = new NCJS(); nuevo.etiqueta ="si"; nuevo.hijos.add(e1); nuevo.hijos.add(e2); nuevo.hijos.add(e3); RESULT = nuevo;
               CUP$Sintactico_CJS$result = parser.getSymbolFactory().newSymbol("ESTRUCTURA_SI",9, ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-7)), ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()), RESULT);
             }
           return CUP$Sintactico_CJS$result;
@@ -690,7 +691,7 @@ class CUP$Sintactico_CJS$actions {
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-1)).left;
 		int e1right = ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-1)).right;
 		NCJS e1 = (NCJS)((java_cup.runtime.Symbol) CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-1)).value;
-		NCJS nuevo = new NCJS(); nuevo.etiqueta ="sino" nuevo.hijos.add(e1); RESULT = nuevo;
+		NCJS nuevo = new NCJS(); nuevo.etiqueta ="sino"; nuevo.hijos.add(e1); RESULT = nuevo;
               CUP$Sintactico_CJS$result = parser.getSymbolFactory().newSymbol("ESTRUCTURA_SINO",10, ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-3)), ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()), RESULT);
             }
           return CUP$Sintactico_CJS$result;
@@ -705,7 +706,7 @@ class CUP$Sintactico_CJS$actions {
 		int e2left = ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-1)).left;
 		int e2right = ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-1)).right;
 		NCJS e2 = (NCJS)((java_cup.runtime.Symbol) CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-1)).value;
-		NCJS nuevo = new NCJS(); nuevo.etiqueta ="seleccion" nuevo.hijos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;
+		NCJS nuevo = new NCJS(); nuevo.etiqueta ="seleccion"; nuevo.hijos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;
               CUP$Sintactico_CJS$result = parser.getSymbolFactory().newSymbol("ESTRUCTURA_SELE",11, ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-6)), ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()), RESULT);
             }
           return CUP$Sintactico_CJS$result;
@@ -852,7 +853,7 @@ class CUP$Sintactico_CJS$actions {
 		int e3left = ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-1)).left;
 		int e3right = ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-1)).right;
 		NCJS e3 = (NCJS)((java_cup.runtime.Symbol) CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-1)).value;
-		NCJS nuevo = new NCJS(); nuevo.etiqueta ="funcion"; nuevo.hijos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;
+		NCJS nuevo = new NCJS(); nuevo.etiqueta ="funcion"; nuevo.valor=e1.toString(); nuevo.hijos.add(e2); RESULT = nuevo;
               CUP$Sintactico_CJS$result = parser.getSymbolFactory().newSymbol("ESTRUCTURA_FUNCI",16, ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-7)), ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()), RESULT);
             }
           return CUP$Sintactico_CJS$result;
@@ -903,7 +904,7 @@ class CUP$Sintactico_CJS$actions {
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()).left;
 		int e1right = ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()).right;
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$Sintactico_CJS$stack.peek()).value;
-		NCJS nuevo = new NCJS(); nuevo.etiqueta ="string"; nuevo.valor=e1.ToString(); RESULT = nuevo;
+		NCJS nuevo = new NCJS(); nuevo.etiqueta ="string"; nuevo.valor=e1.toString(); RESULT = nuevo;
               CUP$Sintactico_CJS$result = parser.getSymbolFactory().newSymbol("A_VAR",19, ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()), RESULT);
             }
           return CUP$Sintactico_CJS$result;
@@ -915,7 +916,7 @@ class CUP$Sintactico_CJS$actions {
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()).left;
 		int e1right = ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()).right;
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$Sintactico_CJS$stack.peek()).value;
-		NCJS nuevo = new NCJS(); nuevo.etiqueta ="doble"; nuevo.valor=e1.ToString(); RESULT = nuevo;
+		NCJS nuevo = new NCJS(); nuevo.etiqueta ="doble"; nuevo.valor=e1.toString(); RESULT = nuevo;
               CUP$Sintactico_CJS$result = parser.getSymbolFactory().newSymbol("A_VAR",19, ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()), RESULT);
             }
           return CUP$Sintactico_CJS$result;
@@ -930,7 +931,7 @@ class CUP$Sintactico_CJS$actions {
 		int e2left = ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()).left;
 		int e2right = ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()).right;
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$Sintactico_CJS$stack.peek()).value;
-		NCJS nuevo = new NCJS(); nuevo.etiqueta ="doble"; nuevo.valor=e1.ToString()+"."+e2.ToString(); RESULT = nuevo;
+		NCJS nuevo = new NCJS(); nuevo.etiqueta ="doble"; nuevo.valor=e1.toString()+"."+e2.toString(); RESULT = nuevo;
               CUP$Sintactico_CJS$result = parser.getSymbolFactory().newSymbol("A_VAR",19, ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.elementAt(CUP$Sintactico_CJS$top-2)), ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()), RESULT);
             }
           return CUP$Sintactico_CJS$result;
@@ -942,7 +943,7 @@ class CUP$Sintactico_CJS$actions {
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()).left;
 		int e1right = ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()).right;
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$Sintactico_CJS$stack.peek()).value;
-		NCJS nuevo = new NCJS(); nuevo.etiqueta ="fecha";  nuevo.valor=e1.ToString(); RESULT = nuevo;
+		NCJS nuevo = new NCJS(); nuevo.etiqueta ="fecha";  nuevo.valor=e1.toString(); RESULT = nuevo;
               CUP$Sintactico_CJS$result = parser.getSymbolFactory().newSymbol("A_VAR",19, ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()), RESULT);
             }
           return CUP$Sintactico_CJS$result;
@@ -954,7 +955,7 @@ class CUP$Sintactico_CJS$actions {
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()).left;
 		int e1right = ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()).right;
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$Sintactico_CJS$stack.peek()).value;
-		NCJS nuevo = new NCJS(); nuevo.etiqueta ="hora";   nuevo.valor=e1.ToString(); RESULT = nuevo;
+		NCJS nuevo = new NCJS(); nuevo.etiqueta ="hora";   nuevo.valor=e1.toString(); RESULT = nuevo;
               CUP$Sintactico_CJS$result = parser.getSymbolFactory().newSymbol("A_VAR",19, ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()), RESULT);
             }
           return CUP$Sintactico_CJS$result;
@@ -966,7 +967,7 @@ class CUP$Sintactico_CJS$actions {
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()).left;
 		int e1right = ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()).right;
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$Sintactico_CJS$stack.peek()).value;
-		NCJS nuevo = new NCJS(); nuevo.etiqueta ="ID";      nuevo.valor=e1.ToString(); RESULT = nuevo;
+		NCJS nuevo = new NCJS(); nuevo.etiqueta ="ID";      nuevo.valor=e1.toString(); RESULT = nuevo;
               CUP$Sintactico_CJS$result = parser.getSymbolFactory().newSymbol("Estructura_VAR",20, ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico_CJS$stack.peek()), RESULT);
             }
           return CUP$Sintactico_CJS$result;

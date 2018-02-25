@@ -351,7 +351,7 @@ public class Sintactico_CCSS extends java_cup.runtime.lr_parser {
  /*codig de usuario */
  String total = "";
  public NCCSS RCCSS = null;
- public ArrayList<Nodo> e = new ArrayList<Nodo>();
+// public ArrayList<Nodo> e = new ArrayList<Nodo>();
 
 
 /** Cup generated class to encapsulate user supplied action code.*/

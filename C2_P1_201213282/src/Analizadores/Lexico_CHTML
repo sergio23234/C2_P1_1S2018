@@ -1,5 +1,4 @@
 package Analizadores;
-import static Analizadores.Tokens.*;
 import java_cup.runtime.*;
 import java.io.Reader;
 
@@ -24,22 +23,25 @@ public static String errores="";
 %line
 %column
 Lineterminada = [\r|\n|\r\n]
-WhiteSpace = ({Lineterminada} | [ \t\f]|[ |\t|\r|\f|\n])+
-Comillas = [\"] [^][\"]
+WhiteSpace = ({Lineterminada} | [ \t\f]|[ |\t|\r|\f|\n|\r\n])+
+Comillas = [\"][^][\"]
 Comentario_multiple = [<//-][^][-//>]
-%state YYCABEZA,YYCUERPO
+%state YYCABEZA,YYCUERPO,YYINITIAL
 %%
 {Comentario_multiple} {/*Ignore*/}
 <YYINITIAL> {
+"<"								{return new Symbol(sym.INI,yyline,yycolumn);}
+">"								{return new Symbol(sym.FIN,yyline,yycolumn);}
 "CHTML"			 				{return new Symbol(sym.IHTML,yyline, yycolumn);}
 "FIN-CHTML"			 			{return new Symbol(sym.FHTML,yyline, yycolumn);}
 "ENCABEZADO"			 		{yybegin(YYCABEZA); return new Symbol(sym.IENCA,yyline, yycolumn);}
 "CUERPO"			 			{yybegin(YYCUERPO);return new Symbol(sym.ICUER,yyline, yycolumn);}
-"<"								{return new Symbol(sym.INI,yyline,yycolumn);}
-">"								{return new Symbol(sym.FIN,yyline,yycolumn);}
-.   							{ System.out.println("Caracter Invalido: "+yytext()+" Linea: "+ (int)(yyline+1)+" columa:"+(int)yycolumn+";");}
 }
 <YYCABEZA> {
+"="											{return new Symbol(sym.SIGU,yyline,yycolumn);}
+";"											{return new Symbol(sym.SPYC,yyline,yycolumn);}
+"<"											{return new Symbol(sym.INI,yyline,yycolumn);}
+">"											{return new Symbol(sym.FIN,yyline,yycolumn);}
 "FIN-ENCABEZADO"			 				{yybegin(YYINITIAL); return new Symbol(sym.FENCA,yyline, yycolumn);}
 "CJS"										{return new Symbol(sym.ICJS,yyline,yycolumn);}
 "FIN-CJS"									{return new Symbol(sym.FCJS,yyline,yycolumn);}
@@ -48,13 +50,8 @@ Comentario_multiple = [<//-][^][-//>]
 "TITULO"									{return new Symbol(sym.ITIT,yyline,yycolumn);}
 "FIN-TITULO"								{return new Symbol(sym.FTIT,yyline,yycolumn);}
 "ruta"										{return new Symbol(sym.PRUT,yyline,yycolumn);}
-"="											{return new Symbol(sym.SIGU,yyline,yycolumn);}
-";"											{return new Symbol(sym.SPYC,yyline,yycolumn);}
-"<"											{return new Symbol(sym.INI,yyline,yycolumn);}
-">"											{return new Symbol(sym.FIN,yyline,yycolumn);}
 {Comillas}									{return new Symbol(sym.PCOM,yyline,yycolumn,yytext());}
-([:jletter:]([.]~[>,<,\"])+)				{return new Symbol(sym.PNOR,yyline,yycolumn,yytext());} 
-.   										{ System.out.println("Caracter Invalido: "+yytext()+" Linea: "+ (int)(yyline+1)+" columa:"+(int)yycolumn+";");}
+(([:jletter:]|[:jletterdigit:]|a-Z)+)		{return new Symbol(sym.PNOR,yyline,yycolumn,yytext());} 
 }
 <YYCUERPO> {
 "="											{return new Symbol(sym.SIGU,yyline,yycolumn);}
@@ -102,7 +99,6 @@ Comentario_multiple = [<//-][^][-//>]
 "fondo"										{return new Symbol(sym.PFON,yyline,yycolumn);}
 {Comillas}									{return new Symbol(sym.PCOM,yyline,yycolumn,yytext());}
 (([:jletter:]|[:jletterdigit:]|a-Z)+)		{return new Symbol(sym.PNOR,yyline, yycolumn,yytext());} 
-.   										{ System.out.println("Caracter Invalido: "+yytext()+" Linea: "+ (int)(yyline+1)+" columa:"+(int)yycolumn+";");}
 }
 {WhiteSpace} {/*Ignore*/}
 .   { System.out.println("Caracter Invalido: "+yytext()+" Linea: "+ (int)(yyline+1)+" columa:"+(int)yycolumn+";");}

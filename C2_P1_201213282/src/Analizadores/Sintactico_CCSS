@@ -41,7 +41,7 @@ parser code {:
  /*codig de usuario */
  String total = "";
  public NCCSS RCCSS = null;
- public ArrayList<Nodo> e = new ArrayList<Nodo>();
+ //public ArrayList<Nodo> e = new ArrayList<Nodo>();
 :}
 action code {:
     public String estado="";
