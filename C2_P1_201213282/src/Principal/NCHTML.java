@@ -17,8 +17,8 @@ public class NCHTML {
     public ArrayList<NCHTML> hijos;
     public ArrayList<NCHTML> atributos;
     public NCHTML(){
-        hijos = null;
-        atributos=null;
+        hijos = new ArrayList();
+        atributos= new ArrayList();
         etiqueta ="";
         contenido ="";
     }
