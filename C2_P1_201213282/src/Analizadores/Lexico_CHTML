@@ -51,7 +51,7 @@ Comillas = [\"][^][\"]
 "TITULO"									{System.out.print("T");return new Symbol(sym.ITIT,yyline,yycolumn);}
 "FIN-TITULO"								{System.out.print("FT");return new Symbol(sym.FTIT,yyline,yycolumn);}
 "ruta"										{return new Symbol(sym.PRUT,yyline,yycolumn);}
-{Comillas}									{return new Symbol(sym.PCOM,yyline,yycolumn,yytext());}
+([\"][^]+[\"])                              {return new Symbol(sym.PCOM,yyline,yycolumn,yytext());}
 ([:jletter:]([:jletter:]|[:jletterdigit:]|a-Z)+)		
 											{System.out.println("I: "+yytext());	return new Symbol(sym.PNOR,yyline,yycolumn,yytext());} 
 {WhiteSpace} 								{/*Ignore*/System.out.println("ESPACIOE");}
@@ -66,8 +66,8 @@ Comillas = [\"][^][\"]
 "PANEL"										{System.out.print("Pa");return new Symbol(sym.IEPA,yyline,yycolumn);}
 "FIN-PANEL"									{System.out.print("/Pa");return new Symbol(sym.FEPA,yyline,yycolumn);}
 "TEXTO"										{yybegin(YYTEXTO);return new Symbol(sym.IETE,yyline,yycolumn);}
-"BOTON"										{return new Symbol(sym.IEBO,yyline,yycolumn);}
-"FIN-BOTON"									{return new Symbol(sym.FEBO,yyline,yycolumn);}
+"BOTON"										{System.out.println("BT");return new Symbol(sym.IEBO,yyline,yycolumn);}
+"FIN-BOTON"									{System.out.print("/BT");return new Symbol(sym.FEBO,yyline,yycolumn);}
 "IMAGEN"									{return new Symbol(sym.IEIM,yyline,yycolumn);}
 "FIN-IMAGEN"								{return new Symbol(sym.FEIM,yyline,yycolumn);}
 "ENLACE"									{return new Symbol(sym.IEEN,yyline,yycolumn);}
@@ -99,9 +99,9 @@ Comillas = [\"][^][\"]
 "ancho"										{return new Symbol(sym.PANC,yyline,yycolumn);}
 "alineado"									{return new Symbol(sym.PALI,yyline,yycolumn);}
 "click"										{return new Symbol(sym.PCLI,yyline,yycolumn);}
-"fondo"										{return new Symbol(sym.PFON,yyline,yycolumn);}
-(\"[^]\")									{return new Symbol(sym.PCOM,yyline,yycolumn,yytext());}
-([:jletter:]([:jletter:]|[:jletterdigit:]|a-Z)+)		{return new Symbol(sym.PNOR,yyline, yycolumn,yytext());} 
+"fondo"										{return new Symbol(sym.PFON,yyline,yycolumn,yytext());}
+([\"][^]+[\"])	     						{return new Symbol(sym.PCOM,yyline,yycolumn,yytext());}
+([:jletter:]([:jletter:]|[:jletterdigit:]|a-Z)+)    {return new Symbol(sym.PNOR,yyline, yycolumn,yytext());} 
 {WhiteSpace}                                {/*Ignore*/ System.out.print("  ");}
 .   { System.out.println("Caracter Invalido: "+yytext()+" Linea: "+ (int)(yyline+1)+" columa:"+(int)yycolumn+";");}
 }
