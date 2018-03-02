@@ -46,8 +46,8 @@ action code {:
 /* terminales del lenguaje*/
 terminal IHTML,FHTML,IENCA,ICUER,INI,FIN,FENCA,ICJS,FCJS,ICCS,FCCS,ITIT,FTIT,SIGU,SPYC,PCOM,PNOR,FCUER,IEPA,FEPA,IETE,FETE,IEBO,FEBO,IEIM,FEIM,IEEN,FEEN,IETB,FETB,IEFI,FEFI,IECB,FECB,IECT,FECT,IETA,FETA,IECA,FECA,IECJ,FECJ,IEOP,FEOP,ESAL,IESP,FESP,PRUT,PVAL,PID,PGRP,PALT,PANC,PALI,PCLI,PFON;
 /*aqui estan los no terminales */
-non terminal NCHTML  Start,G_COM,ESTRUCTURA_FILA,G_SRU,G_SCL,UNO,GENERAL_CUERPO,CONTENIDO_CUERPO,ESTRUCTURA_G_SCL,ESTRUCTURA_G_COM,ESTRUCTURA_G_CLI,ESTRUCTURA_G_RUT,ESTRUCTURA_G_SRU,CUERPO_CHTML,CUERPO_ENCA,CUERPO_CUERPO,ESTRUCTURA_CCSS,ESTRUCTURA_CJS,ESTRUCTURA_TITU,ESTRUCTURA_CUERPO,ESTRUCTURA_G_CUERPO1,ESTRUCTURA_G_CUERPO,ESTRUCTURA_TEXTO,ESTRUCTURA_PANEL,ESTRUCTURA_IMAGE,ESTRUCTURA_BOTON,ESTRUCTURA_ENLAC,ESTRUCTURA_TABLA,CUERPO_TABLA,CUERPO_FILA,CUERPO_CELDA,ESTRUCTURA_TEXTO_A,ESTRUCTURA_CAJA_T,ESTRUCTURA_CAJA,CUERPO_CAJA,ESTRUCTURA_SPINNER,ESTRUCTURA_SALTO;
-non terminal String TIPO_FIL,SUB_ES_G_CUERPO1;
+non terminal NCHTML  Start,ESTRUCTURA_UNIFI1,ESTRUCTURA_UNIFI,G_COM,ESTRUCTURA_FILA,G_SRU,G_SCL,UNO,GENERAL_CUERPO,CONTENIDO_CUERPO,ESTRUCTURA_G_SCL,ESTRUCTURA_G_COM,ESTRUCTURA_G_CLI,ESTRUCTURA_G_RUT,ESTRUCTURA_G_SRU,CUERPO_CHTML,CUERPO_ENCA,CUERPO_CUERPO,ESTRUCTURA_CCSS,ESTRUCTURA_CJS,ESTRUCTURA_TITU,ESTRUCTURA_CUERPO,ESTRUCTURA_G_CUERPO1,ESTRUCTURA_G_CUERPO,ESTRUCTURA_TEXTO,ESTRUCTURA_PANEL,ESTRUCTURA_IMAGE,ESTRUCTURA_BOTON,ESTRUCTURA_ENLAC,ESTRUCTURA_TABLA,CUERPO_TABLA,CUERPO_FILA,CUERPO_CELDA,ESTRUCTURA_TEXTO_A,ESTRUCTURA_CAJA_T,ESTRUCTURA_CAJA,CUERPO_CAJA,ESTRUCTURA_SPINNER,ESTRUCTURA_SALTO;
+non terminal String TIPO_FIL,SUB_ES_G_CUERPO1,IES,FES;
 start with Start;
 Start ::= UNO;
 /*----------------------------ESTRUCTURA DE CHTML-------------------------*/
@@ -74,13 +74,26 @@ CUERPO_CUERPO     ::= CUERPO_CUERPO:e1 GENERAL_CUERPO:e2{:e1.hijos.add(e2); RESU
                     | GENERAL_CUERPO:e1{:RESULT= e1;:};
 
 GENERAL_CUERPO ::=   ESTRUCTURA_PANEL:e1    {:RESULT=e1;:}
-                    |ESTRUCTURA_TABLA:e1   {:RESULT=e1;:}
-                    |ESTRUCTURA_BOTON:e1   {:RESULT=e1;:}
-                    |ESTRUCTURA_IMAGE:e1   {:RESULT=e1;:}
-                    |ESTRUCTURA_TEXTO:e1   {:RESULT=e1;:};                    
+                    |ESTRUCTURA_UNIFI:e1    {:RESULT=e1;:};
 /*panel*/
 ESTRUCTURA_PANEL ::= INI IEPA FIN CUERPO_CUERPO:e1 INI FEPA FIN                          {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="Panel"; nuevo.hijos.add(e1); RESULT = nuevo;:}
                     |INI IEPA ESTRUCTURA_G_CUERPO:e1  FIN CUERPO_CUERPO:e2 INI FEPA FIN  {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="Panel"; nuevo.atributos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;:}; 
+
+ESTRUCTURA_UNIFI ::= INI IES:e1  ESTRUCTURA_UNIFI1:e2   {:e2.etiqueta=e1; RESULT=e2;:};
+
+ESTRUCTURA_UNIFI1 ::=   ESTRUCTURA_G_CUERPO:e3 FIN PNOR:e2 INI FES:e1 FIN   {:NCHTML nuevo = new NCHTML(); nuevo.etiqueta= e1; nuevo.contenido=e2.toString(); nuevo.atributos.add(e3); RESULT = nuevo;:}   
+                    |   FIN PNOR:e2 INI FES:e1 FIN                          {:NCHTML nuevo = new NCHTML(); nuevo.etiqueta= e1; nuevo.contenido=e2.toString(); RESULT = nuevo;:};
+
+IES ::=     IETE {:RESULT="texto";:}
+        |   IEIM {:RESULT="imagen";:}
+        |   IEBO {:RESULT="boton";:}
+        |   IEEN {:RESULT="enlace";:};
+
+FES ::=     FETE {:RESULT="texto";:}
+        |   FEIM {:RESULT="imagen";:}
+        |   FEBO {:RESULT="boton";:}
+        |   FEEN {:RESULT="enlace";:};
+
 /*texto*/
 ESTRUCTURA_TEXTO ::= INI IETE FIN  PNOR:e1 INI FETE FIN                         {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="TEXTO"; nuevo.contenido=e1.toString(); RESULT = nuevo;:}
                     |INI IETE ESTRUCTURA_G_CUERPO:e2 FIN PNOR:e1 INI FETE FIN   {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="TEXTO"; nuevo.atributos.add(e2); nuevo.contenido=e1.toString(); RESULT = nuevo;:};
@@ -90,7 +103,7 @@ ESTRUCTURA_IMAGE ::= INI IEIM FIN PNOR:e1 INI IEFI FIN                         {
                     |INI IEIM ESTRUCTURA_G_CUERPO:e1 FIN INI IEFI FIN          {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="imagen"; nuevo.atributos.add(e1); RESULT = nuevo;:};
 /*boton*/
 ESTRUCTURA_BOTON ::= INI IEBO                        FIN PNOR:e1 INI FEBO FIN   {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="boton"; nuevo.contenido=e1.toString(); RESULT = nuevo;:}
-                    |INI IEBO ESTRUCTURA_G_CUERPO:e1 FIN PNOR:e2 INI FEBO FIN   {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="boton"; nuevo.contenido=e2.toString(); nuevo.atributos.add(e1); RESULT = nuevo;:}   
+                    |INI IEBO{:System.out.println("entro");:} ESTRUCTURA_G_CUERPO:e1 FIN PNOR:e2 INI FEBO FIN   {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="boton"; nuevo.contenido=e2.toString(); nuevo.atributos.add(e1); RESULT = nuevo;:}   
                     |error FIN {:System.out.println("hubo un error");:};
 /*enlace*/
 ESTRUCTURA_ENLAC ::= INI IEEN ESTRUCTURA_G_CUERPO:e2 FIN PNOR:e1 INI FEEN FIN    {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="enlace"; nuevo.contenido=e1.toString(); nuevo.atributos.add(e2); RESULT = nuevo;:};
@@ -131,8 +144,8 @@ ESTRUCTURA_SPINNER ::= INI IESP FIN PNOR:e1 INI FESP FIN                        
 ESTRUCTURA_SALTO   ::= INI ESAL FIN{:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="enter"; RESULT = nuevo;:};
 /*--------------ESTRUCTURA Generales de CUERPO--------------*/
 /*Estrucutura general completa*/ 
-ESTRUCTURA_G_CUERPO::=  ESTRUCTURA_G_CUERPO1:e2 SPYC ESTRUCTURA_G_CUERPO:e1     {: System.out.println("entro aqui");e2.hijos.add(e1); RESULT = e2;:} 
-                    |   ESTRUCTURA_G_CUERPO1:e2 SPYC                            {:RESULT = e2;:}; 
+ESTRUCTURA_G_CUERPO::=  ESTRUCTURA_G_CUERPO1:e2  ESTRUCTURA_G_CUERPO:e1     {: System.out.println("entro aqui");e2.hijos.add(e1); RESULT = e2;:} 
+                    |   ESTRUCTURA_G_CUERPO1:e2                             {:RESULT = e2;:}; 
 /*estructura elementos*/                 
 ESTRUCTURA_G_CUERPO1::= SUB_ES_G_CUERPO1:e2 SIGU PCOM:e1 {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta =e2; nuevo.contenido=e1.toString(); RESULT = nuevo;:};
 
