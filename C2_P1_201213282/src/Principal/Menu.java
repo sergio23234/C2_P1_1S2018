@@ -15,13 +15,14 @@ import javax.swing.ImageIcon;
  * @author sergi
  */
 public class Menu extends javax.swing.JFrame {
-    public static ArrayList<Nodo_clase> clases = new ArrayList();
+    public static ArrayList<NScrolPane> clases = new ArrayList();
     /**
      * Creates new form Menu
      */
     public int contador = 0;
     public Menu() {
         initComponents();
+        this.setResizable(false);
     }
 
     /**
@@ -33,17 +34,16 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ScrollP = new javax.swing.JScrollPane();
         tabs = new javax.swing.JTabbedPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Explorer");
-
-        ScrollP.setViewportView(tabs);
+        setBounds(new java.awt.Rectangle(0, 0, 700, 700));
 
         jMenu1.setText("Acciones");
 
@@ -59,6 +59,15 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
+
+        jMenuItem2.setText("jMenuItem2");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem2);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -67,11 +76,17 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ScrollP, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 1, Short.MAX_VALUE)
+                .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 818, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ScrollP, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 1, Short.MAX_VALUE)
+                .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1, Short.MAX_VALUE))
         );
 
         pack();
@@ -79,15 +94,16 @@ public class Menu extends javax.swing.JFrame {
     private boolean azar = true;
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        Nodo_clase nuevo = new Nodo_clase();
+        NScrolPane nuevo = new NScrolPane();
         tabs.add(nuevo);
         clases.add(nuevo);
-        contador++;
-        if(contador ==5){
-            contador = 0;
-            nuevo.Azar_color();
-        }
+       
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,11 +141,11 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JScrollPane ScrollP;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     public javax.swing.JTabbedPane tabs;
     // End of variables declaration//GEN-END:variables
 }
