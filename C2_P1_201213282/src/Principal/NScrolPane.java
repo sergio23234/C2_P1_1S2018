@@ -145,6 +145,7 @@ public class NScrolPane extends JScrollPane implements ActionListener{
         nuevob.addActionListener(this);
         nuevob.setBounds(pos_x, pos_y,anchura,altura);
         pos_x = pos_x+anchura;
+        pos_y = pos_y+altura;
         General.add(nuevob);
         nuevob.setLayout(null);
         Botones.add(nuevob);
