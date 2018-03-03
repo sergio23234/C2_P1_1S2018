@@ -5,6 +5,7 @@
  */
 package Principal;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,17 +29,26 @@ public class NScrolPane extends JScrollPane implements ActionListener{
     JButton B_car = new JButton();  
     public int pos_x =0;
     public int pos_y=0;
-   
+    JPanel General = new JPanel();
+    ArrayList<NBoton> Botones = new ArrayList();    
+    
     public NScrolPane(){
        super(VERTICAL_SCROLLBAR_AS_NEEDED,HORIZONTAL_SCROLLBAR_AS_NEEDED);
-       this.setBounds(0,0,840,400);
+       this.setBounds(0,0,1000,600);
        panel.setBounds(0,0,this.getWidth(),40);
-       this.setLayout(null);
-       this.add(panel);
+       General.setBounds(0,0,1000,600);
+       General.setBackground(Color.WHITE);
+       //this.setLayout(null);
+       General.setLayout(null);
+       panel.setLayout(null);
+       General.add(panel);
+       this.add(General);
        panel.setBackground(new Color(157,231,251));
        panel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
        Inicializar_botones();
-       
+       this.setViewportView(General);
+       this.getViewport().setView(General);
+       this.repaint();
     }
     private void Inicializar_botones(){
         ImageIcon icono = new ImageIcon("src\\Imagenes\\ant.png");
@@ -71,7 +81,7 @@ public class NScrolPane extends JScrollPane implements ActionListener{
         panel.add(B_car);
         panel.setLayout(null);
         //this.repaint();
-        pos_y = 40;
+        pos_y = 50;
         B_ant.setEnabled(false);
         B_sig.setEnabled(false);
         B_ant.addActionListener(this);
@@ -129,7 +139,30 @@ public class NScrolPane extends JScrollPane implements ActionListener{
     public void add_panel(int largo,int ancho){
         
     }
-
+    public void Add_boton(int altura,int anchura){
+        NBoton nuevob = new NBoton();
+        nuevob.setText("NUEVO BOTON");
+        nuevob.addActionListener(this);
+        nuevob.setBounds(pos_x, pos_y,anchura,altura);
+        pos_x = pos_x+anchura;
+        General.add(nuevob);
+        nuevob.setLayout(null);
+        Botones.add(nuevob);
+        this.repaint();
+       General.setPreferredSize(new Dimension(pos_x,pos_y));
+       if(pos_x>panel.getWidth()){
+           panel.setBounds(0,0,pos_x,40);
+       }
+       panel.repaint();
+    }
+    public void azar_color(NBoton boton){
+        int azul = (int) (Math.random() * 255);
+        int rojo = (int) (Math.random() * 255);
+        int verde =(int) (Math.random() * 255);
+        boton.Set_COLOR(rojo, azul, verde);
+    }
+   
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         Object fuente= e.getSource();
@@ -140,10 +173,19 @@ public class NScrolPane extends JScrollPane implements ActionListener{
         else if(fuente ==B_sig){
             presiono_siguiente();
         }else if(fuente ==B_car){
-            presiono_refrescar();
+            Add_boton(40,50);
+            //presiono_refrescar();
         }else if(fuente ==B_ir){
-          
             presiono_ir();
+        }
+        else{
+            if(!Botones.isEmpty()){
+                for(int i=0;i<Botones.size();i++){
+                    if(fuente==Botones.get(i)){
+                        azar_color(Botones.get(i));
+                    }
+                }
+            }
         }
     }
 }
