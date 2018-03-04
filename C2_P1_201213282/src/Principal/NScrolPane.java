@@ -30,8 +30,12 @@ public class NScrolPane extends JScrollPane implements ActionListener{
     public int pos_x =0;
     public int pos_y=0;
     JPanel General = new JPanel();
+    private int altura_prev=0,anchura_prev=0;
+    /*-----------------Lista de elemento ------------------------*/
     ArrayList<NBoton> Botones = new ArrayList();    
-    
+    ArrayList<NPanel> Paneles = new ArrayList();
+    ArrayList<NCombo> Combobox = new ArrayList();
+    /*-----------------Constructor ------------------------*/
     public NScrolPane(){
        super(VERTICAL_SCROLLBAR_AS_NEEDED,HORIZONTAL_SCROLLBAR_AS_NEEDED);
        this.setBounds(0,0,1000,600);
@@ -50,6 +54,7 @@ public class NScrolPane extends JScrollPane implements ActionListener{
        this.getViewport().setView(General);
        this.repaint();
     }
+       /*-----------------Eventos nativos------------------------*/
     private void Inicializar_botones(){
         ImageIcon icono = new ImageIcon("src\\Imagenes\\ant.png");
         B_ant.setIcon(icono);
@@ -88,9 +93,6 @@ public class NScrolPane extends JScrollPane implements ActionListener{
         B_sig.addActionListener(this);
         B_ir.addActionListener(this);
         B_car.addActionListener(this);
-    }
-    public void crear_boton(String S_id,String S_grupo){
-        
     }
     private void presiono_anterior(){
         String ante = anterior.pop();
@@ -136,11 +138,29 @@ public class NScrolPane extends JScrollPane implements ActionListener{
             }   
          }
     }
-    public void add_panel(int largo,int ancho){
-        
+       /*-----------------Acciones sobre paneles------------------------*/
+    public void add_panel(int largo,int ancho,String id,String grupo){
+        NPanel nuevo = new NPanel();
+        nuevo.ID = id;
+        nuevo.Grupo = grupo;
+        nuevo.setBounds(pos_x,pos_y,ancho,largo);
+        pos_x = pos_x+ancho;
+        pos_y = pos_y+largo;
+        Paneles.add(nuevo);
+        General.add(nuevo);
+        repaint();
+        Refrescar();
     }
-    public void Add_boton(int altura,int anchura){
+    public void add_boton_panel(int largo,int ancho,String id,String grupo){
+        NPanel ultimo = Paneles.get(Paneles.size()-1);
+        ultimo.Add_boton(largo,ancho);
+        ultimo.Salto_Linea();
+    }
+       /*-----------------Acciones sobre botones ------------------------*/
+    public void Add_boton(int altura,int anchura,String id,String gurpo){
         NBoton nuevob = new NBoton();
+        nuevob.Grupo = gurpo;
+        nuevob.ID = id;
         nuevob.setText("NUEVO BOTON");
         nuevob.addActionListener(this);
         nuevob.setBounds(pos_x, pos_y,anchura,altura);
@@ -149,12 +169,34 @@ public class NScrolPane extends JScrollPane implements ActionListener{
         General.add(nuevob);
         nuevob.setLayout(null);
         Botones.add(nuevob);
-        this.repaint();
-       General.setPreferredSize(new Dimension(pos_x,pos_y));
-       if(pos_x>panel.getWidth()){
-           panel.setBounds(0,0,pos_x,40);
-       }
-       panel.repaint();
+        Refrescar();
+    }
+        /*-----------------Acciones sobre combobox ------------------------*/
+    public void Add_combo(int altura,int anchura,String id,String grupo){
+        NCombo nuevo = new NCombo();
+        nuevo.setBounds(pos_x+1, pos_y+1, anchura,altura);
+        nuevo.id =id;
+        nuevo.grupo =grupo;
+        nuevo.addActionListener(this);
+        pos_x = pos_x+anchura;
+        General.add(nuevo);
+        Combobox.add(nuevo);
+        nuevo.setLayout(null);
+        Refrescar();
+        repaint();
+    }
+    public void Add_opcion_combo(String item){
+        System.out.println(Combobox.size());
+        NCombo actual = Combobox.get(Combobox.size()-1);
+        actual.addItem(item);
+        actual.repaint();
+        repaint();
+    }
+    
+    
+    /*-----------------Acciones extra------------------------*/        
+    public int Random_255(){
+        return (int) (Math.random() * 255);
     }
     public void azar_color(NBoton boton){
         int azul = (int) (Math.random() * 255);
@@ -162,8 +204,18 @@ public class NScrolPane extends JScrollPane implements ActionListener{
         int verde =(int) (Math.random() * 255);
         boton.Set_COLOR(rojo, azul, verde);
     }
-   
-    
+    public void Refrescar(){
+       repaint();
+       General.setPreferredSize(new Dimension(pos_x,pos_y));
+       if(pos_x>panel.getWidth()){
+           panel.setBounds(0,0,pos_x,40);
+       }
+       panel.repaint();
+    }
+     public void Salto_Linea(){
+      pos_y = pos_y+altura_prev;
+      pos_x=0;
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
         Object fuente= e.getSource();
@@ -174,7 +226,17 @@ public class NScrolPane extends JScrollPane implements ActionListener{
         else if(fuente ==B_sig){
             presiono_siguiente();
         }else if(fuente ==B_car){
-            Add_boton(40,50);
+            if(Botones.size()<3){
+                Add_boton(40,50,"ID","0");
+            }else{
+                Add_combo(30,50,"IFD","ASD");
+                /*if(Paneles.isEmpty()){
+                    add_panel(600,500,"PANEL1","UNO");
+                }else{
+                   Add_combo(30,50,"IFD","ASD");
+                }*/
+                
+            }
             //presiono_refrescar();
         }else if(fuente ==B_ir){
             presiono_ir();
@@ -184,9 +246,18 @@ public class NScrolPane extends JScrollPane implements ActionListener{
                 for(int i=0;i<Botones.size();i++){
                     if(fuente==Botones.get(i)){
                         azar_color(Botones.get(i));
+                        Add_opcion_combo(String.valueOf(i));
+                    }
+                }
+            }
+            if(!Combobox.isEmpty()){
+                 for(int i=0;i<Combobox.size();i++){
+                    if(fuente==Combobox.get(i)){
+                        JOptionPane.showMessageDialog(this,"es",String.valueOf(Combobox.get(i).getSelectedItem()),JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
             }
         }
     }
+    
 }
