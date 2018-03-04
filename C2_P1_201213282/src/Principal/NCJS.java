@@ -16,7 +16,7 @@ public class NCJS {
     public String valor;
     public ArrayList<NCJS> hijos;
       public NCJS(){
-        hijos = null;
+        hijos = new ArrayList();
         etiqueta ="";
         valor="";
     }

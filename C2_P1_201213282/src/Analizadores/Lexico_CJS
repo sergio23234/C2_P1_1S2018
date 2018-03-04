@@ -22,13 +22,10 @@ public static String errores="";
 %ignorecase
 %line
 %column
-Comentario_simple = [\'][^][\n]
-Comentario_multiple = [\'/][^][\'/]
-Lineterminada = [\r|\n|\r\n]
-WhiteSpace = ({Lineterminada} | [ \t\f]|[ |\t|\r|\f|\n])+
+Numero = [0-9]+
+OR = [||]
 %%
-{WhiteSpace} {/*Ignore*/}
-(Comentario_multiple|Comentario_simple) 	{/*Ignore*/}
+{OR}										{return new Symbol(symj.SOR,yyline,yycolumn);}
 "."											{return new Symbol(symj.SPUN,yyline,yycolumn);}
 "+"											{return new Symbol(symj.SMAS,yyline,yycolumn);}
 "-"											{return new Symbol(symj.SMEN,yyline,yycolumn);}
@@ -47,7 +44,6 @@ WhiteSpace = ({Lineterminada} | [ \t\f]|[ |\t|\r|\f|\n])+
 "!"											{return new Symbol(symj.SNOT,yyline,yycolumn);}
 "{"					 						{return new Symbol(symj.SILL,yyline,yycolumn);}
 "}"											{return new Symbol(symj.SFLL,yyline,yycolumn);}
-"||"										{return new Symbol(symj.SOR,yyline,yycolumn);}
 "&&"										{return new Symbol(symj.SAND,yyline,yycolumn);}
 "Si"										{System.out.print("Si");return new Symbol(symj.RSI,yyline,yycolumn);}
 "Sino"										{return new Symbol(symj.RSIN,yyline,yycolumn);}
@@ -68,9 +64,14 @@ WhiteSpace = ({Lineterminada} | [ \t\f]|[ |\t|\r|\f|\n])+
 "Observador"								{return new Symbol(symj.ROBS,yyline,yycolumn);}
 "Selecciona"								{return new Symbol(symj.RSEL,yyline,yycolumn);}
 "setElemento"								{return new Symbol(symj.RSET,yyline,yycolumn);}
-([+|-]?[0-9]+)								{return new Symbol(symj.PNUM,yyline,yycolumn);}			
-([\"] [^][\"])								{return new Symbol(symj.PCOM,yyline,yycolumn,yytext());}
-([:jletter:]([:jletter:]|[:jletterdigit:]|_|-)*)						{System.out.print("ID"); return new Symbol(symj.PID,yyline, yycolumn,yytext());}
-[['][0-9]+[/][0-9]+[/][0-9]+[0-9]+[" :"][0-9]+[":"][0-9]+[']] {return new Symbol(symj.PHOR,yyline, yycolumn,yytext());}
-([']([0-9]+[/][0-9]+[/][0-9]+)[']) 				{return new Symbol(symj.PFEC,yyline, yycolumn,yytext());}
-.   										{ System.out.println("Caracter Invalido: "+yytext()+" Linea: "+ (int)(yyline+1)+" columa:"+(int)yycolumn+";");}
+([:jletter:]([:jletter:]|[:jletterdigit:]|_|-)*)
+											{return new Symbol(symj.PID,yyline, yycolumn,yytext());}
+(['][0-9]+[/][0-9]+[/][0-9]+" "([0-9]+)":"([0-9]+)":"([0-9]+)[']) 
+											{return new Symbol(symj.PHOR,yyline, yycolumn,yytext());}
+([']([0-9]+[/][0-9]+[/][0-9]+)[']) 			{return new Symbol(symj.PFEC,yyline, yycolumn,yytext());}
+({Numero}("."{Numero})?)					{return new Symbol(symj.PNUM,yyline,yycolumn,yytext());}			
+("\""[^]+"\"")								{System.out.println("COM LEX");return new Symbol(symj.PCOM,yyline,yycolumn,yytext());}
+("\'"([^]~[\n])+"\n")							{System.out.println("entro aqui LEX");/*Ignore*/}
+("\'/"[^]+"\'/") 								{/*Ignore*/}
+([\r|\n|\r\n]|[ \t\f]|[ |\t|\r|\f|\n|" "])+ 	{/*Ignore*/}
+.   											{ System.out.println("Caracter Invalido: "+yytext()+" Linea: "+ (int)(yyline+1)+" columa:"+(int)yycolumn+";");}

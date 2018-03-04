@@ -1,3 +1,18 @@
-si(aa&&bb){
-	DimV hola;
+funcion hola(x,y){
+    si(5<6&&7>6){
+            '/  esto es '/
+            DimV hola: "hola";
+            DimV cinco: 0;
+            hola : "esto" + "lo otro" ;
+            DimV dos;
+            DimV a;
+            para ( a:0 ; a<=5 ; a++){
+                cinco : cinco+1;
+                dos : '02/01/1995 34:05:15';
+                mientras(cinco>a){
+                    a: a-5;
+                }
+            }
+    }
 }
+imprimir(dos);
