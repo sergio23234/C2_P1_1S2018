@@ -32,6 +32,7 @@ public class NCombo extends JComboBox {
         this.setFont(Fuente);
         tipo_letra = tipo;
         repaint();
+        
     }
     
     

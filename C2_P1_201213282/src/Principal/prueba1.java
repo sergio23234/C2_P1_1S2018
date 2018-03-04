@@ -15,12 +15,14 @@ import java.io.FileReader;
  */
 public class prueba1 {
          public void metodo(){
-        File file=new File("src/Principal/Prueba_chtml.txt");
+        File file=new File("src/Principal/Prueba_cjs.txt");
         try{
         
         FileReader fr=new FileReader(file);
-        lexico_chtml lex=new lexico_chtml(fr);
-        Sintactico_CHTML miParser=new Sintactico_CHTML(lex);
+        //lexico_chtml lex=new lexico_chtml(fr);
+        lexico_cjs lex=new lexico_cjs(fr);
+        Sintactico_CJS miParser = new Sintactico_CJS(lex);
+       // Sintactico_CHTML miParser=new Sintactico_CHTML(lex);
         miParser.parse();
         
 	}catch(Exception e){ 

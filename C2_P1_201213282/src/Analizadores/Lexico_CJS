@@ -1,5 +1,4 @@
 package Analizadores;
-import static Analizadores.Tokens.*;
 import java_cup.runtime.*;
 import java.io.Reader;
 //esto ya es un cambio
@@ -27,7 +26,6 @@ Comentario_simple = [\'][^][\n]
 Comentario_multiple = [\'/][^][\'/]
 Lineterminada = [\r|\n|\r\n]
 WhiteSpace = ({Lineterminada} | [ \t\f]|[ |\t|\r|\f|\n])+
-Comillas = [\"] [^][\"]
 %%
 {WhiteSpace} {/*Ignore*/}
 (Comentario_multiple|Comentario_simple) 	{/*Ignore*/}
@@ -51,7 +49,7 @@ Comillas = [\"] [^][\"]
 "}"											{return new Symbol(symj.SFLL,yyline,yycolumn);}
 "||"										{return new Symbol(symj.SOR,yyline,yycolumn);}
 "&&"										{return new Symbol(symj.SAND,yyline,yycolumn);}
-"Si"										{return new Symbol(symj.RSI,yyline,yycolumn);}
+"Si"										{System.out.print("Si");return new Symbol(symj.RSI,yyline,yycolumn);}
 "Sino"										{return new Symbol(symj.RSIN,yyline,yycolumn);}
 "Para"										{return new Symbol(symj.RPAR,yyline,yycolumn);}
 "DimV"										{return new Symbol(symj.RDIM,yyline,yycolumn);}
@@ -71,8 +69,8 @@ Comillas = [\"] [^][\"]
 "Selecciona"								{return new Symbol(symj.RSEL,yyline,yycolumn);}
 "setElemento"								{return new Symbol(symj.RSET,yyline,yycolumn);}
 ([+|-]?[0-9]+)								{return new Symbol(symj.PNUM,yyline,yycolumn);}			
-{Comillas}									{return new Symbol(symj.PCOM,yyline,yycolumn,yytext());}
-((a-Z)[.]~[ ,\n])							{return new Symbol(symj.PID,yyline, yycolumn,yytext());}
-(['][0-9]+[/][0-9]+[/][0-9]+[0-9]+[" :"][0-9]+[":"][0-9]+[']) return new Symbol(symj.PHOR,yyline, yycolumn,yytext());}
+([\"] [^][\"])								{return new Symbol(symj.PCOM,yyline,yycolumn,yytext());}
+([:jletter:]([:jletter:]|[:jletterdigit:]|_|-)*)						{System.out.print("ID"); return new Symbol(symj.PID,yyline, yycolumn,yytext());}
+[['][0-9]+[/][0-9]+[/][0-9]+[0-9]+[" :"][0-9]+[":"][0-9]+[']] {return new Symbol(symj.PHOR,yyline, yycolumn,yytext());}
 ([']([0-9]+[/][0-9]+[/][0-9]+)[']) 				{return new Symbol(symj.PFEC,yyline, yycolumn,yytext());}
 .   										{ System.out.println("Caracter Invalido: "+yytext()+" Linea: "+ (int)(yyline+1)+" columa:"+(int)yycolumn+";");}

@@ -54,7 +54,7 @@ precedence right SPOT,SNOT;
 start with Start;
 Start ::= UNO;
 /*----------------------------ESTRUCTURA DE CJS-------------------------*/
-UNO ::= ESTRUCTURA_CUERPO:e1    {: RCJS=e1;:};
+UNO ::= ESTRUCTURA_CUERPO:e1    {: System.out.println("ENTRO AQUI PRIMERO");RCJS=e1;:};
 
 ESTRUCTURA_CUERPO    ::= ESTRUCTURA_CUERPO:e1 ESTRUCTURA_CUERPO_P:e2    {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="cuerpo"; nuevo.hijos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;:}
                         |ESTRUCTURA_CUERPO_P:e1                         {:RESULT = e1;:};
@@ -71,13 +71,16 @@ ESTRUCTURA_CUERPO_P  ::= ESTRUCTURA_ASIGNAR:e1  {:RESULT = e1;:}
 ESTRUCTURA_DEC_VAR ::= RDIM LISTA_VAR:e1 SPYC                               {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="variable"; nuevo.hijos.add(e1); RESULT = nuevo;:}
                     |  RDIM LISTA_VAR:e1 SDPN EXPRESION:e2 SPYC             {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="variable"; nuevo.hijos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;:}
                     |  RDIM LISTA_VAR:e1 SDPN SILL LISTA_EXP:e2 SFLL SPYC   {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="variable"; nuevo.hijos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;:};
+/*Lista de variables*/
+LISTA_VAR           ::= LISTA_VAR:e2 SCOM PID:e1 {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="ID"; nuevo.valor=e1.toString(); e2.hijos.add(nuevo); RESULT=e2;:}
+                    |   PID:e1  {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="ID"; nuevo.valor=e1.toString(); RESULT=nuevo;:};
 /*asignacion de variable*/
 ESTRUCTURA_ASIGNAR ::= LISTA_VAR:e1 SDPN EXPRESION:e2 SPYC{:NCJS nuevo = new NCJS(); nuevo.etiqueta ="asignar"; nuevo.hijos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;:};
 /*Setencia Si y SINO*/
-ESTRUCTURA_SI      ::= RSI SIPA OP_LOGICA:e1 SFPA SILL ESTRUCTURA_CUERPO:e2 SFLL                    {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="si"; nuevo.hijos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;:}
-                    |  RSI SIPA OP_LOGICA:e1 SFPA SILL ESTRUCTURA_CUERPO:e2 SFLL ESTRUCTURA_SINO:e3 {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="si"; nuevo.hijos.add(e1); nuevo.hijos.add(e2); nuevo.hijos.add(e3); RESULT = nuevo;:};
+ESTRUCTURA_SI      ::= RSI SIPA OP_LOGICA:e1 SFPA SILL ESTRUCTURA_CUERPO:e2 ESTRUCTURA_SINO:e3 {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="si"; nuevo.hijos.add(e1); nuevo.hijos.add(e2); if(e3!=null){nuevo.hijos.add(e3);} RESULT = nuevo;:};
 
-ESTRUCTURA_SINO    ::= RSIN SILL ESTRUCTURA_CUERPO:e1 SFLL              {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="sino"; nuevo.hijos.add(e1); RESULT = nuevo;:};                     
+ESTRUCTURA_SINO    ::= SFLL RSIN SILL ESTRUCTURA_CUERPO:e1 SFLL              {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="sino"; nuevo.hijos.add(e1); RESULT = nuevo;:}                   
+                    |  SFLL                                                  {:RESULT=null;:};
 /*Setencia Selecciona*/
 ESTRUCTURA_SELE    ::= RSEL SIPA EXPRESION:e1 SFPA SILL CUERPO_SELEC:e2 SFLL  {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="seleccion"; nuevo.hijos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;:};
 

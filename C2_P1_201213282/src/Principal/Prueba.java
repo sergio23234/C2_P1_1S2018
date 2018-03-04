@@ -8,9 +8,9 @@ package Principal;
  *
  * @author Sergio Fernando
  */
-//public class Prueba {
-//     public static void main(String args[]) {
-//         prueba1 prueba = new prueba1();
-//         prueba.metodo();
-//     }
-//}
+public class Prueba {
+     public static void main(String args[]) {
+         prueba1 prueba = new prueba1();
+         prueba.metodo();
+     }
+}
