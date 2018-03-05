@@ -50,17 +50,17 @@ public class Ana_CJS {
         }
         switch(nuevo.etiqueta.toLowerCase()){
                case "si": Analizar_Si(nuevo); break;
-               case "impirmir": Analizar_imprimir(nuevo); break;
-               case "asignar": break;
-               case "variable": break;
-               case "seleccion": break;
-               case "mientras": break;
-               case "mensaje": break;
-               case "para": break;
-               case "funcion": break;
+               case "impirmir": Analizar_imprimir(nuevo);   break;
+               case "asignar": Analizar_Asignar(nuevo);    break;
+               case "variable": Analizar_Declarar(nuevo);   break;
+               case "seleccion":Analizar_Switch(nuevo);   break;
+               case "mientras": Analizar_Mientras(nuevo);   break;
+               case "mensaje":Analizar_imprimir(nuevo);     break;
+               case "para": Analizar_Para(nuevo);       break;
+               case "funcion": Analizar_Funcion(nuevo);    break;
            }
     }
-    public void Analizar_funcion(NCJS nodo){
+    public void Analizar_Funcion(NCJS nodo){
         
     }
     public void Analizar_Declarar(NCJS nodo){
@@ -79,6 +79,12 @@ public class Ana_CJS {
         
     }
     public void Analizar_Switch(NCJS nodo){
+        
+    }
+    public void Analizar_Asignar(NCJS nodo){
+        
+    }
+    private void OPA(NCJS nodo){
         
     }
 }

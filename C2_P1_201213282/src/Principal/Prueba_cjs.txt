@@ -1,4 +1,4 @@
-funcion hola(x,y){
+funcion hola(){
     si(5<6&&7>6){
             '/  esto es '/
             DimV hola: "hola";

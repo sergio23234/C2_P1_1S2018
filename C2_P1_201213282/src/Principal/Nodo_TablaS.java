@@ -14,5 +14,6 @@ public class Nodo_TablaS {
     String nombre;
     String valor;
     String ambito;
+    String tipo;
     
 }
