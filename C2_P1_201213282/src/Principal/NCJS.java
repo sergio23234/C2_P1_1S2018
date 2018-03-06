@@ -19,5 +19,6 @@ public class NCJS {
         hijos = new ArrayList();
         etiqueta ="";
         valor="";
+        
     }
 }

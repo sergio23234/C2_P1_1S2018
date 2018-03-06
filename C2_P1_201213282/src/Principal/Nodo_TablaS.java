@@ -15,5 +15,11 @@ public class Nodo_TablaS {
     String valor;
     String ambito;
     String tipo;
-    
+    Nodo_TablaS(){
+        ambito="global";
+        tipo="";
+        valor="";
+        nodo = null;
+        nombre="";
+    }
 }

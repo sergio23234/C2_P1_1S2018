@@ -22,8 +22,7 @@ public class Ana_CJS {
     Stack<String> ambito = new Stack<String>();
     public Ana_CJS(String archivo){
         File file=new File(archivo);
-        try{
-        
+        try{        
         FileReader fr=new FileReader(file);
         lexico_cjs lex=new lexico_cjs(fr);
         Sintactico_CJS miParser = new Sintactico_CJS(lex);
@@ -49,19 +48,43 @@ public class Ana_CJS {
             nuevo = nodo.hijos.get(0);
         }
         switch(nuevo.etiqueta.toLowerCase()){
-               case "si": Analizar_Si(nuevo); break;
+               case "si": Analizar_Si(nuevo);               break;
                case "impirmir": Analizar_imprimir(nuevo);   break;
-               case "asignar": Analizar_Asignar(nuevo);    break;
+               case "asignar": Analizar_Asignar(nuevo);     break;
                case "variable": Analizar_Declarar(nuevo);   break;
-               case "seleccion":Analizar_Switch(nuevo);   break;
+               case "seleccion":Analizar_Switch(nuevo);     break;
                case "mientras": Analizar_Mientras(nuevo);   break;
                case "mensaje":Analizar_imprimir(nuevo);     break;
-               case "para": Analizar_Para(nuevo);       break;
-               case "funcion": Analizar_Funcion(nuevo);    break;
+               case "para": Analizar_Para(nuevo);           break;
+               case "funcion": Analizar_Funcion(nuevo);     break;
            }
     }
     public void Analizar_Funcion(NCJS nodo){
-        
+      Nodo_TablaS nuevo = new Nodo_TablaS();
+      nuevo.nodo = nodo;
+      nuevo.nombre = nodo.valor;
+      nuevo.tipo = nodo.etiqueta;
+      nuevo.valor ="";
+      tabla.add(nuevo);
+      ambito.push(nodo.valor);
+      System.out.println(nodo.hijos.size()+ambito.peek());
+      if(nodo.hijos.size()>1){
+          String dato = nodo.hijos.get(0).etiqueta;
+          String dato1 = nodo.hijos.get(1).etiqueta;
+          if(dato.equalsIgnoreCase("ID")){
+              
+          }
+          if(dato1.equalsIgnoreCase("Cuerpo")){
+              Analizar_Nodo(nodo.hijos.get(1));
+          }
+      }
+      else{
+          String dato = nodo.hijos.get(0).etiqueta;
+          if(dato.equalsIgnoreCase("cuerpo")){
+              Analizar_Nodo(nodo.hijos.get(0));
+          }
+      }
+      ambito.pop();
     }
     public void Analizar_Declarar(NCJS nodo){
         

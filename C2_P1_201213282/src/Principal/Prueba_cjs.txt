@@ -1,4 +1,5 @@
 funcion hola(){
+
     si(5<6&&7>6){
             '/  esto es '/
             DimV hola: "hola";
@@ -6,7 +7,7 @@ funcion hola(){
             hola : "esto" + "lo otro" ;
             DimV dos;
             DimV a;
-            para ( a:0 ; a<=5 ; a++){
+            para ( a:5; a<=5 ; a++){
                 cinco : cinco+1;
                 dos : '02/01/1995 34:05:15';
                 mientras(cinco>a){
@@ -15,4 +16,13 @@ funcion hola(){
             }
     }
 }
-imprimir(dos);
+funcion dos(x,y){
+mientras(x>y){
+    imprimir(a);
+    x:x+1;
+}
+
+}
+funcion tres(x){
+imprimir(hola);
+}

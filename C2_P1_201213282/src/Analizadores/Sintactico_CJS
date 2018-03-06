@@ -47,40 +47,46 @@ action code {:
 terminal RDOC,PHOR,SPUN,SMAS,SMEN,SMUL,SDIV,SPOT,SMOD,SMAY,PNUM,SIPA,SFPA,SIGU,SCOM,SPYC,SDPN,SNOT,SILL,SFLL,SOR,SAND,RSI,RSIN,RPAR,RDIM,RCAS,RCON,RFUN,ROBT,RDEF,RDET,RMEN,RRET,RIMP,RATE,RMIE,ROBS,RSEL,RSET,PCOM,PID,PFEC;
 /*aqui estan los no terminales */
 non terminal Start,UNO; 
-non terminal NCJS ESTRUCTURA_IMPRI,LISTA_VAR,LISTA_EXP,ESTRUCTURA_CUERPO,ESTRUCTURA_CUERPO_P,ESTRUCTURA_ASIGNAR,ESTRUCTURA_DEC_VAR,ESTRUCTURA_SI,ESTRUCTURA_SINO,ESTRUCTURA_SELE,CUERPO_SELEC,ESTRUCTURA_PARA,ESTRUCTURA_MIEN,ESTRUCTURA_FUNCI,ESTRUCTURA_MENS,ESTRUCTURA_VARIAS,A_VAR,Estructura_VAR,OP_ARITMETICA,OP_COMPARACION,OP_LOGICA,EXPRESION;
+non terminal NCJS ESTRUCTURA_FUN,ESTRUCTURA_FUN1,ESTRUCTURA_IMPRI,LISTA_VAR,LISTA_EXP,ESTRUCTURA_CUERPO,ESTRUCTURA_CUERPO_P,ESTRUCTURA_ASIGNAR,ESTRUCTURA_DEC_VAR,ESTRUCTURA_SI,ESTRUCTURA_SINO,ESTRUCTURA_SELE,CUERPO_SELEC,ESTRUCTURA_PARA,ESTRUCTURA_MIEN,ESTRUCTURA_FUNCI,ESTRUCTURA_MENS,ESTRUCTURA_VARIAS,A_VAR,Estructura_VAR,OP_ARITMETICA,OP_COMPARACION,OP_LOGICA,EXPRESION;
 non terminal String Tipo_COMPARACION;
 precedence left  SMAS,SMEN,SMUL,SDIV,SMOD,SOR,SAND;
 precedence right SPOT,SNOT;        
 start with Start;
 Start ::= UNO;
 /*----------------------------ESTRUCTURA DE CJS-------------------------*/
-UNO ::= ESTRUCTURA_CUERPO:e1    {: RCJS=e1;:};
+UNO ::= ESTRUCTURA_FUN:e1    {: RCJS=e1;:};
 
-ESTRUCTURA_CUERPO    ::= ESTRUCTURA_CUERPO:e1 ESTRUCTURA_CUERPO_P:e2    {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="cuerpo"; nuevo.hijos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;:}
-                        |ESTRUCTURA_CUERPO_P:e1                         {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="cuerpo"; nuevo.hijos.add(e1); RESULT = nuevo;:};
+/***/
+ESTRUCTURA_FUN       ::= ESTRUCTURA_FUN:e1 ESTRUCTURA_FUN1:e2       {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="cuerpo"; nuevo.hijos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;:}
+                        |ESTRUCTURA_FUN1:e1                         {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="cuerpo"; nuevo.hijos.add(e1); RESULT = nuevo;:};
+
+ESTRUCTURA_FUN1      ::= ESTRUCTURA_CUERPO_P:e1                           {:System.out.println("es cuu"); RESULT=e1;:}
+                        |RFUN ESTRUCTURA_FUNCI:e1                         {:System.out.println("entro a funcion"); RESULT = e1;:};
+                     
+ESTRUCTURA_CUERPO    ::= ESTRUCTURA_CUERPO:e1 ESTRUCTURA_CUERPO_P:e2    {:System.out.println("MAS DE UNA"); NCJS nuevo = new NCJS(); nuevo.etiqueta ="cuerpo"; nuevo.hijos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;:}
+                        |ESTRUCTURA_CUERPO_P:e1                         {:System.out.println("entro a cuerpo");NCJS nuevo = new NCJS(); nuevo.etiqueta ="cuerpo"; nuevo.hijos.add(e1); RESULT = nuevo;:};
 /*posibles estructuras que vengan dentor de un CJS*/
-ESTRUCTURA_CUERPO_P  ::= ESTRUCTURA_ASIGNAR:e1  {:RESULT = e1;:}
-                    |   ESTRUCTURA_SI:e1        {:RESULT = e1;:}
-                    |   ESTRUCTURA_SELE:e1      {:RESULT = e1;:}
-                    |   ESTRUCTURA_PARA:e1      {:RESULT = e1;:}
-                    |   ESTRUCTURA_MIEN:e1      {:RESULT = e1;:}
-                    |   ESTRUCTURA_IMPRI:e1     {:RESULT = e1;:}
-                    |   ESTRUCTURA_FUNCI:e1     {:RESULT = e1;:}
-                    |   ESTRUCTURA_DEC_VAR:e1   {:RESULT = e1;:};
+ESTRUCTURA_CUERPO_P  ::=ESTRUCTURA_ASIGNAR:e1  {:System.out.println("es ASG");RESULT = e1;:}
+                    |   ESTRUCTURA_SI:e1        {:System.out.println("es SI");RESULT = e1;:}
+                    |   ESTRUCTURA_SELE:e1      {:System.out.println("es SEL");RESULT = e1;:}
+                    |   ESTRUCTURA_PARA:e1      {:System.out.println("es PAR");RESULT = e1;:}
+                    |   ESTRUCTURA_MIEN:e1      {:System.out.println("es MIE");RESULT = e1;:}
+                    |   ESTRUCTURA_IMPRI:e1     {:System.out.println("es IMP");RESULT = e1;:}
+                    |   RDIM ESTRUCTURA_DEC_VAR:e1   {:System.out.println("es DEC");RESULT = e1;:};
 /*declaracion de variables*/
-ESTRUCTURA_DEC_VAR ::= RDIM LISTA_VAR:e1 SPYC                               {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="variable"; nuevo.hijos.add(e1); RESULT = nuevo;:}
-                    |  RDIM LISTA_VAR:e1 SDPN EXPRESION:e2 SPYC             {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="variable"; nuevo.hijos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;:}
-                    |  RDIM LISTA_VAR:e1 SDPN SILL LISTA_EXP:e2 SFLL SPYC   {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="variable"; nuevo.hijos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;:};
+ESTRUCTURA_DEC_VAR ::= LISTA_VAR:e1 SPYC                               {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="variable"; nuevo.hijos.add(e1); RESULT = nuevo;:}
+                    |  LISTA_VAR:e1 SDPN EXPRESION:e2 SPYC             {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="variable"; nuevo.hijos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;:}
+                    |  LISTA_VAR:e1 SDPN SILL LISTA_EXP:e2 SFLL SPYC   {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="variable"; nuevo.hijos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;:};
 /*Lista de variables*/
 LISTA_VAR           ::= LISTA_VAR:e2 SCOM PID:e1 {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="ID"; nuevo.valor=e1.toString(); e2.hijos.add(nuevo); RESULT=e2;:}
                     |   PID:e1  {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="ID"; nuevo.valor=e1.toString(); RESULT=nuevo;:};
 /*asignacion de variable*/
 ESTRUCTURA_ASIGNAR ::= LISTA_VAR:e1 SDPN EXPRESION:e2 SPYC{:NCJS nuevo = new NCJS(); nuevo.etiqueta ="asignar"; nuevo.hijos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;:};
 /*Setencia Si y SINO*/
-ESTRUCTURA_SI      ::= RSI SIPA OP_LOGICA:e1 SFPA SILL ESTRUCTURA_CUERPO:e2 ESTRUCTURA_SINO:e3 {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="si"; nuevo.hijos.add(e1); nuevo.hijos.add(e2); if(e3!=null){nuevo.hijos.add(e3);} RESULT = nuevo;:};
+ESTRUCTURA_SI      ::= RSI SIPA OP_LOGICA:e1 SFPA SILL ESTRUCTURA_CUERPO:e2 ESTRUCTURA_SINO:e3 SFLL {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="si"; nuevo.hijos.add(e1); nuevo.hijos.add(e2); if(e3!=null){nuevo.hijos.add(e3);} RESULT = nuevo;:}
+                    |  RSI SIPA OP_LOGICA:e1 SFPA SILL ESTRUCTURA_CUERPO:e2 SFLL                    {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="si"; nuevo.hijos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;:};
 
-ESTRUCTURA_SINO    ::= SFLL RSIN SILL ESTRUCTURA_CUERPO:e1 SFLL              {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="sino"; nuevo.hijos.add(e1); RESULT = nuevo;:}                   
-                    |  SFLL                                                  {:RESULT=null;:};
+ESTRUCTURA_SINO    ::= SFLL RSIN SILL ESTRUCTURA_CUERPO:e1 SFLL              {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="sino"; nuevo.hijos.add(e1); RESULT = nuevo;:};
 /*Setencia Selecciona*/
 ESTRUCTURA_SELE    ::= RSEL SIPA EXPRESION:e1 SFPA SILL CUERPO_SELEC:e2 SFLL  {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="seleccion"; nuevo.hijos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;:};
 
@@ -96,8 +102,8 @@ ESTRUCTURA_MIEN    ::= RMIE SIPA OP_LOGICA:e1 SFPA SILL ESTRUCTURA_CUERPO:e2 SFL
 /*Setencia imprmir*/
 ESTRUCTURA_IMPRI   ::= RIMP SIPA OP_ARITMETICA:e1 SFPA SPYC {:NCJS nuevo = new NCJS(); nuevo.etiqueta ="imprimir"; nuevo.hijos.add(e1); RESULT = nuevo;:};
 /*Funciones*/
-ESTRUCTURA_FUNCI   ::= RFUN PID:e1 SIPA LISTA_VAR:e2 SFPA SILL ESTRUCTURA_CUERPO:e3 SFLL{:NCJS nuevo = new NCJS(); nuevo.etiqueta ="funcion"; nuevo.valor=e1.toString(); nuevo.hijos.add(e2); RESULT = nuevo;:}
-                    |  RFUN PID:e1 SIPA              SFPA SILL ESTRUCTURA_CUERPO:e3 SFLL{:NCJS nuevo = new NCJS(); nuevo.etiqueta ="funcion"; nuevo.valor=e1.toString(); RESULT = nuevo;:};
+ESTRUCTURA_FUNCI   ::= PID:e1 SIPA LISTA_VAR:e2 SFPA SILL ESTRUCTURA_CUERPO:e3 SFLL{:NCJS nuevo = new NCJS(); nuevo.etiqueta ="funcion"; nuevo.valor=e1.toString(); nuevo.hijos.add(e2); nuevo.hijos.add(e3);RESULT = nuevo;:}
+                    |  PID:e1 SIPA              SFPA SILL ESTRUCTURA_CUERPO:e3 SFLL{:NCJS nuevo = new NCJS(); nuevo.etiqueta ="funcion"; nuevo.valor=e1.toString(); nuevo.hijos.add(e3);RESULT = nuevo;:};
 /*Estructura Mensaje*/
 ESTRUCTURA_MENS    ::= RMEN SIPA EXPRESION:e1 SFPA SPYC{:NCJS nuevo = new NCJS(); nuevo.etiqueta ="mensaje"; nuevo.hijos.add(e1); RESULT = nuevo;:};
 /*Estructuras varias*/
