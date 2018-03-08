@@ -1,12 +1,16 @@
 <CHTML>
 <ENCABEZADO>
-<TITULO>SIL<FIN-TITULO>
+<CJS ruta="C:/esto_Es_ruta";><FIN-CJS>
+<TITULO>ESTOESTI<FIN-TITULO>
+<CCSS ruta="C:/esto_Es_ruta";><FIN-CCSS>
+<CCSS ruta="C:/esto_Es_ruta";><FIN-CCSS>
+<TITULO>ESTOESTI<FIN-TITULO>
+<TITULO>ESTOESTI<FIN-TITULO>
+<TITULO>ESTOESTI<FIN-TITULO>
+<CCSS ruta="C:/esto_Es_ruta";><FIN-CCSS>
+<CCSS ruta="C:/esto_Es_ruta";><FIN-CCSS>
+<CCSS ruta="C:/esto_Es_ruta";><FIN-CCSS>
+<CJS ruta="C:/esto_Es_ruta";><FIN-CJS>
+<CJS ruta="C:/esto_Es_ruta";><FIN-CJS>
 <FIN-ENCABEZADO>
-<CUERPO>
-<PANEL id="uno"; grupo="dos"; >
-<TEXTO Id="ODS"; >ESTOESTEXTOCUALQUIERA<FIN-TEXTO>
-<TEXTO> ESTE TEXXTO LLEVA <FIN-TEXTO>
-<FIN-PANEL>
-<BOTON >aaa <FIN-BOTON >
-<FIN-CUERPO>
 <FIN-CHTML>

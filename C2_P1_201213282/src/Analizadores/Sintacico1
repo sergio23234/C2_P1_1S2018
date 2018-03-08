@@ -1,0 +1,114 @@
+package Analizadores;
+import java.io.FileReader;
+import java_cup.runtime.Symbol;
+import Principal.NCHTML;
+import Principal.Nodo_error;
+import java_cup.runtime.*;
+import java.util.ArrayList;
+
+/*codigo publico*/
+parser code {:
+    public static ArrayList<Nodo_error> Errores = new ArrayList<Nodo_error>();
+    public static boolean errores=false;
+    protected int error_sync_size () {
+       return 1;   
+    }
+
+    public void syntax_error(Symbol s){
+        System.out.println("Error sintactico lexema \"" + s.value+"\" en la Columna: "+(s.right) +", Linea: "+(s.left+1)+ " no esperado");
+        Nodo_error nuevo = new Nodo_error();
+        nuevo.dato = String.valueOf(s.value);
+        nuevo.linea = (s.left+1);
+        nuevo.columna=(s.right);
+        Errores.add(nuevo);
+        errores=true;
+    }
+
+    
+    public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
+        System.out.println("Error sintactico \"" + s.value+"\" en la Linea: "+(s.right+1) +", Columna: "+(s.left+1)+ "");
+        Nodo_error nuevo = new Nodo_error();
+        nuevo.dato = String.valueOf(s.value);
+        nuevo.linea = (s.left+1);
+        nuevo.columna=(s.right);
+        Errores.add(nuevo);
+        errores=true;
+    }
+
+ /*codig de usuario */
+ String total = "";
+ public NCHTML Raiz_CHTML=null;
+ //public ArrayList<Nodo> e = new ArrayList<Nodo>();
+:}
+action code {:
+    public String estado="";
+:}
+/* terminales del lenguaje*/
+terminal IHTML,FHTML,IENCA,ICUER,INI,FIN,FENCA,ICJS,FCJS,ICCS,FCCS,ITIT,FTIT,SIGU,SPYC,PCOM,PNOR,FCUER,IEPA,FEPA,IETE,FETE,IEBO,FEBO,IEIM,FEIM,IEEN,FEEN,IETB,FETB,IEFI,FEFI,IECB,FECB,IECT,FECT,IETA,FETA,IECA,FECA,IECJ,FECJ,IEOP,FEOP,ESAL,IESP,FESP,PRUT,PVAL,PID,PGRP,PALT,PANC,PALI,PCLI,PFON;
+/*aqui estan los no terminales */
+non terminal NCHTML  CUERPO_ENCA1,Start,CHTML_CUERPO,ES_EN,ESTRUCTURA_UNIFI,G_COM,ESTRUCTURA_FILA,G_SRU,G_SCL,UNO,GENERAL_CUERPO,CONTENIDO_CUERPO,ESTRUCTURA_G_SCL,ESTRUCTURA_G_COM,ESTRUCTURA_G_CLI,ESTRUCTURA_G_RUT,ESTRUCTURA_G_SRU,CUERPO_CHTML,CUERPO_ENCA,CUERPO_CUERPO,ESTRUCTURA_CCSS,ESTRUCTURA_CJS,ESTRUCTURA_TITU,ESTRUCTURA_CUERPO,ESTRUCTURA_G_CUERPO1,ESTRUCTURA_G_CUERPO,ESTRUCTURA_TEXTO,ESTRUCTURA_PANEL,ESTRUCTURA_IMAGE,ESTRUCTURA_BOTON,ESTRUCTURA_ENLAC,ESTRUCTURA_TABLA,CUERPO_TABLA,CUERPO_FILA,CUERPO_CELDA,ESTRUCTURA_TEXTO_A,ESTRUCTURA_CAJA_T,ESTRUCTURA_CAJA,CUERPO_CAJA,ESTRUCTURA_SPINNER,ESTRUCTURA_SALTO;
+non terminal String TIPO_FIL,SUB_ES_G_CUERPO1,IES,FES,TIPO_ENCA;
+start with Start;
+Start ::= UNO;
+/*----------------------------ESTRUCTURA DE CHTML-------------------------*/
+UNO  ::= INI CUERPO_CHTML:e1 ES_EN INI FHTML FIN {:Raiz_CHTML = e1;:};
+CUERPO_CHTML ::= IHTML FIN  {:RESULT = null;:}; 
+ES_EN ::= INI IENCA FIN CUERPO_ENCA1:e1 {:RESULT =e1;:};
+/*INI IENCA FIN CUERPO_ENCA:e1 INI FENCA FIN CHTML_CUERPO:e2{:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="CHTML"; nuevo.hijos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;:};
+CHTML_CUERPO ::= INI ESTRUCTURA_CUERPO:e2 INI FCUER FIN INI FHTML {:RESULT=e2;:};
+/*----------------------------ESTRUCTURA DE ENCABEZADO-------------------------*/
+CUERPO_ENCA1 ::= CUERPO_ENCA:e1 INI FENCA FIN           {:RESULT=e1;:};
+CUERPO_ENCA ::=     CUERPO_ENCA:e1 ESTRUCTURA_CCSS:e2   {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="encabezado"; NCHTML uno=e1; NCHTML dos=e2; nuevo.hijos.add(uno); nuevo.hijos.add(dos); RESULT = nuevo;:}
+                |   CUERPO_ENCA:e1 ESTRUCTURA_TITU:e2   {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="encabezado"; NCHTML uno=e1; NCHTML dos=e2; nuevo.hijos.add(uno); nuevo.hijos.add(dos); RESULT = nuevo;:}
+                |   ESTRUCTURA_TITU:e1                   {:RESULT = e1;:}
+                |   ESTRUCTURA_CCSS:e1                  {:RESULT = e1;:};
+/*CCSS */              
+ESTRUCTURA_CCSS::= INI TIPO_ENCA:e2 PRUT SIGU PCOM:e1 SPYC FIN INI TIPO_ENCA FIN{:NCHTML nuevo=new NCHTML(); nuevo.etiqueta =e2; nuevo.contenido=e1.toString(); RESULT = nuevo;:};
+TIPO_ENCA ::= ICCS {:RESULT ="CCSS";:}
+            | FCCS {:RESULT="CCSS";:}
+            | ICJS {:RESULT="CJS";:} 
+            | FCJS {:RESULT="CJS";:};
+/*titulo*/
+ESTRUCTURA_TITU::= INI ITIT FIN  PNOR:e1 INI  FTIT FIN{:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="Titulo"; nuevo.contenido=e1.toString(); RESULT = nuevo;:};
+/*----------------------------ESTRUCTURA DE CUERPO-------------------------
+ESTRUCTURA_CUERPO ::= ICUER                     FIN CUERPO_CUERPO:e2       {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="Cuerpo"; nuevo.hijos.add(e2); RESULT = nuevo;:}
+                    | ICUER PFON SIGU PCOM:e1 SPYC FIN CUERPO_CUERPO:e2   {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="Cuerpo"; NCHTML nuevo2 = new NCHTML(); nuevo2.etiqueta="fondo"; nuevo2.contenido=e1.toString();nuevo.hijos.add(e2); RESULT = nuevo;:};
+/*Cuerpo del cuerpo
+CUERPO_CUERPO     ::= CUERPO_CUERPO:e1 INI GENERAL_CUERPO:e2{:e1.hijos.add(e2); RESULT= e1;:}
+                    | INI GENERAL_CUERPO:e1{:RESULT= e1;:};
+
+GENERAL_CUERPO ::=   ESTRUCTURA_PANEL:e1    {:RESULT=e1;:}
+                    |ESTRUCTURA_TEXTO:e1    {:RESULT=e1;:};
+/*panel
+ESTRUCTURA_PANEL ::= IEPA FIN CUERPO_CUERPO:e1 INI FEPA FIN                          {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="Panel"; nuevo.hijos.add(e1); RESULT = nuevo;:}
+                    |IEPA ESTRUCTURA_G_CUERPO:e1  CUERPO_CUERPO:e2 INI FEPA FIN  {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="Panel"; nuevo.atributos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;:}; 
+
+/*
+/*texto
+ESTRUCTURA_TEXTO ::= IETE FIN  PNOR:e1 INI FETE FIN                         {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="TEXTO"; nuevo.contenido=e1.toString(); RESULT = nuevo;:}
+                    |IETE ESTRUCTURA_G_CUERPO:e2 FIN PNOR:e1 INI FETE FIN   {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="TEXTO"; nuevo.atributos.add(e2); nuevo.contenido=e1.toString(); RESULT = nuevo;:};
+/*imagen
+ESTRUCTURA_IMAGE ::= INI IEIM FIN PNOR:e1 INI IEFI FIN                         {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="imagen"; nuevo.contenido=e1.toString(); RESULT = nuevo;:}
+                    |INI IEIM ESTRUCTURA_G_CUERPO:e1 FIN PNOR:e2 INI IEFI FIN  {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="imagen"; nuevo.contenido=e2.toString(); nuevo.atributos.add(e1); RESULT = nuevo;:}
+                    |INI IEIM ESTRUCTURA_G_CUERPO:e1 FIN INI IEFI FIN          {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="imagen"; nuevo.atributos.add(e1); RESULT = nuevo;:};
+/*boton
+ESTRUCTURA_BOTON ::= INI IEBO                        FIN PNOR:e1 INI FEBO FIN   {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="boton"; nuevo.contenido=e1.toString(); RESULT = nuevo;:}
+                    |INI IEBO{:System.out.println("entro");:} ESTRUCTURA_G_CUERPO:e1 FIN PNOR:e2 INI FEBO FIN   {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="boton"; nuevo.contenido=e2.toString(); nuevo.atributos.add(e1); RESULT = nuevo;:}   
+                    |error FIN {:System.out.println("hubo un error");:};
+/*enlace
+ESTRUCTURA_ENLAC ::= INI IEEN ESTRUCTURA_G_CUERPO:e2 FIN PNOR:e1 INI FEEN FIN    {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="enlace"; nuevo.contenido=e1.toString(); nuevo.atributos.add(e2); RESULT = nuevo;:};
+*/
+/*--------------ESTRUCTURA Generales de CUERPO--------------*/
+/*Estrucutura general completa*/ 
+ESTRUCTURA_G_CUERPO::=  ESTRUCTURA_G_CUERPO1:e2 SPYC ESTRUCTURA_G_CUERPO:e1     {: System.out.println("entro aqui");e2.hijos.add(e1); RESULT = e2;:} 
+                    |   ESTRUCTURA_G_CUERPO1:e2 SPYC                            {:RESULT = e2;:}; 
+/*estructura elementos*/                 
+ESTRUCTURA_G_CUERPO1::= SUB_ES_G_CUERPO1:e2 SIGU PCOM:e1 {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta =e2; nuevo.contenido=e1.toString(); RESULT = nuevo;:};
+
+SUB_ES_G_CUERPO1   ::=  PGRP    {:RESULT = "grupo";:}
+                    |   PID     {:RESULT = "id";:}
+                    |   PALI    {:RESULT = "alineado";:}
+                    |   PALT    {:RESULT = "alto";:}
+                    |   PANC    {:RESULT = "ancho";:}
+                    |   PRUT    {:RESULT ="ruta";:}
+                    |   PCLI    {:RESULT ="clic";:};
