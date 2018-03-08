@@ -18,5 +18,17 @@ public class prueba1 {
         Ana_CJS ana = new Ana_CJS("src/Principal/Prueba_cjs.txt");
         ana.Analizar_Nodo(ana.retornar_raiz());
      }
+         public void metodo2(){
+             File file = new File("src/Principal/Prueba_chtml.txt");
+        try {
+            FileReader fr = new FileReader(file);
+            lexico_chtml lex = new lexico_chtml(fr);
+            Sintactico_CHTML miParser = new Sintactico_CHTML(lex);
+            miParser.parse();
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+         }
 
 }

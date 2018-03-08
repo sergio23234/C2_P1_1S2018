@@ -11,6 +11,6 @@ package Principal;
 public class Prueba {
      public static void main(String args[]) {
          prueba1 prueba = new prueba1();
-         prueba.metodo();
+         prueba.metodo2();
      }
 }

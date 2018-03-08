@@ -29,28 +29,28 @@ Comillas = [\"][^][\"]
 %%
 ("<//-"[^]"-//>") 			{/*Ignore*/}
 <YYINITIAL> {
-"<"								{System.out.print("<");	return new Symbol(sym.INI,yyline,yycolumn);}
-">"								{System.out.print(">");	return new Symbol(sym.FIN,yyline,yycolumn);}
-"CHTML"			 				{System.out.print("C");	return new Symbol(sym.IHTML,yyline, yycolumn);}
-"FIN-CHTML"			 			{System.out.print("F");	return new Symbol(sym.FHTML,yyline, yycolumn);}
-"ENCABEZADO"			 		{System.out.print("E");yybegin(YYCABEZA); return new Symbol(sym.IENCA,yyline, yycolumn);}
-"CUERPO"			 			{System.out.print("U");yybegin(YYCUERPO);return new Symbol(sym.ICUER,yyline, yycolumn);}
+"<"								{System.out.print("<");	return new Symbol(sym.INI,yyline,yycolumn,yytext());}
+">"								{System.out.print(">");	return new Symbol(sym.FIN,yyline,yycolumn,yytext());}
+"CHTML"			 				{System.out.print("C");	return new Symbol(sym.IHTML,yyline, yycolumn,yytext());}
+"FIN-CHTML"			 			{System.out.print("F");	return new Symbol(sym.FHTML,yyline, yycolumn,yytext());}
+"ENCABEZADO"			 		{System.out.print("E");yybegin(YYCABEZA); return new Symbol(sym.IENCA,yyline, yycolumn,yytext());}
+"CUERPO"			 			{System.out.print("U");yybegin(YYCUERPO);return new Symbol(sym.ICUER,yyline, yycolumn,yytext());}
 {WhiteSpace} 					{/*Ignore*/ System.out.println("EI");}
 .   { System.out.println("Caracter Invalido: "+yytext()+" Linea: "+ (int)(yyline+1)+" columa:"+(int)yycolumn+";");}
 }
 <YYCABEZA> {
-"="											{return new Symbol(sym.SIGU,yyline,yycolumn);}
-";"											{return new Symbol(sym.SPYC,yyline,yycolumn);}
-"<"											{System.out.print("<");return new Symbol(sym.INI,yyline,yycolumn);}
-">"											{System.out.print(">");return new Symbol(sym.FIN,yyline,yycolumn);}
-"FIN-ENCABEZADO"			 				{System.out.print("FE");yybegin(YYINITIAL); return new Symbol(sym.FENCA,yyline, yycolumn);}
-"CJS"										{return new Symbol(sym.ICJS,yyline,yycolumn);}
-"FIN-CJS"									{return new Symbol(sym.FCJS,yyline,yycolumn);}
-"CCSS"										{return new Symbol(sym.ICCS,yyline,yycolumn);}
-"FIN-CCSS"									{return new Symbol(sym.FCCS,yyline,yycolumn);}
-"TITULO"									{System.out.print("T");return new Symbol(sym.ITIT,yyline,yycolumn);}
-"FIN-TITULO"								{System.out.print("FT");return new Symbol(sym.FTIT,yyline,yycolumn);}
-"ruta"										{return new Symbol(sym.PRUT,yyline,yycolumn);}
+"="											{return new Symbol(sym.SIGU,yyline,yycolumn,yytext());}
+";"											{return new Symbol(sym.SPYC,yyline,yycolumn,yytext());}
+"<"											{System.out.print("<");return new Symbol(sym.INI,yyline,yycolumn,yytext());}
+">"											{System.out.print(">");return new Symbol(sym.FIN,yyline,yycolumn,yytext());}
+"FIN-ENCABEZADO"			 				{System.out.print("FE");yybegin(YYINITIAL); return new Symbol(sym.FENCA,yyline, yycolumn,yytext());}
+"CJS"										{return new Symbol(sym.ICJS,yyline,yycolumn,yytext());}
+"FIN-CJS"									{return new Symbol(sym.FCJS,yyline,yycolumn,yytext());}
+"CCSS"										{return new Symbol(sym.ICCS,yyline,yycolumn,yytext());}
+"FIN-CCSS"									{return new Symbol(sym.FCCS,yyline,yycolumn,yytext());}
+"TITULO"									{System.out.print("T");return new Symbol(sym.ITIT,yyline,yycolumn,yytext());}
+"FIN-TITULO"								{System.out.print("FT");return new Symbol(sym.FTIT,yyline,yycolumn,yytext());}
+"ruta"										{return new Symbol(sym.PRUT,yyline,yycolumn,yytext());}
 ([\"][^]+[\"])                              {return new Symbol(sym.PCOM,yyline,yycolumn,yytext());}
 ([:jletter:]([:jletter:]|[:jletterdigit:]|a-Z)+)		
 											{System.out.println("I: "+yytext());	return new Symbol(sym.PNOR,yyline,yycolumn,yytext());} 
@@ -58,47 +58,47 @@ Comillas = [\"][^][\"]
 .   { System.out.println("Caracter Invalido: "+yytext()+" Linea: "+ (int)(yyline+1)+" columa:"+(int)yycolumn+";");}
 }
 <YYCUERPO> {
-"="											{return new Symbol(sym.SIGU,yyline,yycolumn);}
-";"											{return new Symbol(sym.SPYC,yyline,yycolumn);}
-"<"											{return new Symbol(sym.INI,yyline,yycolumn);}
-">"											{return new Symbol(sym.FIN,yyline,yycolumn);}
-"FIN-CUERPO"			 					{yybegin(YYINITIAL);System.out.print("/CU"); return new Symbol(sym.FCUER,yyline, yycolumn);}
-"PANEL"										{System.out.print("Pa");return new Symbol(sym.IEPA,yyline,yycolumn);}
-"FIN-PANEL"									{System.out.print("/Pa");return new Symbol(sym.FEPA,yyline,yycolumn);}
-"TEXTO"										{yybegin(YYTEXTO);return new Symbol(sym.IETE,yyline,yycolumn);}
-"BOTON"										{System.out.println("BT");return new Symbol(sym.IEBO,yyline,yycolumn);}
-"FIN-BOTON"									{System.out.print("/BT");return new Symbol(sym.FEBO,yyline,yycolumn);}
-"IMAGEN"									{return new Symbol(sym.IEIM,yyline,yycolumn);}
-"FIN-IMAGEN"								{return new Symbol(sym.FEIM,yyline,yycolumn);}
-"ENLACE"									{return new Symbol(sym.IEEN,yyline,yycolumn);}
-"FIN-ENCLASE"								{return new Symbol(sym.FEEN,yyline,yycolumn);}
-"TABLA"										{return new Symbol(sym.IETB,yyline,yycolumn);}
-"FIN-TABLA"									{return new Symbol(sym.FETB,yyline,yycolumn);}
-"FIL_T"										{return new Symbol(sym.IEFI,yyline,yycolumn);}
-"FIN-FIL_T"									{return new Symbol(sym.FEFI,yyline,yycolumn);}
-"CB"										{return new Symbol(sym.IECB,yyline,yycolumn);}
-"FIN-CB"									{return new Symbol(sym.FECB,yyline,yycolumn);}
-"CT"										{return new Symbol(sym.IECT,yyline,yycolumn);}
-"FIN-CT"									{return new Symbol(sym.FECT,yyline,yycolumn);}
-"TEXTO_A"									{return new Symbol(sym.IETA,yyline,yycolumn);}
-"FIN-TEXTO_A"								{return new Symbol(sym.FETA,yyline,yycolumn);}
-"CAJA_TEXTO"								{return new Symbol(sym.IECA,yyline,yycolumn);}
-"FIN-CAJA_TEXTO"							{return new Symbol(sym.FECA,yyline,yycolumn);}
-"CAJA"										{return new Symbol(sym.IECJ,yyline,yycolumn);}
-"FIN-CAJA"									{return new Symbol(sym.FECJ,yyline,yycolumn);}
-"OPCION"									{return new Symbol(sym.IEOP,yyline,yycolumn);}
-"FIN-OPCION"								{return new Symbol(sym.FEOP,yyline,yycolumn);}
-"SALTO-FIN"									{return new Symbol(sym.ESAL,yyline,yycolumn);}
-"SPINNER"									{return new Symbol(sym.IESP,yyline,yycolumn);}
-"FIN-SPINNER"								{return new Symbol(sym.FESP,yyline,yycolumn);}
-"ruta"										{return new Symbol(sym.PRUT,yyline,yycolumn);}
-"valor"										{return new Symbol(sym.PVAL,yyline,yycolumn);}
-"id"										{return new Symbol(sym.PID ,yyline,yycolumn);}
-"grupo"										{return new Symbol(sym.PGRP,yyline,yycolumn);}
-"alto"										{return new Symbol(sym.PALT,yyline,yycolumn);}
-"ancho"										{return new Symbol(sym.PANC,yyline,yycolumn);}
-"alineado"									{return new Symbol(sym.PALI,yyline,yycolumn);}
-"click"										{return new Symbol(sym.PCLI,yyline,yycolumn);}
+"="											{return new Symbol(sym.SIGU,yyline,yycolumn,yytext());}
+";"											{return new Symbol(sym.SPYC,yyline,yycolumn,yytext());}
+"<"											{return new Symbol(sym.INI,yyline,yycolumn,yytext());}
+">"											{return new Symbol(sym.FIN,yyline,yycolumn,yytext());}
+"FIN-CUERPO"			 					{yybegin(YYINITIAL);System.out.print("/CU"); return new Symbol(sym.FCUER,yyline, yycolumn,yytext());}
+"PANEL"										{System.out.print("Pa");return new Symbol(sym.IEPA,yyline,yycolumn,yytext());}
+"FIN-PANEL"									{System.out.print("/Pa");return new Symbol(sym.FEPA,yyline,yycolumn,yytext());}
+"TEXTO"										{yybegin(YYTEXTO);return new Symbol(sym.IETE,yyline,yycolumn,yytext());}
+"BOTON"										{System.out.println("BT");return new Symbol(sym.IEBO,yyline,yycolumn,yytext());}
+"FIN-BOTON"									{System.out.print("/BT");return new Symbol(sym.FEBO,yyline,yycolumn,yytext());}
+"IMAGEN"									{return new Symbol(sym.IEIM,yyline,yycolumn,yytext());}
+"FIN-IMAGEN"								{return new Symbol(sym.FEIM,yyline,yycolumn,yytext());}
+"ENLACE"									{return new Symbol(sym.IEEN,yyline,yycolumn,yytext());}
+"FIN-ENCLASE"								{return new Symbol(sym.FEEN,yyline,yycolumn,yytext());}
+"TABLA"										{return new Symbol(sym.IETB,yyline,yycolumn,yytext());}
+"FIN-TABLA"									{return new Symbol(sym.FETB,yyline,yycolumn,yytext());}
+"FIL_T"										{return new Symbol(sym.IEFI,yyline,yycolumn,yytext());}
+"FIN-FIL_T"									{return new Symbol(sym.FEFI,yyline,yycolumn,yytext());}
+"CB"										{return new Symbol(sym.IECB,yyline,yycolumn,yytext());}
+"FIN-CB"									{return new Symbol(sym.FECB,yyline,yycolumn,yytext());}
+"CT"										{return new Symbol(sym.IECT,yyline,yycolumn,yytext());}
+"FIN-CT"									{return new Symbol(sym.FECT,yyline,yycolumn,yytext());}
+"TEXTO_A"									{return new Symbol(sym.IETA,yyline,yycolumn,yytext());}
+"FIN-TEXTO_A"								{return new Symbol(sym.FETA,yyline,yycolumn,yytext());}
+"CAJA_TEXTO"								{return new Symbol(sym.IECA,yyline,yycolumn,yytext());}
+"FIN-CAJA_TEXTO"							{return new Symbol(sym.FECA,yyline,yycolumn,yytext());}
+"CAJA"										{return new Symbol(sym.IECJ,yyline,yycolumn,yytext());}
+"FIN-CAJA"									{return new Symbol(sym.FECJ,yyline,yycolumn,yytext());}
+"OPCION"									{return new Symbol(sym.IEOP,yyline,yycolumn,yytext());}
+"FIN-OPCION"								{return new Symbol(sym.FEOP,yyline,yycolumn,yytext());}
+"SALTO-FIN"									{return new Symbol(sym.ESAL,yyline,yycolumn,yytext());}
+"SPINNER"									{return new Symbol(sym.IESP,yyline,yycolumn,yytext());}
+"FIN-SPINNER"								{return new Symbol(sym.FESP,yyline,yycolumn,yytext());}
+"ruta"										{return new Symbol(sym.PRUT,yyline,yycolumn,yytext());}
+"valor"										{return new Symbol(sym.PVAL,yyline,yycolumn,yytext());}
+"id"										{return new Symbol(sym.PID ,yyline,yycolumn,yytext());}
+"grupo"										{return new Symbol(sym.PGRP,yyline,yycolumn,yytext());}
+"alto"										{return new Symbol(sym.PALT,yyline,yycolumn,yytext());}
+"ancho"										{return new Symbol(sym.PANC,yyline,yycolumn,yytext());}
+"alineado"									{return new Symbol(sym.PALI,yyline,yycolumn,yytext());}
+"click"										{return new Symbol(sym.PCLI,yyline,yycolumn,yytext());}
 "fondo"										{return new Symbol(sym.PFON,yyline,yycolumn,yytext());}
 ([\"][^]+[\"])	     						{return new Symbol(sym.PCOM,yyline,yycolumn,yytext());}
 ([:jletter:]([:jletter:]|[:jletterdigit:]|a-Z)*)    {return new Symbol(sym.PNOR,yyline, yycolumn,yytext());} 
@@ -106,9 +106,17 @@ Comillas = [\"][^][\"]
 .   { System.out.println("Caracter Invalido: "+yytext()+" Linea: "+ (int)(yyline+1)+" columa:"+(int)yycolumn+";");}
 }
 <YYTEXTO>{
-"<"                                         {return new Symbol(sym.INI,yyline,yycolumn);}
-">"                                         {return new Symbol(sym.FIN,yyline,yycolumn);}
-"FIN-TEXTO"                                 {yybegin(YYCUERPO); return new Symbol(sym.FETE,yyline,yycolumn);}
+"<"                                         {return new Symbol(sym.INI,yyline,yycolumn,yytext());}
+">"                                         {return new Symbol(sym.FIN,yyline,yycolumn,yytext());}
+"ruta"                                      {return new Symbol(sym.PRUT,yyline,yycolumn,yytext());}
+"valor"                                     {return new Symbol(sym.PVAL,yyline,yycolumn,yytext());}
+"id"                                        {return new Symbol(sym.PID ,yyline,yycolumn,yytext());}
+"grupo"                                     {return new Symbol(sym.PGRP,yyline,yycolumn,yytext());}
+"alto"                                      {return new Symbol(sym.PALT,yyline,yycolumn,yytext());}
+"ancho"                                     {return new Symbol(sym.PANC,yyline,yycolumn,yytext());}
+"alineado"                                  {return new Symbol(sym.PALI,yyline,yycolumn,yytext());}
+"click"                                     {return new Symbol(sym.PCLI,yyline,yycolumn,yytext());}
+"FIN-TEXTO"                                 {yybegin(YYCUERPO); return new Symbol(sym.FETE,yyline,yycolumn,yytext());}
 ([:jletter:]([:jletter:]|[:jletterdigit:]|{WhiteSpace}|a-Z)*)       {return new Symbol(sym.PNOR,yyline, yycolumn,yytext());} 
 }
 {WhiteSpace} {/*Ignore*/}

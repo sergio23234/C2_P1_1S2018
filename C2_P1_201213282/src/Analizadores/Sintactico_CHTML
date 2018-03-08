@@ -81,7 +81,7 @@ ESTRUCTURA_PANEL ::= INI IEPA FIN CUERPO_CUERPO:e1 INI FEPA FIN                 
 
 ESTRUCTURA_UNIFI ::= INI IES:e1  ESTRUCTURA_UNIFI1:e2   {:e2.etiqueta=e1; RESULT=e2;:};
 
-ESTRUCTURA_UNIFI1 ::=   ESTRUCTURA_G_CUERPO:e3 FIN PNOR:e2 INI FES:e1 FIN   {:NCHTML nuevo = new NCHTML(); nuevo.etiqueta= e1; nuevo.contenido=e2.toString(); nuevo.atributos.add(e3); RESULT = nuevo;:}   
+ESTRUCTURA_UNIFI1 ::=   ESTRUCTURA_G_CUERPO:e3 FIN PNOR:e2 INI FES:e1 FIN   {:System.out.println("este camino");NCHTML nuevo = new NCHTML(); nuevo.etiqueta= e1; nuevo.contenido=e2.toString(); nuevo.atributos.add(e3); RESULT = nuevo;:}   
                     |   FIN PNOR:e2 INI FES:e1 FIN                          {:NCHTML nuevo = new NCHTML(); nuevo.etiqueta= e1; nuevo.contenido=e2.toString(); RESULT = nuevo;:};
 
 IES ::=     IETE {:RESULT="texto";:}
@@ -93,20 +93,21 @@ FES ::=     FETE {:RESULT="texto";:}
         |   FEIM {:RESULT="imagen";:}
         |   FEBO {:RESULT="boton";:}
         |   FEEN {:RESULT="enlace";:};
-
-/*texto*/
+/*
+/*texto
 ESTRUCTURA_TEXTO ::= INI IETE FIN  PNOR:e1 INI FETE FIN                         {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="TEXTO"; nuevo.contenido=e1.toString(); RESULT = nuevo;:}
                     |INI IETE ESTRUCTURA_G_CUERPO:e2 FIN PNOR:e1 INI FETE FIN   {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="TEXTO"; nuevo.atributos.add(e2); nuevo.contenido=e1.toString(); RESULT = nuevo;:};
-/*imagen*/
+/*imagen
 ESTRUCTURA_IMAGE ::= INI IEIM FIN PNOR:e1 INI IEFI FIN                         {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="imagen"; nuevo.contenido=e1.toString(); RESULT = nuevo;:}
                     |INI IEIM ESTRUCTURA_G_CUERPO:e1 FIN PNOR:e2 INI IEFI FIN  {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="imagen"; nuevo.contenido=e2.toString(); nuevo.atributos.add(e1); RESULT = nuevo;:}
                     |INI IEIM ESTRUCTURA_G_CUERPO:e1 FIN INI IEFI FIN          {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="imagen"; nuevo.atributos.add(e1); RESULT = nuevo;:};
-/*boton*/
+/*boton
 ESTRUCTURA_BOTON ::= INI IEBO                        FIN PNOR:e1 INI FEBO FIN   {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="boton"; nuevo.contenido=e1.toString(); RESULT = nuevo;:}
                     |INI IEBO{:System.out.println("entro");:} ESTRUCTURA_G_CUERPO:e1 FIN PNOR:e2 INI FEBO FIN   {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="boton"; nuevo.contenido=e2.toString(); nuevo.atributos.add(e1); RESULT = nuevo;:}   
                     |error FIN {:System.out.println("hubo un error");:};
-/*enlace*/
+/*enlace
 ESTRUCTURA_ENLAC ::= INI IEEN ESTRUCTURA_G_CUERPO:e2 FIN PNOR:e1 INI FEEN FIN    {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="enlace"; nuevo.contenido=e1.toString(); nuevo.atributos.add(e2); RESULT = nuevo;:};
+*/
 /*tabla*/
 ESTRUCTURA_TABLA ::= INI IETA FIN CUERPO_TABLA:e1 INI FETA FIN                          {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="tabla"; nuevo.hijos.add(e1); RESULT = nuevo;:}
                     |INI IETA ESTRUCTURA_G_CUERPO:e2 FIN CUERPO_TABLA:e1 INI FETA FIN   {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="tabla"; nuevo.atributos.add(e2); nuevo.hijos.add(e1); RESULT = nuevo;:};
@@ -144,8 +145,8 @@ ESTRUCTURA_SPINNER ::= INI IESP FIN PNOR:e1 INI FESP FIN                        
 ESTRUCTURA_SALTO   ::= INI ESAL FIN{:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="enter"; RESULT = nuevo;:};
 /*--------------ESTRUCTURA Generales de CUERPO--------------*/
 /*Estrucutura general completa*/ 
-ESTRUCTURA_G_CUERPO::=  ESTRUCTURA_G_CUERPO1:e2  ESTRUCTURA_G_CUERPO:e1     {: System.out.println("entro aqui");e2.hijos.add(e1); RESULT = e2;:} 
-                    |   ESTRUCTURA_G_CUERPO1:e2                             {:RESULT = e2;:}; 
+ESTRUCTURA_G_CUERPO::=  ESTRUCTURA_G_CUERPO1:e2 SPYC ESTRUCTURA_G_CUERPO:e1     {: System.out.println("entro aqui");e2.hijos.add(e1); RESULT = e2;:} 
+                    |   ESTRUCTURA_G_CUERPO1:e2 SPYC                            {:RESULT = e2;:}; 
 /*estructura elementos*/                 
 ESTRUCTURA_G_CUERPO1::= SUB_ES_G_CUERPO1:e2 SIGU PCOM:e1 {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta =e2; nuevo.contenido=e1.toString(); RESULT = nuevo;:};
 
