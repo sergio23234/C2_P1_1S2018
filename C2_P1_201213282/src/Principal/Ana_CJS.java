@@ -127,74 +127,8 @@ public class Ana_CJS {
            }
        }
        else{
-           NCJS temp = nodo.hijos.get(0);
-           if(temp.valor.equalsIgnoreCase("expresion")){
-               if(temp.hijos.size()>1){
-                    if(temp.hijos.get(0).nombre.equalsIgnoreCase("contar")){
-                        ArrayList<String> select = Sentencia_Seleccionar(temp.Hijos.get(1));
-                        return String.valueOf(select.size());
-                    }
-                    else{
-                        LLamado_OPFU(temp);
-                    if(Tabla_Simbolos.peek().tipo.equalsIgnoreCase("void")){
-                         Tabla_Simbolos.pop();
-                        return "#*ERROR*#";
-                    }
-                    else{
-                        if(!Tabla_Simbolos.peek().valor.equalsIgnoreCase("#*ERROR*#")){
-                            String retorno =Tabla_Simbolos.peek().valor;
-                             Tabla_Simbolos.pop();
-                            return retorno;
-                        }
-                        else{
-                            if(Tabla_Simbolos.peek().tipo.contains("**")){
-                              System.out.println("ERROR TIPO INCOMPATIBLE");
-                            }
-                            else{
-                                System.out.println("ERROR NO HAY SENTENCIA DE RETORNO");
-                            }
-                             Tabla_Simbolos.pop();
-                            return "#*ERROR*#";
-                        }
-                    }
-                    }
-                }
-                else{
-                  if(temp.Hijos.get(0).nombre.contains("@")){
-                    return retornar_valor_variable(temp.Hijos.get(0).nombre);  
-                  }
-                  else if(temp.Hijos.get(0).nombre.equalsIgnoreCase("tipo_valor")){
-                    return retornar_tipo_valor(temp.Hijos.get(0));  
-                  }
-                  else{
-                    LLamado_OPFU(temp);
-                    if(Tabla_Simbolos.peek().tipo.equalsIgnoreCase("void")){
-                         Tabla_Simbolos.pop();
-                        return "#*ERROR*#";
-                    }
-                    else{
-                        if(!Tabla_Simbolos.peek().valor.equalsIgnoreCase("#*ERROR*#")){
-                            String retorno =Tabla_Simbolos.peek().valor;
-                             Tabla_Simbolos.pop();
-                            return retorno;
-                        }
-                        else{
-                            if(Tabla_Simbolos.peek().tipo.contains("**")){
-                              System.out.println("ERROR TIPO INCOMPATIBLE");
-                            }
-                            else{
-                                System.out.println("ERROR NO HAY SENTENCIA DE RETORNO");
-                            }
-                             Tabla_Simbolos.pop();
-                            return "#*ERROR*#";
-                        }
-                    }    
-                  }
-                }
-           }
-           else{
-               return OPA(nodo.Hijos.get(0));
-           }
+       
+     
        }
        return "";
     }
