@@ -34,15 +34,18 @@ public class Sintactico_CHTML extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\032\000\002\002\004\000\002\003\003\000\002\013" +
-    "\010\000\002\023\004\000\002\005\006\000\002\002\006" +
-    "\000\002\024\004\000\002\024\004\000\002\024\003\000" +
-    "\002\024\003\000\002\026\014\000\002\057\003\000\002" +
-    "\057\003\000\002\057\003\000\002\057\003\000\002\030" +
-    "\011\000\002\033\005\000\002\033\004\000\002\032\005" +
+    "\000\045\000\002\002\004\000\002\003\003\000\002\013" +
+    "\006\000\002\023\004\000\002\005\006\000\002\004\013" +
+    "\000\002\002\006\000\002\024\004\000\002\024\004\000" +
+    "\002\024\003\000\002\024\003\000\002\026\014\000\002" +
+    "\057\003\000\002\057\003\000\002\057\003\000\002\057" +
+    "\003\000\002\030\011\000\002\031\003\000\002\031\007" +
+    "\000\002\025\004\000\002\025\003\000\002\014\005\000" +
+    "\002\014\005\000\002\035\007\000\002\035\007\000\002" +
+    "\034\007\000\002\034\010\000\002\033\005\000\002\033" +
+    "\004\000\002\032\005\000\002\054\003\000\002\054\003" +
     "\000\002\054\003\000\002\054\003\000\002\054\003\000" +
-    "\002\054\003\000\002\054\003\000\002\054\003\000\002" +
-    "\054\003" });
+    "\002\054\003\000\002\054\003" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -50,29 +53,35 @@ public class Sintactico_CHTML extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\054\000\004\010\006\001\002\000\004\002\000\001" +
-    "\002\000\004\002\056\001\002\000\004\004\010\001\002" +
+    "\000\070\000\004\010\006\001\002\000\004\002\000\001" +
+    "\002\000\004\002\072\001\002\000\004\004\010\001\002" +
     "\000\004\010\013\001\002\000\004\011\011\001\002\000" +
-    "\004\010\ufffe\001\002\000\004\010\053\001\002\000\004" +
+    "\004\010\ufffe\001\002\000\004\010\054\001\002\000\004" +
     "\006\014\001\002\000\004\011\015\001\002\000\004\010" +
-    "\022\001\002\000\004\010\ufffd\001\002\000\004\010\ufff8" +
-    "\001\002\000\004\010\ufff9\001\002\000\004\010\050\001" +
+    "\022\001\002\000\004\010\ufffd\001\002\000\004\010\ufff7" +
+    "\001\002\000\004\010\ufff8\001\002\000\004\010\050\001" +
     "\002\000\014\013\030\014\026\015\025\016\023\017\024" +
-    "\001\002\000\006\011\ufff5\063\ufff5\001\002\000\004\011" +
-    "\041\001\002\000\006\011\ufff6\063\ufff6\001\002\000\006" +
-    "\011\ufff3\063\ufff3\001\002\000\004\063\031\001\002\000" +
-    "\006\011\ufff4\063\ufff4\001\002\000\004\021\032\001\002" +
+    "\001\002\000\006\011\ufff4\063\ufff4\001\002\000\004\011" +
+    "\041\001\002\000\006\011\ufff5\063\ufff5\001\002\000\006" +
+    "\011\ufff2\063\ufff2\001\002\000\004\063\031\001\002\000" +
+    "\006\011\ufff3\063\ufff3\001\002\000\004\021\032\001\002" +
     "\000\004\023\033\001\002\000\004\022\034\001\002\000" +
     "\004\011\035\001\002\000\004\010\036\001\002\000\012" +
     "\013\030\014\026\015\025\016\023\001\002\000\004\011" +
-    "\040\001\002\000\004\010\ufff7\001\002\000\004\024\042" +
+    "\040\001\002\000\004\010\ufff6\001\002\000\004\024\042" +
     "\001\002\000\004\010\043\001\002\000\004\020\044\001" +
-    "\002\000\004\011\045\001\002\000\004\010\ufff2\001\002" +
-    "\000\004\010\ufffb\001\002\000\004\010\ufffa\001\002\000" +
+    "\002\000\004\011\045\001\002\000\004\010\ufff1\001\002" +
+    "\000\004\010\ufffa\001\002\000\004\010\ufff9\001\002\000" +
     "\016\012\051\013\030\014\026\015\025\016\023\017\024" +
-    "\001\002\000\004\011\052\001\002\000\004\010\ufffc\001" +
-    "\002\000\004\005\054\001\002\000\004\011\055\001\002" +
-    "\000\004\002\uffff\001\002\000\004\002\001\001\002" });
+    "\001\002\000\004\011\052\001\002\000\004\010\ufffb\001" +
+    "\002\000\004\002\uffff\001\002\000\004\007\055\001\002" +
+    "\000\006\011\ufff0\073\066\001\002\000\004\011\057\001" +
+    "\002\000\004\010\060\001\002\000\004\025\061\001\002" +
+    "\000\004\011\062\001\002\000\004\010\063\001\002\000" +
+    "\004\005\064\001\002\000\004\011\065\001\002\000\004" +
+    "\002\ufffc\001\002\000\004\021\067\001\002\000\004\023" +
+    "\070\001\002\000\004\022\071\001\002\000\004\011\uffef" +
+    "\001\002\000\004\002\001\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -80,20 +89,24 @@ public class Sintactico_CHTML extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\054\000\006\003\004\013\003\001\001\000\002\001" +
+    "\000\070\000\006\003\004\013\003\001\001\000\002\001" +
     "\001\000\002\001\001\000\004\023\006\001\001\000\004" +
     "\005\011\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001\000\002\001\001\000\002\001\001\000\012" +
-    "\002\015\024\020\026\016\030\017\001\001\000\002\001" +
-    "\001\000\002\001\001\000\002\001\001\000\006\026\045" +
-    "\030\046\001\001\000\004\057\026\001\001\000\002\001" +
-    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\004\057\036\001\001\000\002\001\001\000" +
+    "\004\004\052\001\001\000\002\001\001\000\002\001\001" +
+    "\000\012\002\015\024\020\026\016\030\017\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\006" +
+    "\026\045\030\046\001\001\000\004\057\026\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\004\057\026\001\001\000\002" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\004\057\036\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\004\057\026\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\004\031\055\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001" });
 
@@ -219,14 +232,17 @@ class CUP$Sintactico_CHTML$actions {
           return CUP$Sintactico_CHTML$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 2: // UNO ::= INI CUERPO_CHTML ES_EN INI FHTML FIN 
+          case 2: // UNO ::= INI CUERPO_CHTML ES_EN CHTML_CUERPO 
             {
               NCHTML RESULT =null;
-		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-4)).left;
-		int e1right = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-4)).right;
-		NCHTML e1 = (NCHTML)((java_cup.runtime.Symbol) CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-4)).value;
+		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-1)).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-1)).right;
+		NCHTML e1 = (NCHTML)((java_cup.runtime.Symbol) CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-1)).value;
+		int e2left = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.peek()).left;
+		int e2right = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.peek()).right;
+		NCHTML e2 = (NCHTML)((java_cup.runtime.Symbol) CUP$Sintactico_CHTML$stack.peek()).value;
 		Raiz_CHTML = e1;
-              CUP$Sintactico_CHTML$result = parser.getSymbolFactory().newSymbol("UNO",9, ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-5)), ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.peek()), RESULT);
+              CUP$Sintactico_CHTML$result = parser.getSymbolFactory().newSymbol("UNO",9, ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-3)), ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.peek()), RESULT);
             }
           return CUP$Sintactico_CHTML$result;
 
@@ -252,7 +268,19 @@ class CUP$Sintactico_CHTML$actions {
           return CUP$Sintactico_CHTML$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 5: // CUERPO_ENCA1 ::= CUERPO_ENCA INI FENCA FIN 
+          case 5: // CHTML_CUERPO ::= INI ESTRUCTURA_CUERPO FIN INI FCUER FIN INI FHTML FIN 
+            {
+              NCHTML RESULT =null;
+		int e2left = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-7)).left;
+		int e2right = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-7)).right;
+		NCHTML e2 = (NCHTML)((java_cup.runtime.Symbol) CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-7)).value;
+		RESULT=e2;
+              CUP$Sintactico_CHTML$result = parser.getSymbolFactory().newSymbol("CHTML_CUERPO",2, ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-8)), ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.peek()), RESULT);
+            }
+          return CUP$Sintactico_CHTML$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 6: // CUERPO_ENCA1 ::= CUERPO_ENCA INI FENCA FIN 
             {
               NCHTML RESULT =null;
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-3)).left;
@@ -264,7 +292,7 @@ class CUP$Sintactico_CHTML$actions {
           return CUP$Sintactico_CHTML$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 6: // CUERPO_ENCA ::= CUERPO_ENCA ESTRUCTURA_CCSS 
+          case 7: // CUERPO_ENCA ::= CUERPO_ENCA ESTRUCTURA_CCSS 
             {
               NCHTML RESULT =null;
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-1)).left;
@@ -279,7 +307,7 @@ class CUP$Sintactico_CHTML$actions {
           return CUP$Sintactico_CHTML$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 7: // CUERPO_ENCA ::= CUERPO_ENCA ESTRUCTURA_TITU 
+          case 8: // CUERPO_ENCA ::= CUERPO_ENCA ESTRUCTURA_TITU 
             {
               NCHTML RESULT =null;
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-1)).left;
@@ -294,7 +322,7 @@ class CUP$Sintactico_CHTML$actions {
           return CUP$Sintactico_CHTML$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 8: // CUERPO_ENCA ::= ESTRUCTURA_TITU 
+          case 9: // CUERPO_ENCA ::= ESTRUCTURA_TITU 
             {
               NCHTML RESULT =null;
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.peek()).left;
@@ -306,7 +334,7 @@ class CUP$Sintactico_CHTML$actions {
           return CUP$Sintactico_CHTML$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 9: // CUERPO_ENCA ::= ESTRUCTURA_CCSS 
+          case 10: // CUERPO_ENCA ::= ESTRUCTURA_CCSS 
             {
               NCHTML RESULT =null;
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.peek()).left;
@@ -318,7 +346,7 @@ class CUP$Sintactico_CHTML$actions {
           return CUP$Sintactico_CHTML$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 10: // ESTRUCTURA_CCSS ::= INI TIPO_ENCA PRUT SIGU PCOM SPYC FIN INI TIPO_ENCA FIN 
+          case 11: // ESTRUCTURA_CCSS ::= INI TIPO_ENCA PRUT SIGU PCOM SPYC FIN INI TIPO_ENCA FIN 
             {
               NCHTML RESULT =null;
 		int e2left = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-8)).left;
@@ -333,7 +361,7 @@ class CUP$Sintactico_CHTML$actions {
           return CUP$Sintactico_CHTML$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 11: // TIPO_ENCA ::= ICCS 
+          case 12: // TIPO_ENCA ::= ICCS 
             {
               String RESULT =null;
 		RESULT ="CCSS";
@@ -342,7 +370,7 @@ class CUP$Sintactico_CHTML$actions {
           return CUP$Sintactico_CHTML$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 12: // TIPO_ENCA ::= FCCS 
+          case 13: // TIPO_ENCA ::= FCCS 
             {
               String RESULT =null;
 		RESULT="CCSS";
@@ -351,7 +379,7 @@ class CUP$Sintactico_CHTML$actions {
           return CUP$Sintactico_CHTML$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 13: // TIPO_ENCA ::= ICJS 
+          case 14: // TIPO_ENCA ::= ICJS 
             {
               String RESULT =null;
 		RESULT="CJS";
@@ -360,7 +388,7 @@ class CUP$Sintactico_CHTML$actions {
           return CUP$Sintactico_CHTML$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 14: // TIPO_ENCA ::= FCJS 
+          case 15: // TIPO_ENCA ::= FCJS 
             {
               String RESULT =null;
 		RESULT="CJS";
@@ -369,7 +397,7 @@ class CUP$Sintactico_CHTML$actions {
           return CUP$Sintactico_CHTML$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 15: // ESTRUCTURA_TITU ::= INI ITIT FIN PNOR INI FTIT FIN 
+          case 16: // ESTRUCTURA_TITU ::= INI ITIT FIN PNOR INI FTIT FIN 
             {
               NCHTML RESULT =null;
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-3)).left;
@@ -381,7 +409,133 @@ class CUP$Sintactico_CHTML$actions {
           return CUP$Sintactico_CHTML$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 16: // ESTRUCTURA_G_CUERPO ::= ESTRUCTURA_G_CUERPO1 SPYC ESTRUCTURA_G_CUERPO 
+          case 17: // ESTRUCTURA_CUERPO ::= ICUER 
+            {
+              NCHTML RESULT =null;
+		NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="Cuerpo"; /*nuevo.hijos.add(e2);*/ RESULT = nuevo;
+              CUP$Sintactico_CHTML$result = parser.getSymbolFactory().newSymbol("ESTRUCTURA_CUERPO",23, ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.peek()), RESULT);
+            }
+          return CUP$Sintactico_CHTML$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 18: // ESTRUCTURA_CUERPO ::= ICUER PFON SIGU PCOM SPYC 
+            {
+              NCHTML RESULT =null;
+		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-1)).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-1)).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-1)).value;
+		 System.out.println("por este");NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="Cuerpo"; /*NCHTML nuevo2 = new NCHTML(); nuevo2.etiqueta="fondo"; nuevo2.contenido=e1.toString();nuevo.hijos.add(e2); */RESULT = nuevo;
+              CUP$Sintactico_CHTML$result = parser.getSymbolFactory().newSymbol("ESTRUCTURA_CUERPO",23, ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-4)), ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.peek()), RESULT);
+            }
+          return CUP$Sintactico_CHTML$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 19: // CUERPO_CUERPO ::= GENERAL_CUERPO CUERPO_CUERPO 
+            {
+              NCHTML RESULT =null;
+		int e2left = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-1)).left;
+		int e2right = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-1)).right;
+		NCHTML e2 = (NCHTML)((java_cup.runtime.Symbol) CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-1)).value;
+		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.peek()).right;
+		NCHTML e1 = (NCHTML)((java_cup.runtime.Symbol) CUP$Sintactico_CHTML$stack.peek()).value;
+		e1.hijos.add(e2); RESULT= e1;
+              CUP$Sintactico_CHTML$result = parser.getSymbolFactory().newSymbol("CUERPO_CUERPO",19, ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-1)), ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.peek()), RESULT);
+            }
+          return CUP$Sintactico_CHTML$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 20: // CUERPO_CUERPO ::= GENERAL_CUERPO 
+            {
+              NCHTML RESULT =null;
+		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.peek()).right;
+		NCHTML e1 = (NCHTML)((java_cup.runtime.Symbol) CUP$Sintactico_CHTML$stack.peek()).value;
+		RESULT= e1;
+              CUP$Sintactico_CHTML$result = parser.getSymbolFactory().newSymbol("CUERPO_CUERPO",19, ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.peek()), RESULT);
+            }
+          return CUP$Sintactico_CHTML$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 21: // GENERAL_CUERPO ::= INI ESTRUCTURA_PANEL FIN 
+            {
+              NCHTML RESULT =null;
+		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-1)).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-1)).right;
+		NCHTML e1 = (NCHTML)((java_cup.runtime.Symbol) CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-1)).value;
+		RESULT=e1;
+              CUP$Sintactico_CHTML$result = parser.getSymbolFactory().newSymbol("GENERAL_CUERPO",10, ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-2)), ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.peek()), RESULT);
+            }
+          return CUP$Sintactico_CHTML$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 22: // GENERAL_CUERPO ::= INI ESTRUCTURA_TEXTO FIN 
+            {
+              NCHTML RESULT =null;
+		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-1)).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-1)).right;
+		NCHTML e1 = (NCHTML)((java_cup.runtime.Symbol) CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-1)).value;
+		RESULT=e1;
+              CUP$Sintactico_CHTML$result = parser.getSymbolFactory().newSymbol("GENERAL_CUERPO",10, ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-2)), ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.peek()), RESULT);
+            }
+          return CUP$Sintactico_CHTML$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 23: // ESTRUCTURA_PANEL ::= IEPA FIN CUERPO_CUERPO INI FEPA 
+            {
+              NCHTML RESULT =null;
+		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-2)).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-2)).right;
+		NCHTML e1 = (NCHTML)((java_cup.runtime.Symbol) CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-2)).value;
+		NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="Panel"; nuevo.hijos.add(e1); RESULT = nuevo;
+              CUP$Sintactico_CHTML$result = parser.getSymbolFactory().newSymbol("ESTRUCTURA_PANEL",27, ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-4)), ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.peek()), RESULT);
+            }
+          return CUP$Sintactico_CHTML$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 24: // ESTRUCTURA_PANEL ::= IEPA ESTRUCTURA_G_CUERPO CUERPO_CUERPO INI FEPA 
+            {
+              NCHTML RESULT =null;
+		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-3)).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-3)).right;
+		NCHTML e1 = (NCHTML)((java_cup.runtime.Symbol) CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-3)).value;
+		int e2left = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-2)).left;
+		int e2right = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-2)).right;
+		NCHTML e2 = (NCHTML)((java_cup.runtime.Symbol) CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-2)).value;
+		NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="Panel"; nuevo.atributos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;
+              CUP$Sintactico_CHTML$result = parser.getSymbolFactory().newSymbol("ESTRUCTURA_PANEL",27, ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-4)), ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.peek()), RESULT);
+            }
+          return CUP$Sintactico_CHTML$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 25: // ESTRUCTURA_TEXTO ::= IETE FIN PNOR INI FETE 
+            {
+              NCHTML RESULT =null;
+		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-2)).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-2)).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-2)).value;
+		NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="TEXTO"; nuevo.contenido=e1.toString(); RESULT = nuevo;
+              CUP$Sintactico_CHTML$result = parser.getSymbolFactory().newSymbol("ESTRUCTURA_TEXTO",26, ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-4)), ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.peek()), RESULT);
+            }
+          return CUP$Sintactico_CHTML$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 26: // ESTRUCTURA_TEXTO ::= IETE ESTRUCTURA_G_CUERPO FIN PNOR INI FETE 
+            {
+              NCHTML RESULT =null;
+		int e2left = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-4)).left;
+		int e2right = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-4)).right;
+		NCHTML e2 = (NCHTML)((java_cup.runtime.Symbol) CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-4)).value;
+		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-2)).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-2)).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-2)).value;
+		NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="TEXTO"; nuevo.atributos.add(e2); nuevo.contenido=e1.toString(); RESULT = nuevo;
+              CUP$Sintactico_CHTML$result = parser.getSymbolFactory().newSymbol("ESTRUCTURA_TEXTO",26, ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-5)), ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.peek()), RESULT);
+            }
+          return CUP$Sintactico_CHTML$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 27: // ESTRUCTURA_G_CUERPO ::= ESTRUCTURA_G_CUERPO1 SPYC ESTRUCTURA_G_CUERPO 
             {
               NCHTML RESULT =null;
 		int e2left = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-2)).left;
@@ -396,7 +550,7 @@ class CUP$Sintactico_CHTML$actions {
           return CUP$Sintactico_CHTML$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 17: // ESTRUCTURA_G_CUERPO ::= ESTRUCTURA_G_CUERPO1 SPYC 
+          case 28: // ESTRUCTURA_G_CUERPO ::= ESTRUCTURA_G_CUERPO1 SPYC 
             {
               NCHTML RESULT =null;
 		int e2left = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-1)).left;
@@ -408,7 +562,7 @@ class CUP$Sintactico_CHTML$actions {
           return CUP$Sintactico_CHTML$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 18: // ESTRUCTURA_G_CUERPO1 ::= SUB_ES_G_CUERPO1 SIGU PCOM 
+          case 29: // ESTRUCTURA_G_CUERPO1 ::= SUB_ES_G_CUERPO1 SIGU PCOM 
             {
               NCHTML RESULT =null;
 		int e2left = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-2)).left;
@@ -423,7 +577,7 @@ class CUP$Sintactico_CHTML$actions {
           return CUP$Sintactico_CHTML$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 19: // SUB_ES_G_CUERPO1 ::= PGRP 
+          case 30: // SUB_ES_G_CUERPO1 ::= PGRP 
             {
               String RESULT =null;
 		RESULT = "grupo";
@@ -432,7 +586,7 @@ class CUP$Sintactico_CHTML$actions {
           return CUP$Sintactico_CHTML$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 20: // SUB_ES_G_CUERPO1 ::= PID 
+          case 31: // SUB_ES_G_CUERPO1 ::= PID 
             {
               String RESULT =null;
 		RESULT = "id";
@@ -441,7 +595,7 @@ class CUP$Sintactico_CHTML$actions {
           return CUP$Sintactico_CHTML$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 21: // SUB_ES_G_CUERPO1 ::= PALI 
+          case 32: // SUB_ES_G_CUERPO1 ::= PALI 
             {
               String RESULT =null;
 		RESULT = "alineado";
@@ -450,7 +604,7 @@ class CUP$Sintactico_CHTML$actions {
           return CUP$Sintactico_CHTML$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 22: // SUB_ES_G_CUERPO1 ::= PALT 
+          case 33: // SUB_ES_G_CUERPO1 ::= PALT 
             {
               String RESULT =null;
 		RESULT = "alto";
@@ -459,7 +613,7 @@ class CUP$Sintactico_CHTML$actions {
           return CUP$Sintactico_CHTML$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 23: // SUB_ES_G_CUERPO1 ::= PANC 
+          case 34: // SUB_ES_G_CUERPO1 ::= PANC 
             {
               String RESULT =null;
 		RESULT = "ancho";
@@ -468,7 +622,7 @@ class CUP$Sintactico_CHTML$actions {
           return CUP$Sintactico_CHTML$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 24: // SUB_ES_G_CUERPO1 ::= PRUT 
+          case 35: // SUB_ES_G_CUERPO1 ::= PRUT 
             {
               String RESULT =null;
 		RESULT ="ruta";
@@ -477,7 +631,7 @@ class CUP$Sintactico_CHTML$actions {
           return CUP$Sintactico_CHTML$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 25: // SUB_ES_G_CUERPO1 ::= PCLI 
+          case 36: // SUB_ES_G_CUERPO1 ::= PCLI 
             {
               String RESULT =null;
 		RESULT ="clic";

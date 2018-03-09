@@ -33,6 +33,7 @@ public class NScrolPane extends JScrollPane implements ActionListener {
     JButton B_car = new JButton();
     public int pos_x = 0;
     public int pos_y = 0;
+    private int num_tab =0;
     JPanel General = new JPanel();
     private int altura_prev = 0, anchura_prev = 0;
     /*-----------------Lista de elemento ------------------------*/
@@ -41,8 +42,9 @@ public class NScrolPane extends JScrollPane implements ActionListener {
     ArrayList<NCombo> Combobox = new ArrayList();
 
     /*-----------------Constructor ------------------------*/
-    public NScrolPane() {
+    public NScrolPane(int num) {
         super(VERTICAL_SCROLLBAR_AS_NEEDED, HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        num_tab=num;
         this.setBounds(0, 0, 1000, 600);
         panel.setBounds(0, 0, this.getWidth(), 40);
         General.setBounds(0, 0, 1000, 600);
@@ -254,6 +256,9 @@ public class NScrolPane extends JScrollPane implements ActionListener {
         return Color.decode(tipo);
     }
     
+    public void cambiar_nombre(String nombre){
+        Menu.tabs.setTitleAt(num_tab, nombre);
+    }
     
     @Override
     public void actionPerformed(ActionEvent e) {

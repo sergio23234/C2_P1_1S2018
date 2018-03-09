@@ -94,9 +94,11 @@ public class Menu extends javax.swing.JFrame {
     private boolean azar = true;
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        NScrolPane nuevo = new NScrolPane();
+        NScrolPane nuevo = new NScrolPane(contador);
         tabs.add(nuevo);
         clases.add(nuevo);
+        nuevo.cambiar_nombre("P:"+contador);
+        contador++;
        
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -104,7 +106,7 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */
@@ -146,6 +148,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    public javax.swing.JTabbedPane tabs;
+    public static javax.swing.JTabbedPane tabs;
     // End of variables declaration//GEN-END:variables
 }

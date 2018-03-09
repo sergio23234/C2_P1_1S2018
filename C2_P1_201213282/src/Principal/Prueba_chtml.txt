@@ -3,14 +3,7 @@
 <CJS ruta="C:/esto_Es_ruta";><FIN-CJS>
 <TITULO>ESTOESTI<FIN-TITULO>
 <CCSS ruta="C:/esto_Es_ruta";><FIN-CCSS>
-<CCSS ruta="C:/esto_Es_ruta";><FIN-CCSS>
-<TITULO>ESTOESTI<FIN-TITULO>
-<TITULO>ESTOESTI<FIN-TITULO>
-<TITULO>ESTOESTI<FIN-TITULO>
-<CCSS ruta="C:/esto_Es_ruta";><FIN-CCSS>
-<CCSS ruta="C:/esto_Es_ruta";><FIN-CCSS>
-<CCSS ruta="C:/esto_Es_ruta";><FIN-CCSS>
-<CJS ruta="C:/esto_Es_ruta";><FIN-CJS>
-<CJS ruta="C:/esto_Es_ruta";><FIN-CJS>
 <FIN-ENCABEZADO>
+<CUERPO Fondo="Rojo";>
+<FIN-CUERPO>
 <FIN-CHTML>

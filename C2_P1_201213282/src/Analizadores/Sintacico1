@@ -51,11 +51,12 @@ non terminal String TIPO_FIL,SUB_ES_G_CUERPO1,IES,FES,TIPO_ENCA;
 start with Start;
 Start ::= UNO;
 /*----------------------------ESTRUCTURA DE CHTML-------------------------*/
-UNO  ::= INI CUERPO_CHTML:e1 ES_EN INI FHTML FIN {:Raiz_CHTML = e1;:};
+UNO  ::= INI CUERPO_CHTML ES_EN:e1 CHTML_CUERPO:e2 {:Raiz_CHTML = e1;:};
 CUERPO_CHTML ::= IHTML FIN  {:RESULT = null;:}; 
 ES_EN ::= INI IENCA FIN CUERPO_ENCA1:e1 {:RESULT =e1;:};
 /*INI IENCA FIN CUERPO_ENCA:e1 INI FENCA FIN CHTML_CUERPO:e2{:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="CHTML"; nuevo.hijos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;:};
-CHTML_CUERPO ::= INI ESTRUCTURA_CUERPO:e2 INI FCUER FIN INI FHTML {:RESULT=e2;:};
+*/
+CHTML_CUERPO ::= INI ESTRUCTURA_CUERPO:e2 FIN INI FCUER FIN INI FHTML FIN {:RESULT=e2;:};
 /*----------------------------ESTRUCTURA DE ENCABEZADO-------------------------*/
 CUERPO_ENCA1 ::= CUERPO_ENCA:e1 INI FENCA FIN           {:RESULT=e1;:};
 CUERPO_ENCA ::=     CUERPO_ENCA:e1 ESTRUCTURA_CCSS:e2   {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="encabezado"; NCHTML uno=e1; NCHTML dos=e2; nuevo.hijos.add(uno); nuevo.hijos.add(dos); RESULT = nuevo;:}
@@ -70,23 +71,23 @@ TIPO_ENCA ::= ICCS {:RESULT ="CCSS";:}
             | FCJS {:RESULT="CJS";:};
 /*titulo*/
 ESTRUCTURA_TITU::= INI ITIT FIN  PNOR:e1 INI  FTIT FIN{:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="Titulo"; nuevo.contenido=e1.toString(); RESULT = nuevo;:};
-/*----------------------------ESTRUCTURA DE CUERPO-------------------------
-ESTRUCTURA_CUERPO ::= ICUER                     FIN CUERPO_CUERPO:e2       {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="Cuerpo"; nuevo.hijos.add(e2); RESULT = nuevo;:}
-                    | ICUER PFON SIGU PCOM:e1 SPYC FIN CUERPO_CUERPO:e2   {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="Cuerpo"; NCHTML nuevo2 = new NCHTML(); nuevo2.etiqueta="fondo"; nuevo2.contenido=e1.toString();nuevo.hijos.add(e2); RESULT = nuevo;:};
-/*Cuerpo del cuerpo
-CUERPO_CUERPO     ::= CUERPO_CUERPO:e1 INI GENERAL_CUERPO:e2{:e1.hijos.add(e2); RESULT= e1;:}
-                    | INI GENERAL_CUERPO:e1{:RESULT= e1;:};
+/*----------------------------ESTRUCTURA DE CUERPO-------------------------*/
+ESTRUCTURA_CUERPO ::= ICUER                      /*CUERPO_CUERPO:e2*/       {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="Cuerpo"; /*nuevo.hijos.add(e2);*/ RESULT = nuevo;:}
+                    | ICUER PFON SIGU PCOM:e1 SPYC  /*CUERPO_CUERPO:e2 */  {: System.out.println("por este");NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="Cuerpo"; /*NCHTML nuevo2 = new NCHTML(); nuevo2.etiqueta="fondo"; nuevo2.contenido=e1.toString();nuevo.hijos.add(e2); */RESULT = nuevo;:};
+/*Cuerpo del cuerpo*/
+CUERPO_CUERPO     ::= GENERAL_CUERPO:e2  CUERPO_CUERPO:e1 {:e1.hijos.add(e2); RESULT= e1;:}
+                    | GENERAL_CUERPO:e1 {:RESULT= e1;:};
 
-GENERAL_CUERPO ::=   ESTRUCTURA_PANEL:e1    {:RESULT=e1;:}
-                    |ESTRUCTURA_TEXTO:e1    {:RESULT=e1;:};
-/*panel
-ESTRUCTURA_PANEL ::= IEPA FIN CUERPO_CUERPO:e1 INI FEPA FIN                          {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="Panel"; nuevo.hijos.add(e1); RESULT = nuevo;:}
-                    |IEPA ESTRUCTURA_G_CUERPO:e1  CUERPO_CUERPO:e2 INI FEPA FIN  {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="Panel"; nuevo.atributos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;:}; 
+GENERAL_CUERPO ::=   INI ESTRUCTURA_PANEL:e1 FIN   {:RESULT=e1;:}
+                    |INI ESTRUCTURA_TEXTO:e1 FIN    {:RESULT=e1;:};
+/*panel*/
+ESTRUCTURA_PANEL ::= IEPA FIN CUERPO_CUERPO:e1 INI FEPA                           {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="Panel"; nuevo.hijos.add(e1); RESULT = nuevo;:}
+                    |IEPA ESTRUCTURA_G_CUERPO:e1  CUERPO_CUERPO:e2 INI FEPA   {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="Panel"; nuevo.atributos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;:}; 
 
 /*
-/*texto
-ESTRUCTURA_TEXTO ::= IETE FIN  PNOR:e1 INI FETE FIN                         {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="TEXTO"; nuevo.contenido=e1.toString(); RESULT = nuevo;:}
-                    |IETE ESTRUCTURA_G_CUERPO:e2 FIN PNOR:e1 INI FETE FIN   {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="TEXTO"; nuevo.atributos.add(e2); nuevo.contenido=e1.toString(); RESULT = nuevo;:};
+/*texto*/
+ESTRUCTURA_TEXTO ::= IETE FIN  PNOR:e1 INI FETE                         {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="TEXTO"; nuevo.contenido=e1.toString(); RESULT = nuevo;:}
+                    |IETE ESTRUCTURA_G_CUERPO:e2 FIN PNOR:e1 INI FETE    {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="TEXTO"; nuevo.atributos.add(e2); nuevo.contenido=e1.toString(); RESULT = nuevo;:};
 /*imagen
 ESTRUCTURA_IMAGE ::= INI IEIM FIN PNOR:e1 INI IEFI FIN                         {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="imagen"; nuevo.contenido=e1.toString(); RESULT = nuevo;:}
                     |INI IEIM ESTRUCTURA_G_CUERPO:e1 FIN PNOR:e2 INI IEFI FIN  {:NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="imagen"; nuevo.contenido=e2.toString(); nuevo.atributos.add(e1); RESULT = nuevo;:}
