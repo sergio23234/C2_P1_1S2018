@@ -40,8 +40,8 @@ public class Sintactico_CHTML extends java_cup.runtime.lr_parser {
     "\002\024\003\000\002\024\003\000\002\026\014\000\002" +
     "\057\003\000\002\057\003\000\002\057\003\000\002\057" +
     "\003\000\002\030\011\000\002\031\003\000\002\031\007" +
-    "\000\002\025\004\000\002\025\003\000\002\014\005\000" +
-    "\002\014\005\000\002\035\007\000\002\035\007\000\002" +
+    "\000\002\025\004\000\002\025\003\000\002\014\004\000" +
+    "\002\014\005\000\002\035\010\000\002\035\007\000\002" +
     "\034\007\000\002\034\010\000\002\033\005\000\002\033" +
     "\004\000\002\032\005\000\002\054\003\000\002\054\003" +
     "\000\002\054\003\000\002\054\003\000\002\054\003\000" +
@@ -457,14 +457,11 @@ class CUP$Sintactico_CHTML$actions {
           return CUP$Sintactico_CHTML$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 21: // GENERAL_CUERPO ::= INI ESTRUCTURA_PANEL FIN 
+          case 21: // GENERAL_CUERPO ::= INI FIN 
             {
               NCHTML RESULT =null;
-		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-1)).left;
-		int e1right = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-1)).right;
-		NCHTML e1 = (NCHTML)((java_cup.runtime.Symbol) CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-1)).value;
-		RESULT=e1;
-              CUP$Sintactico_CHTML$result = parser.getSymbolFactory().newSymbol("GENERAL_CUERPO",10, ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-2)), ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.peek()), RESULT);
+		RESULT=null;
+              CUP$Sintactico_CHTML$result = parser.getSymbolFactory().newSymbol("GENERAL_CUERPO",10, ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-1)), ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.peek()), RESULT);
             }
           return CUP$Sintactico_CHTML$result;
 
@@ -481,14 +478,14 @@ class CUP$Sintactico_CHTML$actions {
           return CUP$Sintactico_CHTML$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 23: // ESTRUCTURA_PANEL ::= IEPA FIN CUERPO_CUERPO INI FEPA 
+          case 23: // ESTRUCTURA_PANEL ::= IEPA ESTRUCTURA_UNIFI FIN CUERPO_CUERPO INI FEPA 
             {
               NCHTML RESULT =null;
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-2)).left;
 		int e1right = ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-2)).right;
 		NCHTML e1 = (NCHTML)((java_cup.runtime.Symbol) CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-2)).value;
 		NCHTML nuevo=new NCHTML(); nuevo.etiqueta ="Panel"; nuevo.hijos.add(e1); RESULT = nuevo;
-              CUP$Sintactico_CHTML$result = parser.getSymbolFactory().newSymbol("ESTRUCTURA_PANEL",27, ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-4)), ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.peek()), RESULT);
+              CUP$Sintactico_CHTML$result = parser.getSymbolFactory().newSymbol("ESTRUCTURA_PANEL",27, ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.elementAt(CUP$Sintactico_CHTML$top-5)), ((java_cup.runtime.Symbol)CUP$Sintactico_CHTML$stack.peek()), RESULT);
             }
           return CUP$Sintactico_CHTML$result;
 
