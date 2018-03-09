@@ -14,10 +14,12 @@ import java.util.ArrayList;
 public class NCCSS {
        public String etiqueta;
        public String valor;
-    public ArrayList<NCCSS> hijos;
-      public NCCSS(){
+       public ArrayList<NCCSS> hijos;
+       public ArrayList<NCCSS> vecino;
+    public NCCSS(){
         hijos = new ArrayList();
         etiqueta ="";
         valor ="";
+        vecino = new ArrayList();
     }
 }

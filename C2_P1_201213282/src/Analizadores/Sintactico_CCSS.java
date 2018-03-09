@@ -36,16 +36,16 @@ public class Sintactico_CCSS extends java_cup.runtime.lr_parser {
     unpackFromStrings(new String[] {
     "\000\073\000\002\002\004\000\002\002\003\000\002\003" +
     "\003\000\002\012\004\000\002\012\003\000\002\013\006" +
-    "\000\002\015\004\000\002\015\003\000\002\014\006\000" +
-    "\002\014\006\000\002\014\006\000\002\014\006\000\002" +
-    "\005\013\000\002\016\007\000\002\017\007\000\002\011" +
-    "\007\000\002\021\007\000\002\022\013\000\002\022\013" +
-    "\000\002\023\007\000\002\006\007\000\002\025\007\000" +
-    "\002\026\015\000\002\027\006\000\002\030\005\000\002" +
-    "\030\005\000\002\030\005\000\002\030\005\000\002\030" +
-    "\005\000\002\030\003\000\002\030\003\000\002\030\003" +
-    "\000\002\030\003\000\002\030\003\000\002\031\010\000" +
-    "\002\031\010\000\002\032\004\000\002\032\003\000\002" +
+    "\000\002\015\004\000\002\015\003\000\002\031\010\000" +
+    "\002\031\010\000\002\014\006\000\002\014\006\000\002" +
+    "\014\006\000\002\014\006\000\002\005\013\000\002\016" +
+    "\007\000\002\017\007\000\002\011\007\000\002\021\007" +
+    "\000\002\022\013\000\002\022\013\000\002\023\007\000" +
+    "\002\006\007\000\002\025\007\000\002\026\015\000\002" +
+    "\027\006\000\002\030\005\000\002\030\005\000\002\030" +
+    "\005\000\002\030\005\000\002\030\005\000\002\030\003" +
+    "\000\002\030\003\000\002\030\003\000\002\030\003\000" +
+    "\002\030\003\000\002\032\004\000\002\032\003\000\002" +
     "\033\003\000\002\033\003\000\002\033\003\000\002\033" +
     "\003\000\002\033\003\000\002\033\003\000\002\033\003" +
     "\000\002\033\003\000\002\033\003\000\002\033\003\000" +
@@ -94,7 +94,7 @@ public class Sintactico_CCSS extends java_cup.runtime.lr_parser {
     "\040\006\uffd0\007\uffd0\024\uffd0\030\uffd0\031\uffd0\033\uffd0" +
     "\034\uffd0\035\uffd0\036\uffd0\037\uffd0\040\uffd0\044\uffd0\051" +
     "\uffd0\053\uffd0\054\uffd0\001\002\000\040\006\030\007\033" +
-    "\024\uffde\030\uffde\031\032\033\053\034\uffde\035\044\036" +
+    "\024\ufff8\030\ufff8\031\032\033\053\034\ufff8\035\044\036" +
     "\047\037\050\040\027\044\036\051\041\053\046\054\034" +
     "\001\002\000\004\014\125\001\002\000\004\026\124\001" +
     "\002\000\040\006\uffd8\007\uffd8\024\uffd8\030\uffd8\031\uffd8" +
@@ -117,9 +117,9 @@ public class Sintactico_CCSS extends java_cup.runtime.lr_parser {
     "\005\uffcf\010\065\011\066\017\067\020\064\024\uffcf\026" +
     "\uffcf\001\002\000\004\026\063\001\002\000\020\005\uffca" +
     "\010\uffca\011\uffca\017\uffca\020\uffca\024\uffca\026\uffca\001" +
-    "\002\000\040\006\ufff3\007\ufff3\024\ufff3\030\ufff3\031\ufff3" +
-    "\033\ufff3\034\ufff3\035\ufff3\036\ufff3\037\ufff3\040\ufff3\044" +
-    "\ufff3\051\ufff3\053\ufff3\054\ufff3\001\002\000\006\012\056" +
+    "\002\000\040\006\ufff1\007\ufff1\024\ufff1\030\ufff1\031\ufff1" +
+    "\033\ufff1\034\ufff1\035\ufff1\036\ufff1\037\ufff1\040\ufff1\044" +
+    "\ufff1\051\ufff1\053\ufff1\054\ufff1\001\002\000\006\012\056" +
     "\013\057\001\002\000\006\012\056\013\057\001\002\000" +
     "\006\012\056\013\057\001\002\000\006\012\056\013\057" +
     "\001\002\000\020\005\uffcc\010\uffcc\011\uffcc\017\uffcc\020" +
@@ -131,85 +131,85 @@ public class Sintactico_CCSS extends java_cup.runtime.lr_parser {
     "\001\002\000\020\005\uffc7\010\uffc7\011\uffc7\017\uffc7\020" +
     "\uffc7\024\uffc7\026\uffc7\001\002\000\004\016\077\001\002" +
     "\000\004\004\100\001\002\000\004\026\101\001\002\000" +
-    "\040\006\uffee\007\uffee\024\uffee\030\uffee\031\uffee\033\uffee" +
-    "\034\uffee\035\uffee\036\uffee\037\uffee\040\uffee\044\uffee\051" +
-    "\uffee\053\uffee\054\uffee\001\002\000\004\016\103\001\002" +
+    "\040\006\uffec\007\uffec\024\uffec\030\uffec\031\uffec\033\uffec" +
+    "\034\uffec\035\uffec\036\uffec\037\uffec\040\uffec\044\uffec\051" +
+    "\uffec\053\uffec\054\uffec\001\002\000\004\016\103\001\002" +
     "\000\004\021\104\001\002\000\006\012\056\013\057\001" +
     "\002\000\004\005\106\001\002\000\006\012\056\013\057" +
     "\001\002\000\004\005\110\001\002\000\004\004\111\001" +
     "\002\000\004\024\112\001\002\000\004\026\113\001\002" +
-    "\000\040\006\uffeb\007\uffeb\024\uffeb\030\uffeb\031\uffeb\033" +
-    "\uffeb\034\uffeb\035\uffeb\036\uffeb\037\uffeb\040\uffeb\044\uffeb" +
-    "\051\uffeb\053\uffeb\054\uffeb\001\002\000\004\016\115\001" +
+    "\000\040\006\uffe9\007\uffe9\024\uffe9\030\uffe9\031\uffe9\033" +
+    "\uffe9\034\uffe9\035\uffe9\036\uffe9\037\uffe9\040\uffe9\044\uffe9" +
+    "\051\uffe9\053\uffe9\054\uffe9\001\002\000\004\016\115\001" +
     "\002\000\006\012\056\013\057\001\002\000\004\026\117" +
-    "\001\002\000\040\006\ufff1\007\ufff1\024\ufff1\030\ufff1\031" +
-    "\ufff1\033\ufff1\034\ufff1\035\ufff1\036\ufff1\037\ufff1\040\ufff1" +
-    "\044\ufff1\051\ufff1\053\ufff1\054\ufff1\001\002\000\004\016" +
+    "\001\002\000\040\006\uffef\007\uffef\024\uffef\030\uffef\031" +
+    "\uffef\033\uffef\034\uffef\035\uffef\036\uffef\037\uffef\040\uffef" +
+    "\044\uffef\051\uffef\053\uffef\054\uffef\001\002\000\004\016" +
     "\121\001\002\000\004\004\122\001\002\000\004\026\123" +
-    "\001\002\000\040\006\uffed\007\uffed\024\uffed\030\uffed\031" +
-    "\uffed\033\uffed\034\uffed\035\uffed\036\uffed\037\uffed\040\uffed" +
-    "\044\uffed\051\uffed\053\uffed\054\uffed\001\002\000\040\006" +
+    "\001\002\000\040\006\uffeb\007\uffeb\024\uffeb\030\uffeb\031" +
+    "\uffeb\033\uffeb\034\uffeb\035\uffeb\036\uffeb\037\uffeb\040\uffeb" +
+    "\044\uffeb\051\uffeb\053\uffeb\054\uffeb\001\002\000\040\006" +
     "\uffd1\007\uffd1\024\uffd1\030\uffd1\031\uffd1\033\uffd1\034\uffd1" +
     "\035\uffd1\036\uffd1\037\uffd1\040\uffd1\044\uffd1\051\uffd1\053" +
     "\uffd1\054\uffd1\001\002\000\004\016\126\001\002\000\006" +
     "\012\056\013\057\001\002\000\004\026\130\001\002\000" +
-    "\040\006\uffec\007\uffec\024\uffec\030\uffec\031\uffec\033\uffec" +
-    "\034\uffec\035\uffec\036\uffec\037\uffec\040\uffec\044\uffec\051" +
-    "\uffec\053\uffec\054\uffec\001\002\000\040\006\uffdd\007\uffdd" +
+    "\040\006\uffea\007\uffea\024\uffea\030\uffea\031\uffea\033\uffea" +
+    "\034\uffea\035\uffea\036\uffea\037\uffea\040\uffea\044\uffea\051" +
+    "\uffea\053\uffea\054\uffea\001\002\000\040\006\uffdd\007\uffdd" +
     "\024\uffdd\030\uffdd\031\uffdd\033\uffdd\034\uffdd\035\uffdd\036" +
     "\uffdd\037\uffdd\040\uffdd\044\uffdd\051\uffdd\053\uffdd\054\uffdd" +
     "\001\002\000\004\016\133\001\002\000\012\041\137\042" +
-    "\136\045\134\052\135\001\002\000\040\006\ufff9\007\ufff9" +
-    "\024\ufff9\030\ufff9\031\ufff9\033\ufff9\034\ufff9\035\ufff9\036" +
-    "\ufff9\037\ufff9\040\ufff9\044\ufff9\051\ufff9\053\ufff9\054\ufff9" +
-    "\001\002\000\040\006\ufff6\007\ufff6\024\ufff6\030\ufff6\031" +
-    "\ufff6\033\ufff6\034\ufff6\035\ufff6\036\ufff6\037\ufff6\040\ufff6" +
-    "\044\ufff6\051\ufff6\053\ufff6\054\ufff6\001\002\000\040\006" +
-    "\ufff7\007\ufff7\024\ufff7\030\ufff7\031\ufff7\033\ufff7\034\ufff7" +
-    "\035\ufff7\036\ufff7\037\ufff7\040\ufff7\044\ufff7\051\ufff7\053" +
-    "\ufff7\054\ufff7\001\002\000\040\006\ufff8\007\ufff8\024\ufff8" +
-    "\030\ufff8\031\ufff8\033\ufff8\034\ufff8\035\ufff8\036\ufff8\037" +
-    "\ufff8\040\ufff8\044\ufff8\051\ufff8\053\ufff8\054\ufff8\001\002" +
+    "\136\045\134\052\135\001\002\000\040\006\ufff7\007\ufff7" +
+    "\024\ufff7\030\ufff7\031\ufff7\033\ufff7\034\ufff7\035\ufff7\036" +
+    "\ufff7\037\ufff7\040\ufff7\044\ufff7\051\ufff7\053\ufff7\054\ufff7" +
+    "\001\002\000\040\006\ufff4\007\ufff4\024\ufff4\030\ufff4\031" +
+    "\ufff4\033\ufff4\034\ufff4\035\ufff4\036\ufff4\037\ufff4\040\ufff4" +
+    "\044\ufff4\051\ufff4\053\ufff4\054\ufff4\001\002\000\040\006" +
+    "\ufff5\007\ufff5\024\ufff5\030\ufff5\031\ufff5\033\ufff5\034\ufff5" +
+    "\035\ufff5\036\ufff5\037\ufff5\040\ufff5\044\ufff5\051\ufff5\053" +
+    "\ufff5\054\ufff5\001\002\000\040\006\ufff6\007\ufff6\024\ufff6" +
+    "\030\ufff6\031\ufff6\033\ufff6\034\ufff6\035\ufff6\036\ufff6\037" +
+    "\ufff6\040\ufff6\044\ufff6\051\ufff6\053\ufff6\054\ufff6\001\002" +
     "\000\004\016\141\001\002\000\004\021\142\001\002\000" +
     "\004\004\143\001\002\000\004\005\144\001\002\000\006" +
     "\022\145\023\146\001\002\000\004\024\151\001\002\000" +
     "\004\024\147\001\002\000\004\026\150\001\002\000\040" +
-    "\006\uffef\007\uffef\024\uffef\030\uffef\031\uffef\033\uffef\034" +
-    "\uffef\035\uffef\036\uffef\037\uffef\040\uffef\044\uffef\051\uffef" +
-    "\053\uffef\054\uffef\001\002\000\004\026\152\001\002\000" +
-    "\040\006\ufff0\007\ufff0\024\ufff0\030\ufff0\031\ufff0\033\ufff0" +
-    "\034\ufff0\035\ufff0\036\ufff0\037\ufff0\040\ufff0\044\ufff0\051" +
-    "\ufff0\053\ufff0\054\ufff0\001\002\000\004\016\154\001\002" +
+    "\006\uffed\007\uffed\024\uffed\030\uffed\031\uffed\033\uffed\034" +
+    "\uffed\035\uffed\036\uffed\037\uffed\040\uffed\044\uffed\051\uffed" +
+    "\053\uffed\054\uffed\001\002\000\004\026\152\001\002\000" +
+    "\040\006\uffee\007\uffee\024\uffee\030\uffee\031\uffee\033\uffee" +
+    "\034\uffee\035\uffee\036\uffee\037\uffee\040\uffee\044\uffee\051" +
+    "\uffee\053\uffee\054\uffee\001\002\000\004\016\154\001\002" +
     "\000\004\021\155\001\002\000\006\012\056\013\057\001" +
     "\002\000\004\005\157\001\002\000\006\012\056\013\057" +
     "\001\002\000\004\024\161\001\002\000\004\026\162\001" +
-    "\002\000\040\006\ufff5\007\ufff5\024\ufff5\030\ufff5\031\ufff5" +
-    "\033\ufff5\034\ufff5\035\ufff5\036\ufff5\037\ufff5\040\ufff5\044" +
-    "\ufff5\051\ufff5\053\ufff5\054\ufff5\001\002\000\004\016\164" +
+    "\002\000\040\006\ufff3\007\ufff3\024\ufff3\030\ufff3\031\ufff3" +
+    "\033\ufff3\034\ufff3\035\ufff3\036\ufff3\037\ufff3\040\ufff3\044" +
+    "\ufff3\051\ufff3\053\ufff3\054\ufff3\001\002\000\004\016\164" +
     "\001\002\000\006\012\056\013\057\001\002\000\004\026" +
-    "\166\001\002\000\040\006\ufff4\007\ufff4\024\ufff4\030\ufff4" +
-    "\031\ufff4\033\ufff4\034\ufff4\035\ufff4\036\ufff4\037\ufff4\040" +
-    "\ufff4\044\ufff4\051\ufff4\053\ufff4\054\ufff4\001\002\000\004" +
+    "\166\001\002\000\040\006\ufff2\007\ufff2\024\ufff2\030\ufff2" +
+    "\031\ufff2\033\ufff2\034\ufff2\035\ufff2\036\ufff2\037\ufff2\040" +
+    "\ufff2\044\ufff2\051\ufff2\053\ufff2\054\ufff2\001\002\000\004" +
     "\016\170\001\002\000\006\012\056\013\057\001\002\000" +
-    "\004\026\172\001\002\000\040\006\ufff2\007\ufff2\024\ufff2" +
-    "\030\ufff2\031\ufff2\033\ufff2\034\ufff2\035\ufff2\036\ufff2\037" +
-    "\ufff2\040\ufff2\044\ufff2\051\ufff2\053\ufff2\054\ufff2\001\002" +
-    "\000\004\016\174\001\002\000\014\032\175\043\177\046" +
-    "\200\047\201\050\202\001\002\000\006\005\uffe3\026\uffe3" +
-    "\001\002\000\006\005\203\026\uffea\001\002\000\006\005" +
-    "\uffe4\026\uffe4\001\002\000\006\005\uffe2\026\uffe2\001\002" +
-    "\000\006\005\uffe1\026\uffe1\001\002\000\006\005\uffe0\026" +
-    "\uffe0\001\002\000\014\032\204\043\206\046\205\047\207" +
-    "\050\210\001\002\000\006\005\uffe8\026\uffe8\001\002\000" +
-    "\006\005\uffe7\026\uffe7\001\002\000\006\005\uffe9\026\uffe9" +
-    "\001\002\000\006\005\uffe6\026\uffe6\001\002\000\006\005" +
-    "\uffe5\026\uffe5\001\002\000\010\024\ufffb\030\ufffb\034\ufffb" +
+    "\004\026\172\001\002\000\040\006\ufff0\007\ufff0\024\ufff0" +
+    "\030\ufff0\031\ufff0\033\ufff0\034\ufff0\035\ufff0\036\ufff0\037" +
+    "\ufff0\040\ufff0\044\ufff0\051\ufff0\053\ufff0\054\ufff0\001\002" +
+    "\000\004\016\174\001\002\000\014\032\175\043\200\046" +
+    "\177\047\202\050\201\001\002\000\006\005\uffe1\026\uffe1" +
+    "\001\002\000\006\005\203\026\uffe8\001\002\000\006\005" +
+    "\uffe0\026\uffe0\001\002\000\006\005\uffe2\026\uffe2\001\002" +
+    "\000\006\005\uffde\026\uffde\001\002\000\006\005\uffdf\026" +
+    "\uffdf\001\002\000\014\032\204\043\206\046\205\047\210" +
+    "\050\207\001\002\000\006\005\uffe6\026\uffe6\001\002\000" +
+    "\006\005\uffe5\026\uffe5\001\002\000\006\005\uffe7\026\uffe7" +
+    "\001\002\000\006\005\uffe3\026\uffe3\001\002\000\006\005" +
+    "\uffe4\026\uffe4\001\002\000\010\024\ufffb\030\ufffb\034\ufffb" +
     "\001\002\000\006\002\ufffc\004\ufffc\001\002\000\004\004" +
     "\214\001\002\000\004\027\215\001\002\000\004\026\216" +
     "\001\002\000\032\006\030\007\033\031\032\033\053\035" +
     "\044\036\047\037\050\040\027\044\036\051\041\053\046" +
-    "\054\034\001\002\000\040\006\030\007\033\024\uffdf\030" +
-    "\uffdf\031\032\033\053\034\uffdf\035\044\036\047\037\050" +
+    "\054\034\001\002\000\040\006\030\007\033\024\ufff9\030" +
+    "\ufff9\031\032\033\053\034\ufff9\035\044\036\047\037\050" +
     "\040\027\044\036\051\041\053\046\054\034\001\002\000" +
     "\006\002\ufffe\004\ufffe\001\002\000\004\002\001\001\002" +
     "" });
@@ -469,7 +469,7 @@ class CUP$Sintactico_CCSS$actions {
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.peek()).left;
 		int e1right = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.peek()).right;
 		NCCSS e1 = (NCCSS)((java_cup.runtime.Symbol) CUP$Sintactico_CCSS$stack.peek()).value;
-		e2.hijos.add(e1); RESULT = e2;
+		e2.vecino.add(e1); RESULT = e2;
               CUP$Sintactico_CCSS$result = parser.getSymbolFactory().newSymbol("CUERPO_ID",11, ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-1)), ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.peek()), RESULT);
             }
           return CUP$Sintactico_CCSS$result;
@@ -487,7 +487,37 @@ class CUP$Sintactico_CCSS$actions {
           return CUP$Sintactico_CCSS$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 8: // ESTRUCTURA_ALIN ::= RALI SDPU SIGU RIZQ 
+          case 8: // ESTRUCTURA_GENE ::= RID SIPA PID SFPA SPYC CUERPO_GENE 
+            {
+              NCCSS RESULT =null;
+		int e2left = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-3)).left;
+		int e2right = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-3)).right;
+		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-3)).value;
+		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.peek()).right;
+		NCCSS e1 = (NCCSS)((java_cup.runtime.Symbol) CUP$Sintactico_CCSS$stack.peek()).value;
+		System.out.println("AL-ID");NCCSS nuevo = new NCCSS(); nuevo.etiqueta="ID"; nuevo.valor=e2.toString(); nuevo.hijos.add(e1); RESULT = nuevo;
+              CUP$Sintactico_CCSS$result = parser.getSymbolFactory().newSymbol("ESTRUCTURA_GENE",23, ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-5)), ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.peek()), RESULT);
+            }
+          return CUP$Sintactico_CCSS$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 9: // ESTRUCTURA_GENE ::= RGRU SIPA PID SFPA SPYC CUERPO_GENE 
+            {
+              NCCSS RESULT =null;
+		int e2left = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-3)).left;
+		int e2right = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-3)).right;
+		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-3)).value;
+		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.peek()).right;
+		NCCSS e1 = (NCCSS)((java_cup.runtime.Symbol) CUP$Sintactico_CCSS$stack.peek()).value;
+		System.out.println("AL-Grupo");NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Grupo"; nuevo.valor=e2.toString();nuevo.hijos.add(e1); RESULT = nuevo;
+              CUP$Sintactico_CCSS$result = parser.getSymbolFactory().newSymbol("ESTRUCTURA_GENE",23, ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-5)), ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.peek()), RESULT);
+            }
+          return CUP$Sintactico_CCSS$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 10: // ESTRUCTURA_ALIN ::= RALI SDPU SIGU RIZQ 
             {
               NCCSS RESULT =null;
 		NCCSS nuevo = new NCCSS(); nuevo.etiqueta="alineado"; nuevo.valor="izquierdo"; RESULT = nuevo;
@@ -496,7 +526,7 @@ class CUP$Sintactico_CCSS$actions {
           return CUP$Sintactico_CCSS$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 9: // ESTRUCTURA_ALIN ::= RALI SDPU SIGU RDER 
+          case 11: // ESTRUCTURA_ALIN ::= RALI SDPU SIGU RDER 
             {
               NCCSS RESULT =null;
 		NCCSS nuevo = new NCCSS(); nuevo.etiqueta="alineado"; nuevo.valor="derecha"; RESULT = nuevo;
@@ -505,7 +535,7 @@ class CUP$Sintactico_CCSS$actions {
           return CUP$Sintactico_CCSS$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 10: // ESTRUCTURA_ALIN ::= RALI SDPU SIGU RCEN 
+          case 12: // ESTRUCTURA_ALIN ::= RALI SDPU SIGU RCEN 
             {
               NCCSS RESULT =null;
 		NCCSS nuevo = new NCCSS(); nuevo.etiqueta="alineado"; nuevo.valor="centrado"; RESULT = nuevo;
@@ -514,7 +544,7 @@ class CUP$Sintactico_CCSS$actions {
           return CUP$Sintactico_CCSS$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 11: // ESTRUCTURA_ALIN ::= RALI SDPU SIGU RJUS 
+          case 13: // ESTRUCTURA_ALIN ::= RALI SDPU SIGU RJUS 
             {
               NCCSS RESULT =null;
 		NCCSS nuevo = new NCCSS(); nuevo.etiqueta="alineado"; nuevo.valor="justificado"; RESULT = nuevo;
@@ -523,7 +553,7 @@ class CUP$Sintactico_CCSS$actions {
           return CUP$Sintactico_CCSS$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 12: // ESTRUCTURA_TAM_EL ::= RTAE SDPU SIGU SICO EXPRESION SCOM EXPRESION SFCO SPYC 
+          case 14: // ESTRUCTURA_TAM_EL ::= RTAE SDPU SIGU SICO EXPRESION SCOM EXPRESION SFCO SPYC 
             {
               NCCSS RESULT =null;
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-4)).left;
@@ -538,7 +568,7 @@ class CUP$Sintactico_CCSS$actions {
           return CUP$Sintactico_CCSS$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 13: // ESTRUCTURA_TEXT ::= RTEX SDPU SIGU EXPRESION SPYC 
+          case 15: // ESTRUCTURA_TEXT ::= RTEX SDPU SIGU EXPRESION SPYC 
             {
               NCCSS RESULT =null;
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-1)).left;
@@ -550,7 +580,7 @@ class CUP$Sintactico_CCSS$actions {
           return CUP$Sintactico_CCSS$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 14: // ESTRUCTURA_LETR ::= RLET SDPU SIGU EXPRESION SPYC 
+          case 16: // ESTRUCTURA_LETR ::= RLET SDPU SIGU EXPRESION SPYC 
             {
               NCCSS RESULT =null;
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-1)).left;
@@ -562,7 +592,7 @@ class CUP$Sintactico_CCSS$actions {
           return CUP$Sintactico_CCSS$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 15: // ESTRUCTURA_TAMT ::= RTAM SDPU SIGU EXPRESION SPYC 
+          case 17: // ESTRUCTURA_TAMT ::= RTAM SDPU SIGU EXPRESION SPYC 
             {
               NCCSS RESULT =null;
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-1)).left;
@@ -574,7 +604,7 @@ class CUP$Sintactico_CCSS$actions {
           return CUP$Sintactico_CCSS$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 16: // ESTRUCTURA_FOND ::= RFEL SDPU SIGU EXPRESION SPYC 
+          case 18: // ESTRUCTURA_FOND ::= RFEL SDPU SIGU EXPRESION SPYC 
             {
               NCCSS RESULT =null;
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-1)).left;
@@ -586,7 +616,7 @@ class CUP$Sintactico_CCSS$actions {
           return CUP$Sintactico_CCSS$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 17: // ESTRUCTURA_AUTO ::= RAUR SDPU SIGU SICO PID SCOM RHOR SFCO SPYC 
+          case 19: // ESTRUCTURA_AUTO ::= RAUR SDPU SIGU SICO PID SCOM RHOR SFCO SPYC 
             {
               NCCSS RESULT =null;
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-4)).left;
@@ -598,7 +628,7 @@ class CUP$Sintactico_CCSS$actions {
           return CUP$Sintactico_CCSS$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 18: // ESTRUCTURA_AUTO ::= RAUR SDPU SIGU SICO PID SCOM RVER SFCO SPYC 
+          case 20: // ESTRUCTURA_AUTO ::= RAUR SDPU SIGU SICO PID SCOM RVER SFCO SPYC 
             {
               NCCSS RESULT =null;
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-4)).left;
@@ -610,7 +640,7 @@ class CUP$Sintactico_CCSS$actions {
           return CUP$Sintactico_CCSS$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 19: // ESTRUCTURA_VISI ::= RVIS SDPU SIGU PID SPYC 
+          case 21: // ESTRUCTURA_VISI ::= RVIS SDPU SIGU PID SPYC 
             {
               NCCSS RESULT =null;
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-1)).left;
@@ -622,7 +652,7 @@ class CUP$Sintactico_CCSS$actions {
           return CUP$Sintactico_CCSS$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 20: // ESTRUCTURA_OPAQ ::= ROPA SDPU SIGU PID SPYC 
+          case 22: // ESTRUCTURA_OPAQ ::= ROPA SDPU SIGU PID SPYC 
             {
               NCCSS RESULT =null;
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-1)).left;
@@ -634,7 +664,7 @@ class CUP$Sintactico_CCSS$actions {
           return CUP$Sintactico_CCSS$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 21: // ESTRUCTURA_COLT ::= RCOL SDPU SIGU EXPRESION SPYC 
+          case 23: // ESTRUCTURA_COLT ::= RCOL SDPU SIGU EXPRESION SPYC 
             {
               NCCSS RESULT =null;
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-1)).left;
@@ -646,7 +676,7 @@ class CUP$Sintactico_CCSS$actions {
           return CUP$Sintactico_CCSS$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 22: // ESTRUCTURA_BORD ::= RBOR SDPU SIGU SICO EXPRESION SCOM EXPRESION SCOM PID SFCO SPYC 
+          case 24: // ESTRUCTURA_BORD ::= RBOR SDPU SIGU SICO EXPRESION SCOM EXPRESION SCOM PID SFCO SPYC 
             {
               NCCSS RESULT =null;
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-6)).left;
@@ -664,7 +694,7 @@ class CUP$Sintactico_CCSS$actions {
           return CUP$Sintactico_CCSS$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 23: // ESTRUCTURA_FORM ::= RFOR SDPU SIGU Lista_For 
+          case 25: // ESTRUCTURA_FORM ::= RFOR SDPU SIGU Lista_For 
             {
               NCCSS RESULT =null;
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.peek()).left;
@@ -676,7 +706,7 @@ class CUP$Sintactico_CCSS$actions {
           return CUP$Sintactico_CCSS$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 24: // Lista_For ::= Lista_For SCOM RNEG 
+          case 26: // Lista_For ::= Lista_For SCOM RNEG 
             {
               NCCSS RESULT =null;
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-2)).left;
@@ -688,7 +718,7 @@ class CUP$Sintactico_CCSS$actions {
           return CUP$Sintactico_CCSS$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 25: // Lista_For ::= Lista_For SCOM RCUR 
+          case 27: // Lista_For ::= Lista_For SCOM RCUR 
             {
               NCCSS RESULT =null;
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-2)).left;
@@ -700,7 +730,7 @@ class CUP$Sintactico_CCSS$actions {
           return CUP$Sintactico_CCSS$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 26: // Lista_For ::= Lista_For SCOM RMAY 
+          case 28: // Lista_For ::= Lista_For SCOM RMAY 
             {
               NCCSS RESULT =null;
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-2)).left;
@@ -712,7 +742,7 @@ class CUP$Sintactico_CCSS$actions {
           return CUP$Sintactico_CCSS$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 27: // Lista_For ::= Lista_For SCOM RMIN 
+          case 29: // Lista_For ::= Lista_For SCOM RMIN 
             {
               NCCSS RESULT =null;
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-2)).left;
@@ -724,7 +754,7 @@ class CUP$Sintactico_CCSS$actions {
           return CUP$Sintactico_CCSS$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 28: // Lista_For ::= Lista_For SCOM RCAP 
+          case 30: // Lista_For ::= Lista_For SCOM RCAP 
             {
               NCCSS RESULT =null;
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-2)).left;
@@ -736,7 +766,7 @@ class CUP$Sintactico_CCSS$actions {
           return CUP$Sintactico_CCSS$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 29: // Lista_For ::= RNEG 
+          case 31: // Lista_For ::= RNEG 
             {
               NCCSS RESULT =null;
 		NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Lista_For"; nuevo.valor="negrita"; RESULT = nuevo;
@@ -745,7 +775,7 @@ class CUP$Sintactico_CCSS$actions {
           return CUP$Sintactico_CCSS$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 30: // Lista_For ::= RCUR 
+          case 32: // Lista_For ::= RCUR 
             {
               NCCSS RESULT =null;
 		NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Lista_For"; nuevo.valor="cursiva"; RESULT = nuevo;
@@ -754,7 +784,7 @@ class CUP$Sintactico_CCSS$actions {
           return CUP$Sintactico_CCSS$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 31: // Lista_For ::= RMAY 
+          case 33: // Lista_For ::= RMAY 
             {
               NCCSS RESULT =null;
 		NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Lista_For"; nuevo.valor="mayuscula"; RESULT = nuevo;
@@ -763,7 +793,7 @@ class CUP$Sintactico_CCSS$actions {
           return CUP$Sintactico_CCSS$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 32: // Lista_For ::= RMIN 
+          case 34: // Lista_For ::= RMIN 
             {
               NCCSS RESULT =null;
 		NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Lista_For"; nuevo.valor="minuscula"; RESULT = nuevo;
@@ -772,41 +802,11 @@ class CUP$Sintactico_CCSS$actions {
           return CUP$Sintactico_CCSS$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 33: // Lista_For ::= RCAP 
+          case 35: // Lista_For ::= RCAP 
             {
               NCCSS RESULT =null;
 		NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Lista_For"; nuevo.valor="capital-T"; RESULT = nuevo;
               CUP$Sintactico_CCSS$result = parser.getSymbolFactory().newSymbol("Lista_For",22, ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.peek()), RESULT);
-            }
-          return CUP$Sintactico_CCSS$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 34: // ESTRUCTURA_GENE ::= RID SIPA PID SFPA SPYC CUERPO_GENE 
-            {
-              NCCSS RESULT =null;
-		int e2left = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-3)).left;
-		int e2right = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-3)).right;
-		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-3)).value;
-		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.peek()).left;
-		int e1right = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.peek()).right;
-		NCCSS e1 = (NCCSS)((java_cup.runtime.Symbol) CUP$Sintactico_CCSS$stack.peek()).value;
-		NCCSS nuevo = new NCCSS(); nuevo.etiqueta="ID"; nuevo.valor=e2.toString(); nuevo.hijos.add(e1); RESULT = nuevo;
-              CUP$Sintactico_CCSS$result = parser.getSymbolFactory().newSymbol("ESTRUCTURA_GENE",23, ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-5)), ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.peek()), RESULT);
-            }
-          return CUP$Sintactico_CCSS$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 35: // ESTRUCTURA_GENE ::= RGRU SIPA PID SFPA SPYC CUERPO_GENE 
-            {
-              NCCSS RESULT =null;
-		int e2left = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-3)).left;
-		int e2right = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-3)).right;
-		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-3)).value;
-		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.peek()).left;
-		int e1right = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.peek()).right;
-		NCCSS e1 = (NCCSS)((java_cup.runtime.Symbol) CUP$Sintactico_CCSS$stack.peek()).value;
-		NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Grupo"; nuevo.valor=e2.toString();nuevo.hijos.add(e1); RESULT = nuevo;
-              CUP$Sintactico_CCSS$result = parser.getSymbolFactory().newSymbol("ESTRUCTURA_GENE",23, ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-5)), ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.peek()), RESULT);
             }
           return CUP$Sintactico_CCSS$result;
 
@@ -820,7 +820,7 @@ class CUP$Sintactico_CCSS$actions {
 		int e1left = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.peek()).left;
 		int e1right = ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.peek()).right;
 		NCCSS e1 = (NCCSS)((java_cup.runtime.Symbol) CUP$Sintactico_CCSS$stack.peek()).value;
-		e2.hijos.add(e1); RESULT = e2;
+		e2.vecino.add(e1); RESULT = e2;
               CUP$Sintactico_CCSS$result = parser.getSymbolFactory().newSymbol("CUERPO_GENE",24, ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.elementAt(CUP$Sintactico_CCSS$top-1)), ((java_cup.runtime.Symbol)CUP$Sintactico_CCSS$stack.peek()), RESULT);
             }
           return CUP$Sintactico_CCSS$result;

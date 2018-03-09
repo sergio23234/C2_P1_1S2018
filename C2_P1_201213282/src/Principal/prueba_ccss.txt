@@ -3,14 +3,18 @@ Grupo(UNO);
 Formato := mayuscula;
 Letra  := "Courier New";
 Tamtext := 14.5;
+ID(dos);
+Tamtext :=15;
+Formato := Negrilla, capital-t;
 Grupo(dos);
 Tamtext :=15;
 Formato := Negrilla, capital-t;
+
 ]
-/*Hola
-esto es multilinea*/
-//hola \n
 Otro_ccss[
-ID(caja_texto);
-Formato := cursiva,capital-t,negrilla;
+Grupo(caja_texto);
+Formato := Negrilla, capital-t;
+Grupo(caja_texto);
+Tamtext := 14;
+Formato := Negrilla, capital-t;
 ]

@@ -59,9 +59,13 @@ UNO ::= ESTRUCTURA_CSS:e1   {:RCCSS =e1;:};
 ESTRUCTURA_CSS  ::= ESTRUCTURA_CSS:e2 ESTRUCTURA_ID:e1  {:e2.hijos.add(e1); RESULT = e2;:}
                 |   ESTRUCTURA_ID:e1                    {:RESULT = e1;:};
 /*estructura de ID*/
-ESTRUCTURA_ID   ::= PID:e1     SICO CUERPO_ID:e2 SFCO    {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="inicio"; nuevo.valor=e1.toString(); nuevo.hijos.add(e2); RESULT = nuevo;:};
-CUERPO_ID       ::= CUERPO_ID:e2 ESTRUCTURA_GENE:e1      {:e2.hijos.add(e1); RESULT = e2;:}
+ESTRUCTURA_ID   ::= PID:e1  SICO CUERPO_ID:e2 SFCO    {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="inicio"; nuevo.valor=e1.toString(); nuevo.hijos.add(e2); RESULT = nuevo;:};
+
+CUERPO_ID       ::= CUERPO_ID:e2 ESTRUCTURA_GENE:e1      {:e2.vecino.add(e1); RESULT = e2;:}
                 |   ESTRUCTURA_GENE:e1                   {:RESULT = e1;:};
+/*estructura de General*/
+ESTRUCTURA_GENE ::= RID  SIPA PID:e2 SFPA SPYC CUERPO_GENE:e1   {:System.out.println("AL-ID");NCCSS nuevo = new NCCSS(); nuevo.etiqueta="ID"; nuevo.valor=e2.toString(); nuevo.hijos.add(e1); RESULT = nuevo;:}
+                |   RGRU SIPA PID:e2 SFPA SPYC CUERPO_GENE:e1   {:System.out.println("AL-Grupo");NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Grupo"; nuevo.valor=e2.toString();nuevo.hijos.add(e1); RESULT = nuevo;:};
 /*estructura de alineado*/
 ESTRUCTURA_ALIN ::= RALI SDPU SIGU RIZQ{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="alineado"; nuevo.valor="izquierdo"; RESULT = nuevo;:}
                 |   RALI SDPU SIGU RDER{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="alineado"; nuevo.valor="derecha"; RESULT = nuevo;:}
@@ -100,11 +104,8 @@ Lista_For       ::= Lista_For:e1 SCOM RNEG      {:NCCSS nuevo = new NCCSS(); nue
                 |                     RMAY      {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Lista_For"; nuevo.valor="mayuscula"; RESULT = nuevo;:}
                 |                     RMIN      {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Lista_For"; nuevo.valor="minuscula"; RESULT = nuevo;:}
                 |                     RCAP      {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Lista_For"; nuevo.valor="capital-T"; RESULT = nuevo;:};               
-/*estructura de General*/
-ESTRUCTURA_GENE ::= RID  SIPA PID:e2 SFPA SPYC CUERPO_GENE:e1   {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="ID"; nuevo.valor=e2.toString(); nuevo.hijos.add(e1); RESULT = nuevo;:}
-                |   RGRU SIPA PID:e2 SFPA SPYC CUERPO_GENE:e1   {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Grupo"; nuevo.valor=e2.toString();nuevo.hijos.add(e1); RESULT = nuevo;:};
 
-CUERPO_GENE     ::= CUERPO_GENE:e2 TIPO_CUERPO_G:e1 {:e2.hijos.add(e1); RESULT = e2;:}              
+CUERPO_GENE     ::= CUERPO_GENE:e2 TIPO_CUERPO_G:e1 {:e2.vecino.add(e1); RESULT = e2;:}              
                 |   TIPO_CUERPO_G:e1                {:RESULT = e1;:};
 
 TIPO_CUERPO_G ::=   ESTRUCTURA_AUTO:e1          {:RESULT = e1;:}              

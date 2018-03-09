@@ -23,10 +23,9 @@ public static String errores="";
 %column
 Numero = [0-9]+
 Comillas = [\"][^]+[\"]
-Comentario =[//]([^]+)[\r\n]
 %%
 ("/*"[^]+"*/")                              {/*Ignore*/}
-({Comentario})                              {System.out.println("comentario");/*Ignorar*/}
+("//"[^]+"\n")                              {System.out.println("comentario");/*Ignorar*/}
 "+"											{return new Symbol(symc.SMAS,yyline,yycolumn,yytext());}
 "-"											{return new Symbol(symc.SMEN,yyline,yycolumn,yytext());}
 "*"											{return new Symbol(symc.SMUL,yyline,yycolumn,yytext());}

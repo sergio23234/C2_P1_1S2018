@@ -31,17 +31,6 @@ public class prueba1 {
         }
          }
          public void metodo3(){
-             File file = new File("src/Principal/Prueba_ccss.txt");
-        try {
-            FileReader fr = new FileReader(file);
-            lexico_CCSS lex = new lexico_CCSS(fr);
-            Sintactico_CCSS miParser = new Sintactico_CCSS(lex);
-            miParser.parse();
-            NCCSS Raiz=miParser.RCCSS;
-            System.out.println(Raiz.etiqueta+"__"+Raiz.valor+"__"+Raiz.hijos.size());
-            
-        } catch (Exception e) {
-            System.out.println(e);
-        }     
+             Ana_CCSS nuevo = new Ana_CCSS("src/Principal/Prueba_ccss.txt");
          }
 }
