@@ -47,10 +47,10 @@ action code {:
     public String estado="";
 :}
 /* terminales del lenguaje*/
-terminal PID,SCOM,RTAM,SMAS,SMEN,PCOM,PNUM,SDPU,SPUN,SIGU,SMUL,SDIV,SICO,RHOR,RVER,SFCO,SIPA,SPYC,SFPA,RID,RTEX,RCUR,RLET,RGRU,ROPA,RBOR,RVIS,RFOR,RDER,CUR,RCEN,RNEG,RALI,RIZQ,RMAY,RMIN,RCAP,RCOL,RJUS,RFEL,RAUR;
+terminal PID,SCOM,RTAM,RTAE,SMAS,SMEN,PCOM,PNUM,SDPU,SPUN,SIGU,SMUL,SDIV,SICO,RHOR,RVER,SFCO,SIPA,SPYC,SFPA,RID,RTEX,RCUR,RLET,RGRU,ROPA,RBOR,RVIS,RFOR,RDER,RCEN,RNEG,RALI,RIZQ,RMAY,RMIN,RCAP,RCOL,RJUS,RFEL,RAUR;
 /*aqui estan los no terminales */
 non terminal Start,UNO; 
-non terminal NCCSS EXPRESION,ESTRUCTURA_OPAQ,OP_ARITMETICA,Estructura_VAR,ESTRUCTURA_TAMT,ESTRUCTURA_CSS,ESTRUCTURA_ID,ESTRUCTURA_ALIN,CUERPO_ID,ESTRUCTURA_TEXT,ESTRUCTURA_LETR,ESTRUCTURA_TAM,ESTRUCTURA_FOND,ESTRUCTURA_AUTO,ESTRUCTURA_VISI,ESTRUCTURA_APAQ,ESTRUCTURA_COLT,ESTRUCTURA_BORD,ESTRUCTURA_FORM,Lista_For,ESTRUCTURA_GENE,CUERPO_GENE,TIPO_CUERPO_G;
+non terminal NCCSS EXPRESION,ESTRUCTURA_TAM_EL,ESTRUCTURA_OPAQ,OP_ARITMETICA,Estructura_VAR,ESTRUCTURA_TAMT,ESTRUCTURA_CSS,ESTRUCTURA_ID,ESTRUCTURA_ALIN,CUERPO_ID,ESTRUCTURA_TEXT,ESTRUCTURA_LETR,ESTRUCTURA_TAM,ESTRUCTURA_FOND,ESTRUCTURA_AUTO,ESTRUCTURA_VISI,ESTRUCTURA_APAQ,ESTRUCTURA_COLT,ESTRUCTURA_BORD,ESTRUCTURA_FORM,Lista_For,ESTRUCTURA_GENE,CUERPO_GENE,TIPO_CUERPO_G;
 precedence left SMAS,SMEN,SMUL,SDIV;
 start with Start;
 Start ::= UNO;
@@ -59,7 +59,7 @@ UNO ::= ESTRUCTURA_CSS:e1   {:RCCSS =e1;:};
 ESTRUCTURA_CSS  ::= ESTRUCTURA_CSS:e2 ESTRUCTURA_ID:e1  {:e2.hijos.add(e1); RESULT = e2;:}
                 |   ESTRUCTURA_ID:e1                    {:RESULT = e1;:};
 /*estructura de ID*/
-ESTRUCTURA_ID   ::= PID:e1     SICO CUERPO_ID:e2 SFCO    {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="inicio"; nuevo.valor=e1.toString().toString(); nuevo.hijos.add(e2); RESULT = nuevo;:};
+ESTRUCTURA_ID   ::= PID:e1     SICO CUERPO_ID:e2 SFCO    {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="inicio"; nuevo.valor=e1.toString(); nuevo.hijos.add(e2); RESULT = nuevo;:};
 CUERPO_ID       ::= CUERPO_ID:e2 ESTRUCTURA_GENE:e1      {:e2.hijos.add(e1); RESULT = e2;:}
                 |   ESTRUCTURA_GENE:e1                   {:RESULT = e1;:};
 /*estructura de alineado*/
@@ -67,25 +67,27 @@ ESTRUCTURA_ALIN ::= RALI SDPU SIGU RIZQ{:NCCSS nuevo = new NCCSS(); nuevo.etique
                 |   RALI SDPU SIGU RDER{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="alineado"; nuevo.valor="derecha"; RESULT = nuevo;:}
                 |   RALI SDPU SIGU RCEN{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="alineado"; nuevo.valor="centrado"; RESULT = nuevo;:}
                 |   RALI SDPU SIGU RJUS{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="alineado"; nuevo.valor="justificado"; RESULT = nuevo;:};
+/*esctructura de Tamelemento*/
+ESTRUCTURA_TAM_EL ::= RTAE SDPU SIGU SICO EXPRESION:e1 SCOM EXPRESION:e2 SFCO SPYC {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Tamelemento"; nuevo.hijos.add(e1); nuevo.hijos.add(e2); RESULT = nuevo;:};
 /*estructura de texto*/
-ESTRUCTURA_TEXT ::= RTEX SDPU SIGU EXPRESION:e1 SPYC{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="texto"; nuevo.valor=e1.toString().toString(); RESULT = nuevo;:};
+ESTRUCTURA_TEXT ::= RTEX SDPU SIGU EXPRESION:e1 SPYC{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="texto"; nuevo.valor=e1.toString(); RESULT = nuevo;:};
 /*estructura de letra*/
-ESTRUCTURA_LETR ::= RLET SDPU SIGU EXPRESION:e1 SPYC{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="letra"; nuevo.valor=e1.toString().toString(); RESULT = nuevo;:};
+ESTRUCTURA_LETR ::= RLET SDPU SIGU EXPRESION:e1 SPYC{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="letra"; nuevo.valor=e1.toString(); RESULT = nuevo;:};
 /*estructura de tamtex*/
-ESTRUCTURA_TAMT ::= RTAM SDPU SIGU EXPRESION:e1 SPYC{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="tamañio"; nuevo.valor=e1.toString().toString(); RESULT = nuevo;:};
+ESTRUCTURA_TAMT ::= RTAM SDPU SIGU EXPRESION:e1 SPYC{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="tamatext"; nuevo.valor=e1.toString(); RESULT = nuevo;:};
 /*estructura de Fondoelemnto*/
-ESTRUCTURA_FOND ::= RFEL SDPU SIGU EXPRESION:e1 SPYC{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Fondoelemento"; nuevo.valor=e1.toString().toString(); RESULT = nuevo;:};
+ESTRUCTURA_FOND ::= RFEL SDPU SIGU EXPRESION:e1 SPYC{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Fondoelemento"; nuevo.valor=e1.toString(); RESULT = nuevo;:};
 /*estructura de AUTOREDIMENSION*/
-ESTRUCTURA_AUTO ::= RAUR SDPU SIGU SICO PID:e1 SCOM RHOR SFCO SPYC{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="AUTOREDIMENSION"; nuevo.valor=e1.toString().toString()+",0"; RESULT = nuevo;:}
-                |   RAUR SDPU SIGU SICO PID:e1 SCOM RVER SFCO SPYC{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="AUTOREDIMENSION"; nuevo.valor=e1.toString().toString()+",1"; RESULT = nuevo;:};
+ESTRUCTURA_AUTO ::= RAUR SDPU SIGU SICO PID:e1 SCOM RHOR SFCO SPYC{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="AUTOREDIMENSION"; nuevo.valor=e1.toString()+",0"; RESULT = nuevo;:}
+                |   RAUR SDPU SIGU SICO PID:e1 SCOM RVER SFCO SPYC{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="AUTOREDIMENSION"; nuevo.valor=e1.toString()+",1"; RESULT = nuevo;:};
 /*estructura de VISIBLE*/
-ESTRUCTURA_VISI ::= RVIS SDPU SIGU PID:e1 SPYC      {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="visible"; nuevo.valor=e1.toString().toString(); RESULT = nuevo;:};
+ESTRUCTURA_VISI ::= RVIS SDPU SIGU PID:e1 SPYC      {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="visible"; nuevo.valor=e1.toString(); RESULT = nuevo;:};
 /*estructura de Opaque*/
-ESTRUCTURA_OPAQ ::= ROPA SDPU SIGU PID:e1 SPYC      {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="opaque"; nuevo.valor=e1.toString().toString(); RESULT = nuevo;:};
+ESTRUCTURA_OPAQ ::= ROPA SDPU SIGU PID:e1 SPYC      {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="opaque"; nuevo.valor=e1.toString(); RESULT = nuevo;:};
 /*estructura de colortext*/
-ESTRUCTURA_COLT ::= RCOL SDPU SIGU EXPRESION:e1 SPYC{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="colortext"; nuevo.valor=e1.toString().toString(); RESULT = nuevo;:};
+ESTRUCTURA_COLT ::= RCOL SDPU SIGU EXPRESION:e1 SPYC{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="colortext"; nuevo.valor=e1.toString(); RESULT = nuevo;:};
 /*estructura de BORDE*/
-ESTRUCTURA_BORD ::= RBOR SDPU SIGU SICO EXPRESION:e1 SCOM EXPRESION:e2 SCOM PID:e3 SFCO SPYC{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Borde"; nuevo.valor=e1.toString().toString()+"/"+e2+"/"+e3; RESULT = nuevo;:};
+ESTRUCTURA_BORD ::= RBOR SDPU SIGU SICO EXPRESION:e1 SCOM EXPRESION:e2 SCOM PID:e3 SFCO SPYC{:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Borde"; nuevo.valor=e1.toString()+"/"+e2+"/"+e3; RESULT = nuevo;:};
 /*estructura de formatos*/
 ESTRUCTURA_FORM ::= RFOR SDPU SIGU Lista_For:e1 {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="formato"; nuevo.hijos.add(e1); RESULT = nuevo;:}; 
 Lista_For       ::= Lista_For:e1 SCOM RNEG      {:NCCSS nuevo = new NCCSS(); nuevo.etiqueta="Lista_For"; nuevo.valor="negrita"; RESULT = nuevo; e1.hijos.add(nuevo); RESULT = e1;:}
@@ -105,17 +107,18 @@ ESTRUCTURA_GENE ::= RID  SIPA PID:e2 SFPA SPYC CUERPO_GENE:e1   {:NCCSS nuevo = 
 CUERPO_GENE     ::= CUERPO_GENE:e2 TIPO_CUERPO_G:e1 {:e2.hijos.add(e1); RESULT = e2;:}              
                 |   TIPO_CUERPO_G:e1                {:RESULT = e1;:};
 
-TIPO_CUERPO_G ::=   ESTRUCTURA_AUTO:e1      {:RESULT = e1;:}              
-                |   ESTRUCTURA_VISI:e1      {:RESULT = e1;:}              
-                |   ESTRUCTURA_COLT:e1      {:RESULT = e1;:} 
-                |   ESTRUCTURA_OPAQ:e1      {:RESULT = e1;:}              
-                |   ESTRUCTURA_FOND:e1      {:RESULT = e1;:}              
-                |   ESTRUCTURA_BORD:e1      {:RESULT = e1;:}              
-                |   ESTRUCTURA_ALIN:e1      {:RESULT = e1;:}              
-                |   ESTRUCTURA_TEXT:e1      {:RESULT = e1;:}              
-                |   ESTRUCTURA_TAMT:e1      {:RESULT = e1;:}
-                |   ESTRUCTURA_FORM:e1      {:RESULT = e1;:}
-                |   ESTRUCTURA_LETR:e1      {:RESULT = e1;:};               
+TIPO_CUERPO_G ::=   ESTRUCTURA_AUTO:e1          {:RESULT = e1;:}              
+                |   ESTRUCTURA_VISI:e1          {:RESULT = e1;:}              
+                |   ESTRUCTURA_COLT:e1          {:RESULT = e1;:} 
+                |   ESTRUCTURA_OPAQ:e1          {:RESULT = e1;:}              
+                |   ESTRUCTURA_FOND:e1          {:RESULT = e1;:}              
+                |   ESTRUCTURA_BORD:e1          {:RESULT = e1;:}              
+                |   ESTRUCTURA_ALIN:e1          {:RESULT = e1;:}              
+                |   ESTRUCTURA_TEXT:e1          {:RESULT = e1;:}              
+                |   ESTRUCTURA_TAM_EL:e1        {:RESULT = e1;:}              
+                |   ESTRUCTURA_TAMT:e1          {:RESULT = e1;:}
+                |   ESTRUCTURA_FORM:e1   SPYC   {:RESULT = e1;:}
+                |   ESTRUCTURA_LETR:e1          {:RESULT = e1;:};               
 
 EXPRESION       ::=     OP_ARITMETICA:e1        {:RESULT = e1;:};
 

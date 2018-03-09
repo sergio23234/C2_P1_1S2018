@@ -16,7 +16,7 @@ public class NCCSS {
        public String valor;
     public ArrayList<NCCSS> hijos;
       public NCCSS(){
-        hijos = null;
+        hijos = new ArrayList();
         etiqueta ="";
         valor ="";
     }

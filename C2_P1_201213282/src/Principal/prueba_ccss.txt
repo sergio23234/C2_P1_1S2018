@@ -1,0 +1,13 @@
+Titularccss[
+Grupo(UNO);
+Formato := mayuscula;
+Letra  := "Courier New";
+Tamtext := 14.5;
+Grupo(dos);
+Tamtext :=15;
+Formato := Negrilla, capital-t;
+]
+Otro_ccss[
+ID(caja_texto);
+Formato := cursiva,capital-t,negrilla;
+]
