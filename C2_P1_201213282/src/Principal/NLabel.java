@@ -34,5 +34,9 @@ public class NLabel extends JLabel {
     public void Set_texto(String texto){
         this.setText(texto);
     }
+    public void cambiar_alineado(int num){
+        this.setHorizontalAlignment(num);
+        repaint();
+    }
 
 }

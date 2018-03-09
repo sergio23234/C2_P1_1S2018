@@ -52,7 +52,7 @@ public class NBoton extends JButton{
             case 3: texto=cambiar_letra(texto);break;
         }
         tipol = color;
-        Fuente = new Font(letra,tipol,tam);
+        Actualizar_fuente();
         this.setText(texto);
     }
     private String cambiar_letra(String cadena){
@@ -62,5 +62,18 @@ public class NBoton extends JButton{
                 caracteres[i + 1] = Character.toUpperCase(caracteres[i + 1]);}
         }
         return new String(caracteres);
+    }
+    public void cambiar_alineado(int num){
+        this.setHorizontalAlignment(num);
+        repaint();
+    }
+    public void cambiar_letra(int num){
+        tam = num;
+        Actualizar_fuente();
+    }
+    private void Actualizar_fuente(){
+        Fuente = new Font(letra,tipol,tam);
+        setFont(Fuente);
+        repaint();
     }
 }

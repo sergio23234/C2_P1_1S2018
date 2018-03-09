@@ -33,7 +33,7 @@ public class NScrolPane extends JScrollPane implements ActionListener {
     JButton B_car = new JButton();
     public int pos_x = 0;
     public int pos_y = 0;
-    private int num_tab =0;
+    private int num_tab = 0;
     JPanel General = new JPanel();
     private int altura_prev = 0, anchura_prev = 0;
     /*-----------------Lista de elemento ------------------------*/
@@ -44,7 +44,7 @@ public class NScrolPane extends JScrollPane implements ActionListener {
     /*-----------------Constructor ------------------------*/
     public NScrolPane(int num) {
         super(VERTICAL_SCROLLBAR_AS_NEEDED, HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        num_tab=num;
+        num_tab = num;
         this.setBounds(0, 0, 1000, 600);
         panel.setBounds(0, 0, this.getWidth(), 40);
         General.setBounds(0, 0, 1000, 600);
@@ -149,7 +149,7 @@ public class NScrolPane extends JScrollPane implements ActionListener {
             }
         }
     }
-    
+
     /*-----------------Acciones sobre paneles------------------------*/
     public void add_panel(int largo, int ancho, String id, String grupo) {
         NPanel nuevo = new NPanel();
@@ -208,6 +208,7 @@ public class NScrolPane extends JScrollPane implements ActionListener {
         actual.repaint();
         repaint();
     }
+
     /*-----------------Acciones extra------------------------*/
     public int Random_255() {
         return (int) (Math.random() * 255);
@@ -234,32 +235,35 @@ public class NScrolPane extends JScrollPane implements ActionListener {
         pos_x = 0;
     }
 
-    public String averiguar_tipo_letra(String tipo){
-         String[] fontNames = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
-         for(int i=0;i<fontNames.length;i++){
-             if(fontNames[i].equalsIgnoreCase(tipo)){
-                 return fontNames[i];
-             }
-         }
-         return "";
+    public String averiguar_tipo_letra(String tipo) {
+        String[] fontNames = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
+        for (int i = 0; i < fontNames.length; i++) {
+            if (fontNames[i].equalsIgnoreCase(tipo)) {
+                return fontNames[i];
+            }
+        }
+        return "";
     }
-    
-    public int tipo_de_formato(String formato){
-        switch(formato.toLowerCase()){
-            case "negrilla": return Font.BOLD;
-            case "cursiva":  return Font.ITALIC;
-            default: return 0;
-                    }
+
+    public int tipo_de_formato(String formato) {
+        switch (formato.toLowerCase()) {
+            case "negrilla":
+                return Font.BOLD;
+            case "cursiva":
+                return Font.ITALIC;
+            default:
+                return 0;
+        }
     }
-    
-    private Color decodificador(String tipo){
+
+    private Color decodificador(String tipo) {
         return Color.decode(tipo);
     }
-    
-    public void cambiar_nombre_tab(String nombre){
+
+    public void cambiar_nombre_tab(String nombre) {
         Menu.tabs.setTitleAt(num_tab, nombre);
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         Object fuente = e.getSource();
@@ -288,7 +292,7 @@ public class NScrolPane extends JScrollPane implements ActionListener {
                 for (int i = 0; i < Botones.size(); i++) {
                     if (fuente == Botones.get(i)) {
                         azar_color(Botones.get(i));
-                        cambiar_nombre_tab(i+"P");
+                        cambiar_nombre_tab(i + "P");
                         Add_opcion_combo(String.valueOf(i));
                     }
                 }
@@ -296,7 +300,7 @@ public class NScrolPane extends JScrollPane implements ActionListener {
             if (!Combobox.isEmpty()) {
                 for (int i = 0; i < Combobox.size(); i++) {
                     if (fuente == Combobox.get(i)) {
-                        JOptionPane.showMessageDialog(this, String.valueOf(Combobox.get(i).getSelectedItem()),"mensaje" , JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(this, String.valueOf(Combobox.get(i).getSelectedItem()), "mensaje", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
             }
