@@ -7,6 +7,9 @@ Grupo(dos);
 Tamtext :=15;
 Formato := Negrilla, capital-t;
 ]
+/*Hola
+esto es multilinea*/
+//hola \n
 Otro_ccss[
 ID(caja_texto);
 Formato := cursiva,capital-t,negrilla;

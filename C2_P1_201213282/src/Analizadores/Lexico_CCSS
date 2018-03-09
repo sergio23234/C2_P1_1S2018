@@ -22,11 +22,11 @@ public static String errores="";
 %line
 %column
 Numero = [0-9]+
-Comentario_simple = [//][^][\n]
-Comentario_multiple = [/*][^][*/]
 Comillas = [\"][^]+[\"]
+Comentario =[//]([^]+)[\r\n]
 %%
-({Comentario_multiple}|{Comentario_simple}) {/*Ignore*/}
+("/*"[^]+"*/")                              {/*Ignore*/}
+({Comentario})                              {System.out.println("comentario");/*Ignorar*/}
 "+"											{return new Symbol(symc.SMAS,yyline,yycolumn,yytext());}
 "-"											{return new Symbol(symc.SMEN,yyline,yycolumn,yytext());}
 "*"											{return new Symbol(symc.SMUL,yyline,yycolumn,yytext());}
