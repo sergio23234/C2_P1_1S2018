@@ -97,7 +97,7 @@ public class Menu extends javax.swing.JFrame {
         NScrolPane nuevo = new NScrolPane(contador);
         tabs.add(nuevo);
         clases.add(nuevo);
-        nuevo.cambiar_nombre("P:"+contador);
+        nuevo.cambiar_nombre_tab("P:"+contador);
         contador++;
        
     }//GEN-LAST:event_jMenuItem1ActionPerformed

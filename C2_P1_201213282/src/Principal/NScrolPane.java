@@ -256,7 +256,7 @@ public class NScrolPane extends JScrollPane implements ActionListener {
         return Color.decode(tipo);
     }
     
-    public void cambiar_nombre(String nombre){
+    public void cambiar_nombre_tab(String nombre){
         Menu.tabs.setTitleAt(num_tab, nombre);
     }
     
@@ -288,6 +288,7 @@ public class NScrolPane extends JScrollPane implements ActionListener {
                 for (int i = 0; i < Botones.size(); i++) {
                     if (fuente == Botones.get(i)) {
                         azar_color(Botones.get(i));
+                        cambiar_nombre_tab(i+"P");
                         Add_opcion_combo(String.valueOf(i));
                     }
                 }
@@ -295,7 +296,7 @@ public class NScrolPane extends JScrollPane implements ActionListener {
             if (!Combobox.isEmpty()) {
                 for (int i = 0; i < Combobox.size(); i++) {
                     if (fuente == Combobox.get(i)) {
-                        JOptionPane.showMessageDialog(this, "es", String.valueOf(Combobox.get(i).getSelectedItem()), JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(this, String.valueOf(Combobox.get(i).getSelectedItem()),"mensaje" , JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
             }
